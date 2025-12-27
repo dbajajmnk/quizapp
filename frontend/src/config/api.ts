@@ -1,9 +1,28 @@
 // API Configuration
 // Uses environment variables from .env file
 
+// API Configuration
+// In production, use REACT_APP_API_URL from environment variables
+// In development, defaults to localhost
+const getApiUrl = () => {
+  // Always use REACT_APP_API_URL if set (from .env.production)
+  if (process.env.REACT_APP_API_URL) {
+    return process.env.REACT_APP_API_URL;
+  }
+  
+  // Check if we're in production (hosted on Firebase)
+  if (process.env.NODE_ENV === 'production') {
+    // Default to deployed function URL
+    return 'https://api-jjdtx6lgya-uc.a.run.app/api';
+  }
+  
+  // Development - use localhost
+  return 'http://localhost:5001/api';
+};
+
 const API_CONFIG = {
-  baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5001/api',
-  timeout: 10000, // 10 seconds
+  baseURL: getApiUrl(),
+  timeout: 60000, // 60 seconds - Firebase Functions can have cold starts
 };
 
 export const API_BASE_URL = API_CONFIG.baseURL;

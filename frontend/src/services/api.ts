@@ -2,9 +2,10 @@ import axios, { AxiosInstance, AxiosError, InternalAxiosRequestConfig } from 'ax
 import { API_BASE_URL } from '../config/api';
 
 // Create axios instance with default config
+// Increased timeout to 60 seconds to handle Firebase Functions cold starts
 const api: AxiosInstance = axios.create({
   baseURL: API_BASE_URL,
-  timeout: 10000,
+  timeout: 60000, // 60 seconds - Firebase Functions can have cold starts
   headers: {
     'Content-Type': 'application/json',
   },
