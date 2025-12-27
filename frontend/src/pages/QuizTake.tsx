@@ -90,12 +90,6 @@ const QuizTake: React.FC = () => {
 
       <div className="quiz-navigation">
         <button
-          onClick={() => setCurrentQuestion(Math.max(0, currentQuestion - 1))}
-          disabled={currentQuestion === 0}
-        >
-          Previous
-        </button>
-        <button
           onClick={() => setCurrentQuestion(Math.min(quiz.questions.length - 1, currentQuestion + 1))}
           disabled={currentQuestion === quiz.questions.length - 1}
         >

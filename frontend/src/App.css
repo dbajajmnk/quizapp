@@ -475,7 +475,7 @@ h3 {
 .quiz-navigation {
   display: flex;
   gap: var(--spacing-md);
-  justify-content: space-between;
+  justify-content: flex-end;
   margin-top: var(--spacing-xl);
 }
 
