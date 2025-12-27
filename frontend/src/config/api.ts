@@ -12,8 +12,8 @@ const getApiUrl = () => {
   
   // Check if we're in production (hosted on Firebase)
   if (process.env.NODE_ENV === 'production') {
-    // Default to deployed function URL
-    return 'https://api-jjdtx6lgya-uc.a.run.app/api';
+    // Default to deployed Firebase Function URL
+    return 'https://us-central1-homeautomation-206fb.cloudfunctions.net/api/api';
   }
   
   // Development - use localhost
