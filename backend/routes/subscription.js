@@ -34,17 +34,27 @@ router.put('/', protect, async (req, res) => {
 
     if (type) {
       user.subscription.type = type;
+      // If changing subscription type, update dates
+      if (!startDate) {
+        user.subscription.startDate = new Date();
+      }
     }
     if (startDate) {
-      user.subscription.startDate = startDate;
+      user.subscription.startDate = new Date(startDate);
     }
-    if (endDate) {
-      user.subscription.endDate = endDate;
+    if (endDate !== undefined) {
+      user.subscription.endDate = endDate ? new Date(endDate) : null;
     }
 
-    user.subscription.isActive = user.subscription.endDate 
-      ? new Date(user.subscription.endDate) > new Date()
-      : true;
+    // Determine if subscription is active
+    if (user.subscription.type === 'free') {
+      user.subscription.isActive = true; // Free is always active
+      user.subscription.endDate = null; // Free has no end date
+    } else if (user.subscription.endDate) {
+      user.subscription.isActive = new Date(user.subscription.endDate) > new Date();
+    } else {
+      user.subscription.isActive = true;
+    }
 
     await user.save();
 

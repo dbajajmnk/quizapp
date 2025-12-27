@@ -50,32 +50,32 @@ const Dashboard: React.FC = () => {
   }
 
   return (
-    <div className="dashboard">
+    <div className="dashboard fade-in">
       <header className="dashboard-header">
-        <h1>Welcome, {user?.name}!</h1>
-        <button onClick={handleLogout} className="btn-secondary">Logout</button>
+        <h1>👋 Welcome, {user?.name}!</h1>
+        <button onClick={handleLogout} className="btn-secondary">🚪 Logout</button>
       </header>
       
       <div className="dashboard-content">
         <div className="dashboard-cards">
-          <div className="card" onClick={() => navigate('/quiz/create')}>
-            <h3>Create Quiz</h3>
-            <p>Start a new quiz with custom settings</p>
+          <div className="card fade-in" onClick={() => navigate('/quiz/create')} style={{ animationDelay: '0.1s' }}>
+            <h3>📝 Create Quiz</h3>
+            <p>Start a new quiz with custom settings and test your knowledge</p>
           </div>
           
-          <div className="card" onClick={() => navigate('/progress')}>
-            <h3>My Progress</h3>
-            <p>View your quiz history and progress</p>
+          <div className="card fade-in" onClick={() => navigate('/progress')} style={{ animationDelay: '0.2s' }}>
+            <h3>📊 My Progress</h3>
+            <p>View your quiz history, statistics, and track your improvement</p>
           </div>
           
-          <div className="card" onClick={() => navigate('/profile-setup')}>
-            <h3>Profile</h3>
-            <p>Update your profile and preferences</p>
+          <div className="card fade-in" onClick={() => navigate('/profile-setup')} style={{ animationDelay: '0.3s' }}>
+            <h3>👤 Profile</h3>
+            <p>Update your profile, preferences, and personal information</p>
           </div>
           
-          <div className="card" onClick={() => navigate('/subscription')}>
-            <h3>Subscription</h3>
-            <p>Manage your subscription</p>
+          <div className="card fade-in" onClick={() => navigate('/subscription')} style={{ animationDelay: '0.4s' }}>
+            <h3>💎 Subscription</h3>
+            <p>Manage your subscription plan and unlock premium features</p>
           </div>
         </div>
       </div>

@@ -36,14 +36,36 @@ const QuizResults: React.FC = () => {
     }
   };
 
-  if (loading || !quiz) return <div>Loading results...</div>;
+  if (loading || !quiz) return <div className="loading">⏳ Loading results...</div>;
+
+  const getScoreEmoji = (percentage: number) => {
+    if (percentage >= 90) return '🏆';
+    if (percentage >= 70) return '🎉';
+    if (percentage >= 50) return '👍';
+    return '💪';
+  };
 
   return (
-    <div className="quiz-results">
-      <h1>Quiz Results</h1>
+    <div className="quiz-results fade-in">
+      <h1>🎯 Quiz Results</h1>
       <div className="score-card">
+        <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>
+          {getScoreEmoji(quiz.score.percentage)}
+        </div>
         <h2>Your Score: {quiz.score.correct} / {quiz.score.total}</h2>
-        <h3>{quiz.score.percentage}%</h3>
+        <h3 style={{ 
+          fontSize: '3rem',
+          background: quiz.score.percentage >= 70 
+            ? 'linear-gradient(135deg, #48bb78 0%, #38a169 100%)'
+            : quiz.score.percentage >= 50
+            ? 'linear-gradient(135deg, #ed8936 0%, #dd6b20 100%)'
+            : 'linear-gradient(135deg, #f56565 0%, #e53e3e 100%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          backgroundClip: 'text'
+        }}>
+          {quiz.score.percentage}%
+        </h3>
       </div>
 
       <div className="questions-review">

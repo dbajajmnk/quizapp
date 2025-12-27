@@ -10,7 +10,8 @@
     "kill-port": "node kill-port.js",
     "check-mongodb": "node check-mongodb.js",
     "start-backend": "node start-backend.js",
-    "seed-users": "node seed-users.js"
+    "seed-users": "node seed-users.js",
+    "seed-questions": "node seed-questions.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

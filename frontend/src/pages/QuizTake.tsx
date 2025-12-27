@@ -62,15 +62,15 @@ const QuizTake: React.FC = () => {
     }
   };
 
-  if (loading || !quiz) return <div>Loading quiz...</div>;
+  if (loading || !quiz) return <div className="loading">⏳ Loading quiz...</div>;
 
   const question = quiz.questions[currentQuestion]?.question;
 
   return (
-    <div className="quiz-take">
+    <div className="quiz-take fade-in">
       <div className="quiz-header">
-        <h2>Question {currentQuestion + 1} of {quiz.questions.length}</h2>
-        <div className="timer">Time: {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}</div>
+        <h2>📝 Question {currentQuestion + 1} of {quiz.questions.length}</h2>
+        <div className="timer">⏱️ {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}</div>
       </div>
 
       <div className="question-card">

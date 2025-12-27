@@ -24,8 +24,13 @@ router.post('/create', protect, async (req, res) => {
     // Build query
     const query = {};
 
-    if (technology && technology !== 'All' && technology !== 'Both') {
-      query.technology = technology;
+    if (technology && technology !== 'All') {
+      if (technology === 'Both') {
+        // For "Both", we want JavaScript OR React OR Both
+        query.technology = { $in: ['JavaScript', 'React', 'Both'] };
+      } else {
+        query.technology = technology;
+      }
     }
     if (difficulty && difficulty !== 'all') {
       query.difficulty = difficulty;
