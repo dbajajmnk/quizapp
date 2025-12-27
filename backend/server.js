@@ -27,11 +27,16 @@ app.get('/api/health', (req, res) => {
 
 // MongoDB Connection
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/quizapp';
+console.log('🔌 Connecting to MongoDB...');
+console.log('📋 Database:', MONGODB_URI.split('/').pop().split('?')[0]);
 mongoose.connect(MONGODB_URI, {
   serverSelectionTimeoutMS: 10000, // 10 seconds
   connectTimeoutMS: 10000
 })
-.then(() => console.log('✅ MongoDB Connected'))
+.then(() => {
+  console.log('✅ MongoDB Connected');
+  console.log('📊 Database:', mongoose.connection.name);
+})
 .catch(err => {
   console.error('❌ MongoDB Connection Error:', err.message);
   console.error('\n💡 To fix this:');
