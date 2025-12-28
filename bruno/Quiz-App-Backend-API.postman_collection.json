@@ -1,0 +1,623 @@
+{
+  "info": {
+    "name": "Quiz App Backend API",
+    "description": "Complete API collection for Quiz Application Backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "quiz-app-backend"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/health",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "health"]
+            },
+            "description": "Check if the backend server is running"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john.doe@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "register"]
+            },
+            "description": "Register a new user account. Returns JWT token and user data."
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"john.doe@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "login"]
+            },
+            "description": "Authenticate user and get JWT token. Save the token for protected routes."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Current User",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/me",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "me"]
+            },
+            "description": "Get the currently authenticated user's information. Requires authentication token."
+          },
+          "response": []
+        },
+        {
+          "name": "Forgot Password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"john.doe@example.com\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/forgotpassword",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "forgotpassword"]
+            },
+            "description": "Request password reset email"
+          },
+          "response": []
+        },
+        {
+          "name": "Reset Password",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"password\": \"newpassword123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/resetpassword/:resetToken",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "resetpassword", ":resetToken"],
+              "variable": [
+                {
+                  "key": "resetToken",
+                  "value": "your_reset_token_here"
+                }
+              ]
+            },
+            "description": "Reset password using reset token from email"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe Updated\",\n  \"jobRole\": \"Full Stack Developer\",\n  \"experience\": \"3-5 years\",\n  \"technologyStack\": [\"JavaScript\", \"React\", \"Node.js\"],\n  \"modules\": [\"module_id_1\", \"module_id_2\"],\n  \"topics\": [\"Closures\", \"Event Loop\"]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/profile",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "profile"]
+            },
+            "description": "Update user profile information. All fields are optional."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Modules",
+      "item": [
+        {
+          "name": "Get All Modules",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/modules",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "modules"]
+            },
+            "description": "Get all available quiz modules with question counts"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Module By ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/modules/:moduleId",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "modules", ":moduleId"],
+              "variable": [
+                {
+                  "key": "moduleId",
+                  "value": "your_module_id_here"
+                }
+              ]
+            },
+            "description": "Get a specific module by its ID"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Questions",
+      "item": [
+        {
+          "name": "Get All Questions",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/questions?module=&topic=&difficulty=&technology=&questionLength=&limit=10&page=1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "questions"],
+              "query": [
+                {
+                  "key": "module",
+                  "value": "",
+                  "description": "Module ID"
+                },
+                {
+                  "key": "topic",
+                  "value": "",
+                  "description": "Topic name"
+                },
+                {
+                  "key": "difficulty",
+                  "value": "",
+                  "description": "easy, medium, or hard"
+                },
+                {
+                  "key": "technology",
+                  "value": "",
+                  "description": "JavaScript, React, or Both"
+                },
+                {
+                  "key": "questionLength",
+                  "value": "",
+                  "description": "Question length filter"
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Results per page"
+                },
+                {
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number"
+                }
+              ]
+            },
+            "description": "Get questions with optional filters and pagination"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Question By ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/questions/:questionId",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "questions", ":questionId"],
+              "variable": [
+                {
+                  "key": "questionId",
+                  "value": "your_question_id_here"
+                }
+              ]
+            },
+            "description": "Get a specific question by its ID"
+          },
+          "response": []
+        },
+        {
+          "name": "Create Question",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"module\": \"module_id\",\n  \"topic\": \"Closures\",\n  \"question\": \"What is a closure in JavaScript?\",\n  \"options\": [\n    \"A function that has access to variables in its outer scope\",\n    \"A way to hide variables\",\n    \"A type of loop\",\n    \"A data structure\"\n  ],\n  \"correctAnswer\": 0,\n  \"explanation\": \"A closure is a function that has access to variables in its outer (enclosing) lexical scope, even after the outer function has returned.\",\n  \"difficulty\": \"medium\",\n  \"technology\": \"JavaScript\",\n  \"questionLength\": \"medium\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/questions",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "questions"]
+            },
+            "description": "Create a new question. Admin access required."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Quiz",
+      "item": [
+        {
+          "name": "Create Quiz",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"settings\": {\n    \"timeLimit\": {\n      \"min\": 10,\n      \"max\": 60\n    },\n    \"technology\": \"JavaScript\",\n    \"difficulty\": \"medium\",\n    \"questionLength\": \"medium\",\n    \"modules\": [\"module_id_1\", \"module_id_2\"],\n    \"topics\": [\"Closures\", \"Event Loop\"],\n    \"numberOfQuestions\": 10\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/quiz/create",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "quiz", "create"]
+            },
+            "description": "Create a new quiz with custom filters and settings"
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Quizzes",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/quiz",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "quiz"]
+            },
+            "description": "Get all quizzes for the current user"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Quiz By ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/quiz/:quizId",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "quiz", ":quizId"],
+              "variable": [
+                {
+                  "key": "quizId",
+                  "value": "your_quiz_id_here"
+                }
+              ]
+            },
+            "description": "Get a specific quiz by its ID"
+          },
+          "response": []
+        },
+        {
+          "name": "Submit Quiz",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"answers\": [\n    {\n      \"questionId\": \"question_id_1\",\n      \"selectedAnswer\": 0\n    },\n    {\n      \"questionId\": \"question_id_2\",\n      \"selectedAnswer\": 2\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/quiz/:quizId/submit",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "quiz", ":quizId", "submit"],
+              "variable": [
+                {
+                  "key": "quizId",
+                  "value": "your_quiz_id_here"
+                }
+              ]
+            },
+            "description": "Submit quiz answers and get results"
+          },
+          "response": []
+        },
+        {
+          "name": "Retake Quiz",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/quiz/:quizId/retake",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "quiz", ":quizId", "retake"],
+              "variable": [
+                {
+                  "key": "quizId",
+                  "value": "your_quiz_id_here"
+                }
+              ]
+            },
+            "description": "Retake a quiz with shuffled questions"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Progress",
+      "item": [
+        {
+          "name": "Get All Progress",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/progress",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "progress"]
+            },
+            "description": "Get all progress records for the current user"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Progress By Module",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/progress/:moduleId",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "progress", ":moduleId"],
+              "variable": [
+                {
+                  "key": "moduleId",
+                  "value": "your_module_id_here"
+                }
+              ]
+            },
+            "description": "Get progress for a specific module"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Progress Stats",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/progress/stats/overview",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "progress", "stats", "overview"]
+            },
+            "description": "Get overall progress statistics for the current user"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Subscription",
+      "item": [
+        {
+          "name": "Get Subscription",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/subscription",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "subscription"]
+            },
+            "description": "Get current user's subscription information"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Subscription",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"premium\",\n  \"startDate\": \"2025-01-01T00:00:00.000Z\",\n  \"endDate\": \"2025-12-31T23:59:59.999Z\",\n  \"isActive\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/subscription",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "subscription"]
+            },
+            "description": "Update user's subscription"
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5001",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}
+

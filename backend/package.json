@@ -6,12 +6,12 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "setup-env": "node create-env.js",
-    "kill-port": "node kill-port.js",
-    "check-mongodb": "node check-mongodb.js",
-    "start-backend": "node start-backend.js",
-    "seed-users": "node seed-users.js",
-    "seed-questions": "node seed-questions.js"
+    "setup-env": "node extra/create-env.js",
+    "kill-port": "node extra/kill-port.js",
+    "check-mongodb": "node extra/check-mongodb.js",
+    "start-backend": "node extra/start-backend.js",
+    "seed-users": "node extra/seed-users.js",
+    "seed-questions": "node extra/seed-questions.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

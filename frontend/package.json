@@ -25,7 +25,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "setup-env": "node create-env.js"
+    "setup-env": "node extra/create-env.js"
   },
   "eslintConfig": {
     "extends": [
