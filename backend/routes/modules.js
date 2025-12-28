@@ -6,11 +6,21 @@ const { protect } = require('../middleware/auth');
 const router = express.Router();
 
 // @route   GET /api/modules
-// @desc    Get all modules
+// @desc    Get all modules (optionally filtered by technology)
 // @access  Private
 router.get('/', protect, async (req, res) => {
   try {
-    const modules = await Module.find().sort({ moduleNumber: 1 });
+    const { technology } = req.query;
+    
+    // Build query for modules
+    const moduleQuery = {};
+    if (technology) {
+      // Support multiple technologies (comma-separated or array)
+      const technologies = Array.isArray(technology) ? technology : technology.split(',');
+      moduleQuery.category = { $in: technologies };
+    }
+
+    const modules = await Module.find(moduleQuery).sort({ moduleNumber: 1 });
 
     // Get question counts for each module
     const modulesWithCounts = await Promise.all(
@@ -23,6 +33,8 @@ router.get('/', protect, async (req, res) => {
       })
     );
 
+    // Show all modules (even with 0 questions) so users can see available modules
+    // Questions can be added later
     res.json({
       success: true,
       data: modulesWithCounts

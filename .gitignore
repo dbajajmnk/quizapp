@@ -39,3 +39,15 @@ ui-debug.log
 
 # OS
 Thumbs.db
+
+# Extra utility files
+extra/
+backend/extra/
+frontend/extra/
+**/extra/
+
+# Documentation files
+doc/
+backend/doc/
+frontend/doc/
+**/doc/

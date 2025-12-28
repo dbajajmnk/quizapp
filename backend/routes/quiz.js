@@ -52,8 +52,11 @@ router.post('/create', protect, async (req, res) => {
     // Shuffle questions
     questions = questions.sort(() => Math.random() - 0.5);
 
-    // Limit number of questions
-    const selectedQuestions = questions.slice(0, parseInt(numberOfQuestions));
+    // If modules are specified, use all questions from those modules
+    // Otherwise, limit by numberOfQuestions
+    const selectedQuestions = modules && modules.length > 0
+      ? questions  // Use all questions from selected modules
+      : questions.slice(0, parseInt(numberOfQuestions));  // Limit by count if no modules specified
 
     if (selectedQuestions.length === 0) {
       return res.status(400).json({

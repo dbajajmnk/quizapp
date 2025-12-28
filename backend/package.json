@@ -11,7 +11,8 @@
     "check-mongodb": "node extra/check-mongodb.js",
     "start-backend": "node extra/start-backend.js",
     "seed-users": "node extra/seed-users.js",
-    "seed-questions": "node extra/seed-questions.js"
+    "seed-questions": "node extra/seed-questions.js",
+    "seed-questions-from-modules": "node extra/seed-questions-from-modules.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
