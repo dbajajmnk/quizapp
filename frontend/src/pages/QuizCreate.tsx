@@ -142,13 +142,13 @@ const QuizCreate: React.FC = () => {
   const totalQuestions = selectedModuleData?.totalQuestions || 0;
 
   return (
-    <div className="quiz-create fade-in" style={{ padding: '2rem 1rem', minHeight: '100vh', background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}>
-      <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+    <div className="quiz-create fade-in" style={{ padding: '2rem 1rem', minHeight: '100vh', background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', position: 'relative', zIndex: 1 }}>
+      <div style={{ maxWidth: '900px', margin: '0 auto', position: 'relative', zIndex: 2 }}>
         <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-          <h1 style={{ color: 'white', fontSize: '2.5rem', marginBottom: '0.5rem', fontWeight: '700' }}>
+          <h1 style={{ color: '#ffffff', fontSize: '2.5rem', marginBottom: '0.5rem', fontWeight: '700', textShadow: '2px 2px 6px rgba(0,0,0,0.4)' }}>
             🎯 Create Quiz
           </h1>
-          <p style={{ color: 'rgba(255, 255, 255, 0.9)', fontSize: '1.1rem' }}>
+          <p style={{ color: '#ffffff', fontSize: '1.1rem', textShadow: '1px 1px 3px rgba(0,0,0,0.4)' }}>
             Select a technology and module to start your quiz
           </p>
         </div>
@@ -185,20 +185,30 @@ const QuizCreate: React.FC = () => {
                     alignItems: 'center',
                     padding: '0.75rem 1.25rem',
                     background: selectedTechnologies.includes(tech) ? '#667eea' : '#f3f4f6',
-                    color: selectedTechnologies.includes(tech) ? 'white' : '#374151',
+                    color: selectedTechnologies.includes(tech) ? '#ffffff' : '#374151',
                     borderRadius: '0.5rem',
                     cursor: 'pointer',
                     transition: 'all 0.2s',
-                    fontWeight: '500',
-                    border: selectedTechnologies.includes(tech) ? '2px solid #667eea' : '2px solid transparent'
+                    fontWeight: '600',
+                    border: selectedTechnologies.includes(tech) ? '2px solid #667eea' : '2px solid transparent',
+                    boxShadow: selectedTechnologies.includes(tech) ? '0 4px 6px rgba(0,0,0,0.2)' : 'none'
                   }}>
                     <input
                       type="checkbox"
                       checked={selectedTechnologies.includes(tech)}
                       onChange={() => handleTechnologyChange(tech)}
-                      style={{ marginRight: '0.5rem', cursor: 'pointer', width: '18px', height: '18px' }}
+                      style={{ 
+                        marginRight: '0.5rem', 
+                        cursor: 'pointer', 
+                        width: '18px', 
+                        height: '18px',
+                        accentColor: selectedTechnologies.includes(tech) ? '#ffffff' : '#667eea'
+                      }}
                     />
-                    <span>{tech}</span>
+                    <span style={{ 
+                      color: selectedTechnologies.includes(tech) ? '#ffffff' : '#374151',
+                      fontWeight: selectedTechnologies.includes(tech) ? '600' : '500'
+                    }}>{tech}</span>
                   </label>
                 ))}
               </div>
