@@ -137,25 +137,17 @@ const QuizTake: React.FC = () => {
       </div>
 
       <div className="quiz-navigation">
-        <button
-          onClick={() => setCurrentQuestion(Math.min(quiz.questions.length - 1, currentQuestion + 1))}
-          disabled={currentQuestion === quiz.questions.length - 1 || answers[currentQuestion] === null || answers[currentQuestion] === undefined}
-          style={{
-            opacity: (answers[currentQuestion] === null || answers[currentQuestion] === undefined) ? 0.5 : 1,
-            cursor: (answers[currentQuestion] === null || answers[currentQuestion] === undefined) ? 'not-allowed' : 'pointer'
-          }}
-        >
-          Next
-        </button>
-        {currentQuestion === quiz.questions.length - 1 && (
+        {answers[currentQuestion] !== null && answers[currentQuestion] !== undefined && currentQuestion < quiz.questions.length - 1 && (
+          <button
+            onClick={() => setCurrentQuestion(Math.min(quiz.questions.length - 1, currentQuestion + 1))}
+          >
+            Next
+          </button>
+        )}
+        {currentQuestion === quiz.questions.length - 1 && answers[currentQuestion] !== null && answers[currentQuestion] !== undefined && (
           <button 
             onClick={handleSubmit} 
             className="btn-primary"
-            disabled={answers[currentQuestion] === null || answers[currentQuestion] === undefined}
-            style={{
-              opacity: (answers[currentQuestion] === null || answers[currentQuestion] === undefined) ? 0.5 : 1,
-              cursor: (answers[currentQuestion] === null || answers[currentQuestion] === undefined) ? 'not-allowed' : 'pointer'
-            }}
           >
             Submit Quiz
           </button>
