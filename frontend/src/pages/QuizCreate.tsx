@@ -145,10 +145,10 @@ const QuizCreate: React.FC = () => {
     <div className="quiz-create fade-in" style={{ padding: '2rem 1rem', minHeight: '100vh', background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', position: 'relative', zIndex: 1 }}>
       <div style={{ maxWidth: '900px', margin: '0 auto', position: 'relative', zIndex: 2 }}>
         <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-          <h1 style={{ color: '#ffffff', fontSize: '2.5rem', marginBottom: '0.5rem', fontWeight: '700', textShadow: '2px 2px 6px rgba(0,0,0,0.4)' }}>
+          <h1 style={{ color: '#ffffff', fontSize: '2.5rem', marginBottom: '0.5rem', fontWeight: '700', textShadow: '2px 2px 6px rgba(0,0,0,0.4)' }} className="quiz-create-title">
             🎯 Create Quiz
           </h1>
-          <p style={{ color: '#ffffff', fontSize: '1.1rem', textShadow: '1px 1px 3px rgba(0,0,0,0.4)' }}>
+          <p style={{ color: '#ffffff', fontSize: '1.1rem', textShadow: '1px 1px 3px rgba(0,0,0,0.4)' }} className="quiz-create-subtitle">
             Select a technology and module to start your quiz
           </p>
         </div>
@@ -171,7 +171,7 @@ const QuizCreate: React.FC = () => {
           padding: '2.5rem',
           borderRadius: '1.5rem',
           boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
-        }}>
+        }} className="quiz-create-card">
           <form onSubmit={handleSubmit}>
             {/* Technology Selection */}
             <div className="form-group" style={{ marginBottom: '2rem' }}>
