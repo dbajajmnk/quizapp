@@ -174,36 +174,65 @@ router.post('/forgotpassword', [
 
     await user.save({ validateBeforeSave: false });
 
-    // Create reset URL
-    const resetUrl = `${process.env.FRONTEND_URL || 'http://localhost:3000'}/reset-password/${resetToken}`;
+    // Create reset URL - use production URL if in production, otherwise localhost
+    const frontendUrl = process.env.FRONTEND_URL || 
+      (process.env.NODE_ENV === 'production' 
+        ? 'https://homeautomation-206fb.web.app' 
+        : 'http://localhost:3001');
+    const resetUrl = `${frontendUrl}/reset-password/${resetToken}`;
 
-    const message = `
-      <h2>Password Reset Request</h2>
-      <p>You requested a password reset. Click the link below to reset your password:</p>
-      <a href="${resetUrl}" style="background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Reset Password</a>
-      <p>This link will expire in 10 minutes.</p>
-      <p>If you didn't request this, please ignore this email.</p>
+    // Create both HTML and text versions of the email
+    const htmlMessage = `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+        <h2 style="color: #333;">Password Reset Request</h2>
+        <p>You requested a password reset for your Quiz App account.</p>
+        <p>Click the button below to reset your password:</p>
+        <div style="text-align: center; margin: 30px 0;">
+          <a href="${resetUrl}" style="background-color: #667eea; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold;">Reset Password</a>
+        </div>
+        <p>Or copy and paste this link into your browser:</p>
+        <p style="word-break: break-all; color: #667eea;">${resetUrl}</p>
+        <p style="color: #666; font-size: 14px;"><strong>Important:</strong> This link will expire in 10 minutes.</p>
+        <p style="color: #666; font-size: 14px;">If you didn't request this password reset, please ignore this email. Your password will remain unchanged.</p>
+        <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;">
+        <p style="color: #999; font-size: 12px;">This is an automated message from Quiz App. Please do not reply to this email.</p>
+      </div>
     `;
+    
+    const textMessage = `Password Reset Request
+
+You requested a password reset for your Quiz App account.
+
+Click this link to reset your password:
+${resetUrl}
+
+This link will expire in 10 minutes.
+
+If you didn't request this password reset, please ignore this email. Your password will remain unchanged.
+
+This is an automated message from Quiz App. Please do not reply to this email.`;
 
     try {
       await sendEmail({
         email: user.email,
-        subject: 'Password Reset Request',
-        message
+        subject: 'Password Reset Request - Quiz App',
+        message: htmlMessage,
+        text: textMessage
       });
 
       res.json({
         success: true,
-        message: 'Email sent'
+        message: 'Password reset email sent successfully. Please check your inbox.'
       });
     } catch (error) {
+      console.error('Email sending error:', error.message);
       user.resetPasswordToken = undefined;
       user.resetPasswordExpire = undefined;
       await user.save({ validateBeforeSave: false });
 
       return res.status(500).json({
         success: false,
-        message: 'Email could not be sent'
+        message: error.message || 'Email could not be sent. Please check your email configuration.'
       });
     }
   } catch (error) {

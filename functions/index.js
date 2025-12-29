@@ -222,5 +222,8 @@ exports.api = onRequest({
   timeoutSeconds: 60,
   maxInstances: 10,
   cors: true, // Allow all origins - Express middleware will handle specific origins
+  // Environment variables for Firebase Functions v2
+  // Set these in Google Cloud Console or via gcloud CLI
+  // They will be available as process.env.EMAIL_USER, process.env.EMAIL_PASS, etc.
 }, app);
 
