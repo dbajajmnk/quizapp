@@ -1,12 +1,13 @@
 const express = require('express');
 const Module = require('../models/Module');
 const Question = require('../models/Question');
+const Progress = require('../models/Progress');
 const { protect } = require('../middleware/auth');
 
 const router = express.Router();
 
 // @route   GET /api/modules
-// @desc    Get all modules (optionally filtered by technology)
+// @desc    Get all modules (optionally filtered by technology) with progress
 // @access  Private
 router.get('/', protect, async (req, res) => {
   try {
@@ -22,13 +23,31 @@ router.get('/', protect, async (req, res) => {
 
     const modules = await Module.find(moduleQuery).sort({ moduleNumber: 1 });
 
-    // Get question counts for each module
+    // Get question counts and progress for each module
     const modulesWithCounts = await Promise.all(
       modules.map(async (module) => {
         const count = await Question.countDocuments({ module: module._id });
+        
+        // Get user progress for this module
+        const progress = await Progress.findOne({
+          user: req.user._id,
+          module: module._id
+        });
+
         return {
           ...module.toObject(),
-          totalQuestions: count
+          totalQuestions: count,
+          progress: progress ? {
+            totalAttempts: progress.totalAttempts || 0,
+            averageScore: progress.averageScore || 0,
+            lastAttemptDate: progress.lastAttemptDate || null,
+            hasAttempted: (progress.totalAttempts || 0) > 0
+          } : {
+            totalAttempts: 0,
+            averageScore: 0,
+            lastAttemptDate: null,
+            hasAttempted: false
+          }
         };
       })
     );

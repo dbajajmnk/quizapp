@@ -21,8 +21,7 @@ const questionSchema = new mongoose.Schema({
   correctAnswer: {
     type: Number,
     required: [true, 'Correct answer index is required'],
-    min: 0,
-    max: 3
+    min: 0
   },
   explanation: {
     type: String,

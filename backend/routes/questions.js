@@ -92,8 +92,13 @@ router.post('/', protect, [
   body('module').notEmpty().withMessage('Module is required'),
   body('topic').notEmpty().withMessage('Topic is required'),
   body('question').notEmpty().withMessage('Question text is required'),
-  body('options').isArray({ min: 2, max: 4 }).withMessage('Options must be 2-4 items'),
-  body('correctAnswer').isInt({ min: 0, max: 3 }).withMessage('Correct answer must be 0-3'),
+  body('options').isArray({ min: 2 }).withMessage('Options must have at least 2 items'),
+  body('correctAnswer').custom((value, { req }) => {
+    if (!req.body.options || value < 0 || value >= req.body.options.length) {
+      throw new Error('Correct answer index must be valid for the number of options');
+    }
+    return true;
+  }),
   body('explanation').notEmpty().withMessage('Explanation is required'),
   body('difficulty').isIn(['easy', 'medium', 'hard']),
   body('technology').isIn(['JavaScript', 'React', 'Both'])

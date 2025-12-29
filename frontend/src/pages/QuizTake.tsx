@@ -76,15 +76,62 @@ const QuizTake: React.FC = () => {
       <div className="question-card">
         <h3>{question?.question}</h3>
         <div className="options">
-          {question?.options.map((option: string, index: number) => (
-            <button
-              key={index}
-              className={`option ${answers[currentQuestion] === index ? 'selected' : ''}`}
-              onClick={() => handleAnswer(index)}
-            >
-              {option}
-            </button>
-          ))}
+          {question?.options.map((option: string, index: number) => {
+            // Clean option to show only MCQ answer text (no test code)
+            let cleanOption = option;
+            
+            // Remove everything after test code markers
+            const testCodeMarkers = [
+              /🧪[\s\S]*$/i,
+              /📝 Test Code:[\s\S]*$/i,
+              /Test Code:[\s\S]*$/i,
+              /Expected:[\s\S]*$/i,
+              /```[\s\S]*$/,
+              /new \w+Observer[\s\S]*$/i,
+              /console\.\w+[\s\S]*$/i,
+              /PerformanceObserver[\s\S]*$/i,
+              /MutationObserver[\s\S]*$/i,
+              /getEntriesByType[\s\S]*$/i,
+              /observe\([\s\S]*$/i,
+              /const observer[\s\S]*$/i,
+              /new MutationObserver[\s\S]*$/i
+            ];
+            
+            for (const marker of testCodeMarkers) {
+              if (marker.test(cleanOption)) {
+                cleanOption = cleanOption.split(marker)[0].trim();
+                break;
+              }
+            }
+            
+            // Remove code blocks
+            cleanOption = cleanOption.replace(/```[\s\S]*?```/g, '');
+            
+            // Remove any remaining code patterns
+            cleanOption = cleanOption.replace(/\.\w+\([^)]*\)[\s\S]*$/g, '');
+            cleanOption = cleanOption.replace(/new \w+\([^)]*\)[\s\S]*$/g, '');
+            cleanOption = cleanOption.replace(/\[web:\d+\][\s\S]*$/i, '');
+            cleanOption = cleanOption.replace(/\[file:\d+\][\s\S]*$/i, '');
+            
+            // Clean up and trim
+            cleanOption = cleanOption.replace(/\s+/g, ' ').trim();
+            
+            // If option is empty after cleaning, use first meaningful part
+            if (!cleanOption || cleanOption.length < 3) {
+              const firstPart = option.split(/[.!?]/)[0] || option.substring(0, 100);
+              cleanOption = firstPart.trim();
+            }
+            
+            return (
+              <button
+                key={index}
+                className={`option ${answers[currentQuestion] === index ? 'selected' : ''}`}
+                onClick={() => handleAnswer(index)}
+              >
+                {cleanOption}
+              </button>
+            );
+          })}
         </div>
       </div>
 
