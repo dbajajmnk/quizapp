@@ -1,0 +1,563 @@
+[
+    {
+      "_id": "m6_q1",
+      "module": "Module6-ESNext",
+      "questionNumber": 1,
+      "question": "Records/Tuples provide:",
+      "options": [
+        "Mutable data",
+        "Immutable structural equality",
+        "Classes",
+        "Proxies"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Records and Tuples introduce immutable data structures with structural equality, so two records with identical content compare equal regardless of reference identity. This eliminates bugs from accidental mutation and enables them as reliable Map keys or set members."
+    },
+    {
+      "_id": "m6_q2",
+      "module": "Module6-ESNext",
+      "questionNumber": 2,
+      "question": "Pipeline x |> f |> g equals:",
+      "options": [
+        "g(f(x))",
+        "f(g(x))",
+        "Parallel execution",
+        "Promise chain"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The pipeline operator |> passes the left value as the first argument to the right function, creating natural left-to-right function composition. This makes data transformation chains read like English instead of nested function calls."
+    },
+    {
+      "_id": "m6_q3",
+      "module": "Module6-ESNext",
+      "questionNumber": 3,
+      "question": "Logical assignment x ||= y means:",
+      "options": [
+        "x || (x = y)",
+        "x || (x = y), return x",
+        "x = x || y",
+        "Always assign"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The ||= operator assigns y to x only if x is falsy, then returns the new value of x. This is more concise than if (!x) x = y and works correctly with 0, '', and false values unlike ||."
+    },
+    {
+      "_id": "m6_q4",
+      "module": "Module6-ESNext",
+      "questionNumber": 4,
+      "question": "Private fields #private accessible:",
+      "options": [
+        "Globally",
+        "Class methods only",
+        "Subclasses",
+        "Same module"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Private fields declared with # are only accessible from within the class body that defines them, providing true encapsulation at the language level. External code attempting access throws a SyntaxError."
+    },
+    {
+      "_id": "m6_q5",
+      "module": "Module6-ESNext",
+      "questionNumber": 5,
+      "question": "Pattern matching extracts:",
+      "options": [
+        "Primitives only",
+        "Nested destructuring",
+        "Mutations",
+        "Runtime only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Pattern matching combines destructuring with conditional logic to extract and validate nested object/array structures in a declarative way. This replaces verbose switch statements with concise shape-based matching."
+    },
+    {
+      "_id": "m6_q6",
+      "module": "Module6-ESNext",
+      "questionNumber": 6,
+      "question": "Array.fromAsync(iterable) converts:",
+      "options": [
+        "Sync iterables",
+        "Async iterables",
+        "Promises",
+        "Generators"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Array.fromAsync awaits each value from an async iterable like async generators or streams, collecting them into a concrete array. This bridges asynchronous iteration with traditional array methods."
+    },
+    {
+      "_id": "m6_q7",
+      "module": "Module6-ESNext",
+      "questionNumber": 7,
+      "question": "Array.findLast() returns:",
+      "options": [
+        "Index",
+        "Last matching value",
+        "First match",
+        "All matches"
+      ],
+      "correctAnswer": 1,
+      "explanation": "findLast searches from the array end and returns the first matching value, while findLastIndex returns its index. These complement find and findIndex for reverse searches."
+    },
+    {
+      "_id": "m6_q8",
+      "module": "Module6-ESNext",
+      "questionNumber": 8,
+      "question": "import.meta.resolve resolves:",
+      "options": [
+        "Static imports",
+        "Dynamic module paths",
+        "Bundler paths",
+        "URLs only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "import.meta.resolve takes a module specifier and returns its absolute URL as understood by the current module loader. This enables dynamic imports with fully resolved paths without manual URL construction."
+    },
+    {
+      "_id": "m6_q9",
+      "module": "Module6-ESNext",
+      "questionNumber": 9,
+      "question": "Temporal.PlainDate immutable:",
+      "options": [
+        "Mutators",
+        "New instances",
+        "Legacy Date",
+        "Strings"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Temporal dates are immutable, so methods like add, subtract, and with return new instances rather than mutating the original. This eliminates time zone and mutation bugs common with legacy Date objects."
+    },
+    {
+      "_id": "m6_q10",
+      "module": "Module6-ESNext",
+      "questionNumber": 10,
+      "question": "Nullish coalescing ?? vs ||:",
+      "options": [
+        "Same behavior",
+        "??: null/undefined only",
+        "`||`: falsy only",
+        "Always falsy"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The ?? operator only considers null and undefined as \"not present\", preserving 0, '', and false as valid values. This fixes common bugs where || incorrectly replaced truthy-but-falsy defaults."
+    },
+    {
+      "_id": "m6_q11",
+      "module": "Module6-ESNext",
+      "questionNumber": 11,
+      "question": "Top-level await works in:",
+      "options": [
+        "Classic scripts",
+        "ES modules only",
+        "Node CommonJS",
+        "Web Workers"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Top-level await is only supported in ES modules because modules have static structure and defined boundaries. Classic scripts execute immediately and cannot suspend."
+    },
+    {
+      "_id": "m6_q12",
+      "module": "Module6-ESNext",
+      "questionNumber": 12,
+      "question": "Private methods #method() callable:",
+      "options": [
+        "Globally",
+        "Class methods only",
+        "Subclasses",
+        "Same module"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Private methods declared with # are only callable from within the same class body. This provides method-level encapsulation similar to private fields."
+    },
+    {
+      "_id": "m6_q13",
+      "module": "Module6-ESNext",
+      "questionNumber": 13,
+      "question": "x &&= y means:",
+      "options": [
+        "x && (x = y)",
+        "x && (x = y), return x",
+        "Always assign",
+        "x = x && y"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The &&= operator assigns only when the left operand is truthy and returns the final value. This is useful for conditionally updating objects that already have a value."
+    },
+    {
+      "_id": "m6_q14",
+      "module": "Module6-ESNext",
+      "questionNumber": 14,
+      "question": "Array.groupBy() groups by:",
+      "options": [
+        "Values",
+        "Callback return value",
+        "Indices",
+        "Length"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Array.groupBy calls the callback on each element and uses its return value as a grouping key, producing an object mapping keys to arrays of matching elements."
+    },
+    {
+      "_id": "m6_q15",
+      "module": "Module6-ESNext",
+      "questionNumber": 15,
+      "question": "Array.toReversed() vs reverse():",
+      "options": [
+        "Mutates original",
+        "Non-mutating reverse",
+        "In-place only",
+        "Shallow copy"
+      ],
+      "correctAnswer": 1,
+      "explanation": "toReversed creates a new array with reversed order without modifying the original, following the modern immutable array method pattern like toSorted and toSpliced."
+    },
+    {
+      "_id": "m6_q16",
+      "module": "Module6-ESNext",
+      "questionNumber": 16,
+      "question": "Array.toSorted() provides:",
+      "options": [
+        "Mutates array",
+        "Immutable sorted copy",
+        "Stable only",
+        "In-place sort"
+      ],
+      "correctAnswer": 1,
+      "explanation": "toSorted returns a new sorted array without changing the original, preserving the array reference for React keys and immutable data patterns."
+    },
+    {
+      "_id": "m6_q17",
+      "module": "Module6-ESNext",
+      "questionNumber": 17,
+      "question": "Array.toSpliced() returns:",
+      "options": [
+        "Mutates original",
+        "New array after splice",
+        "Removed elements only",
+        "Original unchanged"
+      ],
+      "correctAnswer": 1,
+      "explanation": "toSpliced applies splice logic but returns a new array with changes applied, leaving the original intact for immutable update patterns."
+    },
+    {
+      "_id": "m6_q18",
+      "module": "Module6-ESNext",
+      "questionNumber": 18,
+      "question": "String.replaceAll() requires:",
+      "options": [
+        "Global regex flag",
+        "No flags needed",
+        "Regex only",
+        "First match only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "replaceAll replaces all occurrences without requiring /g flag on regex or special handling for plain strings, simplifying bulk replacement."
+    },
+    {
+      "_id": "m6_q19",
+      "module": "Module6-ESNext",
+      "questionNumber": 19,
+      "question": "RegExp.matchAll() returns:",
+      "options": [
+        "First match",
+        "Iterator of all matches",
+        "Array of matches",
+        "Promise"
+      ],
+      "correctAnswer": 1,
+      "explanation": "matchAll returns an iterator over all matches including capture groups, avoiding large arrays when you only need to process matches sequentially."
+    },
+    {
+      "_id": "m6_q20",
+      "module": "Module6-ESNext",
+      "questionNumber": 20,
+      "question": "Object.hasOwn() checks:",
+      "options": [
+        "Prototype chain",
+        "Own properties only",
+        "Enumerable only",
+        "All properties"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Object.hasOwn checks for own properties without prototype lookup and works with symbols, replacing the problematic hasOwnProperty inheritance issues."
+    },
+    {
+      "_id": "m6_q21",
+      "module": "Module6-ESNext",
+      "questionNumber": 21,
+      "question": "Number.isSafeInteger checks:",
+      "options": [
+        "All integers",
+        "Safe representable integers",
+        "Floats only",
+        "BigInts"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Numbers beyond Number.MAX_SAFE_INTEGER lose precision, so isSafeInteger returns false for integers outside the safe range where +1/-1 behaves correctly."
+    },
+    {
+      "_id": "m6_q22",
+      "module": "Module6-ESNext",
+      "questionNumber": 22,
+      "question": "ArrayBuffer.isView() detects:",
+      "options": [
+        "Plain arrays",
+        "TypedArrays/DataView",
+        "ArrayBuffers",
+        "Plain objects"
+      ],
+      "correctAnswer": 1,
+      "explanation": "isView returns true for TypedArray and DataView instances that view ArrayBuffers, distinguishing them from plain arrays or the underlying buffers."
+    },
+    {
+      "_id": "m6_q23",
+      "module": "Module6-ESNext",
+      "questionNumber": 23,
+      "question": "Promise.withResolvers() creates:",
+      "options": [
+        "Already resolved promise",
+        "Promise + resolve/reject functions",
+        "Settled promise",
+        "Rejected promise"
+      ],
+      "correctAnswer": 1,
+      "explanation": "withResolvers returns both a promise and its resolve/reject functions, enabling manual control over promise resolution from outside the executor."
+    },
+    {
+      "_id": "m6_q24",
+      "module": "Module6-ESNext",
+      "questionNumber": 24,
+      "question": "WeakRef.deref() returns:",
+      "options": [
+        "Always the object",
+        "Object or null if GC'd",
+        "Promise",
+        "Weak reference"
+      ],
+      "correctAnswer": 1,
+      "explanation": "deref returns the original object if still alive, or null if garbage collected, allowing safe optional access without preventing GC."
+    },
+    {
+      "_id": "m6_q25",
+      "module": "Module6-ESNext",
+      "questionNumber": 25,
+      "question": "FinalizationRegistry cleanup:",
+      "options": [
+        "Synchronous",
+        "After GC of target",
+        "On creation",
+        "Never"
+      ],
+      "correctAnswer": 1,
+      "explanation": "FinalizationRegistry callbacks run sometime after the target is garbage collected, useful for cleaning native resources but with non-deterministic timing."
+    },
+    {
+      "_id": "m6_q26",
+      "module": "Module6-ESNext",
+      "questionNumber": 26,
+      "question": "Hashbang comments enable:",
+      "options": [
+        "Async scripts",
+        "Shebang executable scripts",
+        "Module imports",
+        "Type annotations"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Hashbang #!/usr/bin/env node at file start makes JavaScript files directly executable like shell scripts on Unix systems."
+    },
+    {
+      "_id": "m6_q27",
+      "module": "Module6-ESNext",
+      "questionNumber": 27,
+      "question": "Explicit Resource Management using:",
+      "options": [
+        "try/finally",
+        "using declarations",
+        "WeakRef",
+        "Async generators"
+      ],
+      "correctAnswer": 1,
+      "explanation": "using declarations automatically dispose resources implementing the Disposable protocol when leaving scope, replacing manual try/finally cleanup."
+    },
+    {
+      "_id": "m6_q28",
+      "module": "Module6-ESNext",
+      "questionNumber": 28,
+      "question": "Array.fromAsync benefits:",
+      "options": [
+        "Sync iterables",
+        "Async iterable to array",
+        "Parallel promises",
+        "Stream processing"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Array.fromAsync collects all values from async iterables into a concrete array, making async streams compatible with array methods and destructuring."
+    },
+    {
+      "_id": "m6_q29",
+      "module": "Module6-ESNext",
+      "questionNumber": 29,
+      "question": "Pipeline operator |> applies:",
+      "options": [
+        "Right to left",
+        "Left operand as first argument",
+        "Custom receiver",
+        "Parallel"
+      ],
+      "correctAnswer": 1,
+      "explanation": "x |> f passes x as the first argument to f, creating natural left-to-right function chains without explicit nesting or helper functions."
+    },
+    {
+      "_id": "m6_q30",
+      "module": "Module6-ESNext",
+      "questionNumber": 30,
+      "question": "Logical assignment operators combine:",
+      "options": [
+        "Assignment + arithmetic",
+        "Logical ops + assignment",
+        "Null check + assign",
+        "Truthy check only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "||=, &&=, ??= combine logical checks with assignment into single operators, reducing if statements for common defaulting and conditional update patterns."
+    },
+    {
+      "_id": "m6_q31",
+      "module": "Module6-ESNext",
+      "questionNumber": 31,
+      "question": "Private class features (#) enforce:",
+      "options": [
+        "Module scope",
+        "Class scope encapsulation",
+        "Prototype privacy",
+        "WeakMap usage"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Private fields and methods with # create true class-internal state inaccessible even to subclasses or instanceof introspection, unlike WeakMap conventions."
+    },
+    {
+      "_id": "m6_q32",
+      "module": "Module6-ESNext",
+      "questionNumber": 32,
+      "question": "Pattern matching replaces:",
+      "options": [
+        "Loops",
+        "Verbose switch/if chains",
+        "Array methods",
+        "Async/await"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Pattern matching destructures and matches complex shapes declaratively, replacing deeply nested if/switch statements with concise shape-based conditional logic."
+    },
+    {
+      "_id": "m6_q33",
+      "module": "Module6-ESNext",
+      "questionNumber": 33,
+      "question": "Temporal API fixes Date problems:",
+      "options": [
+        "Mutability",
+        "Immutable + timezone safe",
+        "Performance",
+        "Serialization"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Temporal provides immutable date types with explicit time zones and calendars, eliminating mutation bugs, implicit UTC conversion, and locale confusion in legacy Date."
+    },
+    {
+      "_id": "m6_q34",
+      "module": "Module6-ESNext",
+      "questionNumber": 34,
+      "question": "Top-level await requires:",
+      "options": [
+        "Classic scripts",
+        "ES modules",
+        "CommonJS",
+        "IIFE"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Top-level await only works in ES modules because their static structure allows the loader to suspend execution until promises settle before continuing imports."
+    },
+    {
+      "_id": "m6_q35",
+      "module": "Module6-ESNext",
+      "questionNumber": 35,
+      "question": "findLastIndex returns:",
+      "options": [
+        "Last matching value",
+        "Index of last match",
+        "All matching indices",
+        "First match index"
+      ],
+      "correctAnswer": 1,
+      "explanation": "findLastIndex searches backward through the array and returns the index of the first match from the end, complementing findIndex for reverse searches."
+    },
+    {
+      "_id": "m6_q36",
+      "module": "Module6-ESNext",
+      "questionNumber": 36,
+      "question": "import.meta.resolve() usage:",
+      "options": [
+        "Runtime bundler paths",
+        "Dynamic import specifiers",
+        "Static analysis",
+        "File system paths"
+      ],
+      "correctAnswer": 1,
+      "explanation": "import.meta.resolve resolves bare module specifiers to absolute URLs using the current module loader, enabling dynamic imports with correct relative paths."
+    },
+    {
+      "_id": "m6_q37",
+      "module": "Module6-ESNext",
+      "questionNumber": 37,
+      "question": "using declarations auto-dispose:",
+      "options": [
+        "Any object",
+        "Disposable protocol objects",
+        "Async resources",
+        "WeakRefs"
+      ],
+      "correctAnswer": 1,
+      "explanation": "using var declares a scope-bound Disposable that automatically calls [Dispose] when leaving scope, replacing try/finally resource management with declarative syntax."
+    },
+    {
+      "_id": "m6_q38",
+      "module": "Module6-ESNext",
+      "questionNumber": 38,
+      "question": "Array grouping methods produce:",
+      "options": [
+        "Flat arrays",
+        "Object with array values",
+        "Maps",
+        "Sets"
+      ],
+      "correctAnswer": 1,
+      "explanation": "groupBy and groupByToMap create plain objects mapping callback results to arrays of matching elements, providing built-in data aggregation."
+    },
+    {
+      "_id": "m6_q39",
+      "module": "Module6-ESNext",
+      "questionNumber": 39,
+      "question": "Nullish coalescing ?? treats 0 as:",
+      "options": [
+        "Nullish",
+        "Valid value",
+        "Falsy",
+        "Undefined"
+      ],
+      "correctAnswer": 1,
+      "explanation": "?? only coalesces for null/undefined, treating 0, NaN, '', and false as valid non-nullish values unlike ||= or ||= operators."
+    },
+    {
+      "_id": "m6_q40",
+      "module": "Module6-ESNext",
+      "questionNumber": 40,
+      "question": "ESNext Records enable:",
+      "options": [
+        "Mutable plain objects",
+        "Immutable value objects",
+        "Private state",
+        "Reactive updates"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Records provide immutable plain objects with structural equality and ergonomic syntax, perfect for configuration, DTOs, and domain value objects that should never change after creation."
+    }
+  ]
+  

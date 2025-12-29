@@ -1,0 +1,703 @@
+[
+    {
+      "_id": "m4_q1",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 1,
+      "question": "Currying transforms add(a,b,c) into:",
+      "options": [
+        "add(a)(b,c)",
+        "add(a)(b)(c)",
+        "Promise.resolve(add(a,b,c))",
+        "Parallel execution"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Currying turns a multi-argument function into a sequence of single-argument functions where each call remembers its previous arguments through closures. This lets you partially apply some arguments now and supply the rest later while still ending up at the same final calculation."
+    },
+    {
+      "_id": "m4_q2",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 2,
+      "question": "Debounce executes:",
+      "options": [
+        "Every call",
+        "Once after wait period",
+        "Immediately plus wait",
+        "On first call only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Debounce clears any pending timer on each call and schedules a new one, so only the last call in a burst actually runs after the quiet period. This is ideal for handling rapid events like keypress or scroll without triggering the handler too often."
+    },
+    {
+      "_id": "m4_q3",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 3,
+      "question": "Throttle executes:",
+      "options": [
+        "Once per event",
+        "Max once per time window",
+        "After events stop",
+        "First and last only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Throttle allows the wrapped function to run at most once in each fixed time window and ignores extra calls until the window resets. This keeps updates at a steady rate during continuous events like scrolling or mouse move."
+    },
+    {
+      "_id": "m4_q4",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 4,
+      "question": "Recursion stack overflow when:",
+      "options": [
+        "Always safe",
+        "No tail optimization",
+        "More than 1000 calls",
+        "Async only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Without tail call optimization, each recursive call adds a new frame to the call stack, and deep recursion eventually exceeds the engine's stack limit. Tail-optimized recursion can reuse a single frame, but most JavaScript engines do not guarantee this in all cases."
+    },
+    {
+      "_id": "m4_q5",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 5,
+      "question": "Tail position recursion optimizes:",
+      "options": [
+        "All recursion",
+        "Last operation recursion",
+        "Async recursion",
+        "Generators only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A tail call is when the recursive call is the final action of the function and its result is returned directly with no further work. Engines can optimize tail calls by reusing the current stack frame, turning recursion into a loop-like behavior and avoiding stack growth."
+    },
+    {
+      "_id": "m4_q6",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 6,
+      "question": "Higher-order functions:",
+      "options": [
+        "Execute immediately",
+        "Accept or return functions",
+        "Async only",
+        "Generators"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A higher-order function is any function that takes another function as an argument or returns a function as its result. This enables patterns like decorators, middleware, and functional composition by treating behavior as data."
+    },
+    {
+      "_id": "m4_q7",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 7,
+      "question": "Pure function characteristics:",
+      "options": [
+        "Has side effects",
+        "Same input always gives same output",
+        "Always async",
+        "Uses mutable state"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A pure function's result depends only on its inputs and it performs no observable side effects like I/O or global mutation. This makes it predictable, easy to cache, and safe to reorder or parallelize in functional pipelines."
+    },
+    {
+      "_id": "m4_q8",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 8,
+      "question": "Memoization with WeakMap:",
+      "options": [
+        "Strong references",
+        "Garbage-collectable cache",
+        "Permanent cache",
+        "No cache"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Using WeakMap for memoization stores results keyed by objects without preventing those keys from being garbage collected. When nothing else references the key object, both the key and its cached value can be freed, avoiding unbounded memory growth."
+    },
+    {
+      "_id": "m4_q9",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 9,
+      "question": "Middleware executes:",
+      "options": [
+        "In parallel",
+        "Sequentially around handler",
+        "On error only",
+        "In random order"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Middleware wraps a core handler so that requests flow through a chain before reaching the handler and responses flow back through in reverse. Each middleware can run code before and after calling next, enabling logging, auth, and transformations in a controlled sequence."
+    },
+    {
+      "_id": "m4_q10",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 10,
+      "question": "Factory functions advantage:",
+      "options": [
+        "Inheritance",
+        "Composition plus private state",
+        "Prototypes",
+        "Performance only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Factory functions create and return plain objects and can capture private variables inside their closure for per-instance state. This encourages composition of smaller behaviors instead of deep inheritance hierarchies and avoids exposing internal state through this."
+    },
+    {
+      "_id": "m4_q11",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 11,
+      "question": "Lazy evaluation delays:",
+      "options": [
+        "All computation",
+        "Until value is needed",
+        "Eager execution",
+        "Parallel execution"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Lazy evaluation wraps an expensive computation in a function and only runs it the first time its result is requested. The result is then cached, so subsequent calls reuse the value without repeating the work, which is useful for rarely used or heavy operations."
+    },
+    {
+      "_id": "m4_q12",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 12,
+      "question": "Observer pattern uses:",
+      "options": [
+        "Inheritance",
+        "Publish–subscribe via callbacks",
+        "Classes only",
+        "Prototypes"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The observer pattern maintains a list of subscriber functions that are called whenever the observable emits a new value. This decouples the producer of events from the consumers, allowing multiple listeners to react to changes without tight coupling."
+    },
+    {
+      "_id": "m4_q13",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 13,
+      "question": "Array.reduce composition creates:",
+      "options": [
+        "Generators",
+        "Pipeline functions",
+        "Classes",
+        "Observables"
+      ],
+      "correctAnswer": 1,
+      "explanation": "By using reduce over an array of functions, you can build a single pipeline function that passes a value through each stage. Each function transforms the intermediate result, modeling a clear left-to-right data flow often used in functional programming."
+    },
+    {
+      "_id": "m4_q14",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 14,
+      "question": "Factory creates reusable hooks:",
+      "options": [
+        "Global state",
+        "Parameterized hooks",
+        "Components",
+        "Higher-order components"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A hook factory is a function that returns a new stateful unit based on parameters or initial values, giving each instance its own captured state. This pattern allows reuse of the same behavior across many contexts while keeping configuration separate for each usage."
+    },
+    {
+      "_id": "m4_q15",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 15,
+      "question": "useCallback-style utilities memoize:",
+      "options": [
+        "Values",
+        "Functions",
+        "Components",
+        "Effects"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Function memoization utilities keep the same function reference across calls as long as their dependency list does not change. This reduces unnecessary re-renders or re-subscriptions in systems that compare function identity, while still allowing recomputation when inputs change."
+    },
+    {
+      "_id": "m4_q16",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 16,
+      "question": "Generators implement state machines:",
+      "options": [
+        "Blocking",
+        "Yield-based state transitions",
+        "Async only",
+        "Recursive"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A generator function can yield different values over time and resume from where it left off, naturally modeling discrete states. Each next call advances the internal state machine to the next yield, making complex control flows more explicit and testable."
+    },
+    {
+      "_id": "m4_q17",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 17,
+      "question": "Async generators handle backpressure via:",
+      "options": [
+        "Buffering",
+        "Await and yield pauses",
+        "Parallel execution",
+        "Blocking"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Async generators can pause between yields with await, producing values only when the consumer asks for them with for await. This cooperative pacing means the producer naturally slows down when the consumer processes items slowly, preventing unbounded queues."
+    },
+    {
+      "_id": "m4_q18",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 18,
+      "question": "Function composition compose(f,g)(x) equals:",
+      "options": [
+        "f(g(x))",
+        "g(f(x))",
+        "Parallel execution",
+        "A promise chain"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The typical definition of compose applies the rightmost function first, so compose(f,g)(x) means f(g(x)). This allows you to build new behavior by stacking small functions, reading composition from right to left as a sequence of transformations."
+    },
+    {
+      "_id": "m4_q19",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 19,
+      "question": "Publish–subscribe decouples:",
+      "options": [
+        "Components",
+        "Publishers and subscribers",
+        "State",
+        "Functions"
+      ],
+      "correctAnswer": 1,
+      "explanation": "In pub–sub, publishers emit events to a central broker without knowing who listens, and subscribers register interest in specific events. This decouples concerns, making it easy to add or remove listeners without changing the code that produces the events."
+    },
+    {
+      "_id": "m4_q20",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 20,
+      "question": "Command pattern encapsulates:",
+      "options": [
+        "State",
+        "Actions and undo",
+        "Data",
+        "Events"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A command object packages an action together with the data it needs and often provides an undo method to reverse it. Storing commands in a history allows features like undo/redo stacks, macro recording, and deferred execution."
+    },
+    {
+      "_id": "m4_q21",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 21,
+      "question": "Strategy pattern selects:",
+      "options": [
+        "Prototypes",
+        "Algorithms at runtime",
+        "Classes",
+        "Functions"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The strategy pattern defines a family of algorithms behind a common interface and lets the caller choose which one to use at runtime. This avoids hard-coding branching logic and makes swapping behaviors as simple as changing a function reference."
+    },
+    {
+      "_id": "m4_q22",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 22,
+      "question": "Decorator functions wrap:",
+      "options": [
+        "Objects",
+        "Existing functions",
+        "Classes",
+        "Promises"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A decorator takes a function, returns a new function, and usually calls the original inside while adding extra behavior such as logging or caching. Because it preserves the same call signature, it can be dropped in transparently where the original was used."
+    },
+    {
+      "_id": "m4_q23",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 23,
+      "question": "Adapter converts:",
+      "options": [
+        "Types",
+        "Incompatible interfaces",
+        "Promises",
+        "Generators"
+      ],
+      "correctAnswer": 1,
+      "explanation": "An adapter function translates one API shape into another, so existing code can call a legacy or third-party API as if it matched the expected interface. This isolates awkward or changing APIs in one place instead of spreading conversion logic everywhere."
+    },
+    {
+      "_id": "m4_q24",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 24,
+      "question": "Facade provides:",
+      "options": [
+        "Complex interface",
+        "Simple interface to complex system",
+        "Inheritance",
+        "Composition"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A facade exposes a small, easy-to-use API that internally orchestrates calls to several complex subsystems. Clients interact only with the facade, which hides configuration details and ordering constraints behind a single, well-named function or object."
+    },
+    {
+      "_id": "m4_q25",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 25,
+      "question": "Flyweight shares:",
+      "options": [
+        "Mutable state",
+        "Immutable common data",
+        "Unique instances",
+        "Prototypes"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The flyweight pattern stores shared intrinsic data once and lets many lightweight objects reference it instead of duplicating it. This reduces memory usage significantly when many similar entities differ only in a few extrinsic fields like position."
+    },
+    {
+      "_id": "m4_q26",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 26,
+      "question": "Builder creates complex objects:",
+      "options": [
+        "In one call",
+        "Step-by-step via fluent API",
+        "Factory only",
+        "Constructor only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A builder accumulates configuration through chained method calls, then produces a fully assembled object in a final build step. This separates object construction from its representation, making it clearer and more flexible than a long parameter list."
+    },
+    {
+      "_id": "m4_q27",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 27,
+      "question": "Currying handles partial application:",
+      "options": [
+        "First args only",
+        "By accepting arguments in multiple calls",
+        "Sequential only",
+        "No partial"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A curried function can be called with some of its parameters now and the rest later, each call returning a new function until all required arguments are present. This makes it easy to create specialized variants by capturing common arguments once."
+    },
+    {
+      "_id": "m4_q28",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 28,
+      "question": "Partial application fixes args:",
+      "options": [
+        "At runtime only",
+        "When creating the wrapper",
+        "Dynamically every call",
+        "Never"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Partial application creates a new function with some arguments pre-filled, so callers only supply the remaining ones. This reduces repetition and allows you to bind context-specific parameters in advance while still reusing the base implementation."
+    },
+    {
+      "_id": "m4_q29",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 29,
+      "question": "compose(f,g)(x) vs pipe(f,g)(x):",
+      "options": [
+        "Same direction",
+        "compose is right-to-left, pipe is left-to-right",
+        "Parallel",
+        "Random"
+      ],
+      "correctAnswer": 1,
+      "explanation": "compose applies functions from right to left, so compose(f,g)(x) is f(g(x)), while pipe applies from left to right, pipe(f,g)(x) is g(f(x)). Both express the same idea of chaining transformations, but with opposite reading directions."
+    },
+    {
+      "_id": "m4_q30",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 30,
+      "question": "Point-free style eliminates:",
+      "options": [
+        "Functions",
+        "Explicit argument names",
+        "Variables",
+        "Loops"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Point-free style defines functions by composing other functions without mentioning the data parameter explicitly. This can make intent clearer when focusing on how operations combine, but should still be balanced against readability for complex pipelines."
+    },
+    {
+      "_id": "m4_q31",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 31,
+      "question": "Functor law map(f).map(g) equals:",
+      "options": [
+        "Always true",
+        "map with composed function",
+        "Async only",
+        "Generators"
+      ],
+      "correctAnswer": 1,
+      "explanation": "For a functor, mapping f then mapping g must give the same result as mapping g∘f once, which encodes the composition law. This ensures that mapping behaves predictably and does not depend on how many times you break apart or combine transformations."
+    },
+    {
+      "_id": "m4_q32",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 32,
+      "question": "Either represents:",
+      "options": [
+        "Promises",
+        "Success or failure",
+        "Generators",
+        "Observables"
+      ],
+      "correctAnswer": 1,
+      "explanation": "An Either type conventionally has a Left branch for errors and a Right branch for successful values, packaging both possibilities in one structure. Using Either instead of throwing exceptions makes error handling explicit and composable in pipelines."
+    },
+    {
+      "_id": "m4_q33",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 33,
+      "question": "Maybe handles:",
+      "options": [
+        "All values",
+        "Null or undefined safely",
+        "Errors only",
+        "Promises"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A Maybe or Option type wraps either a present value or an empty case, forcing callers to consider both and avoid null dereference errors. Instead of crashing on missing data, code can branch on Some versus None and provide defaults or alternate flows."
+    },
+    {
+      "_id": "m4_q34",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 34,
+      "question": "Continuation Passing Style (CPS) passes:",
+      "options": [
+        "Values only",
+        "Next-step functions",
+        "Promises",
+        "Observables"
+      ],
+      "correctAnswer": 1,
+      "explanation": "In CPS, instead of returning a value directly, a function receives another function—the continuation—and calls it with the result. This makes control flow explicit and allows chaining, early exits, and asynchronous operations without relying on the call stack."
+    },
+    {
+      "_id": "m4_q35",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 35,
+      "question": "Trampoline prevents stack overflow:",
+      "options": [
+        "Async recursion",
+        "By turning recursion into iteration",
+        "Tail calls only",
+        "Generators"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A trampoline repeatedly calls functions that return either a final value or another function to invoke next, effectively unwinding recursion into a loop. This keeps the call stack shallow even for logically recursive algorithms, avoiding stack overflow."
+    },
+    {
+      "_id": "m4_q36",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 36,
+      "question": "Iterator protocol requires:",
+      "options": [
+        "length",
+        "A next() method returning done and value",
+        "values()",
+        "Symbol.iterator only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "An iterator is any object with a next method that returns objects of the shape { value, done }. The iterable protocol adds Symbol.iterator to produce such an iterator, but the core contract is that repeated next calls walk through a sequence until done is true."
+    },
+    {
+      "_id": "m4_q37",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 37,
+      "question": "Async iterator yields:",
+      "options": [
+        "Values",
+        "Promises of values over time",
+        "Generators",
+        "Observables"
+      ],
+      "correctAnswer": 1,
+      "explanation": "An async iterator's next method returns a promise that resolves to { value, done }, and for await automatically awaits those promises. This matches asynchronous data sources like network streams, where each next value might arrive later."
+    },
+    {
+      "_id": "m4_q38",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 38,
+      "question": "Generator delegation uses:",
+      "options": [
+        "Promises",
+        "yield*",
+        "async/await",
+        "Recursion"
+      ],
+      "correctAnswer": 1,
+      "explanation": "yield* delegates to another iterable or generator, yielding all of its values as if they came from the outer generator. This allows you to compose generators and flatten nested sequences without manual loops."
+    },
+    {
+      "_id": "m4_q39",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 39,
+      "question": "Recursive generators traverse:",
+      "options": [
+        "Arrays",
+        "Nested structures",
+        "Objects only",
+        "Promises"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A recursive generator can call yield* on itself when it encounters nested arrays or trees, flattening arbitrarily deep structures into a single sequence. This keeps traversal logic clear and streaming, as values are yielded as soon as they are discovered."
+    },
+    {
+      "_id": "m4_q40",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 40,
+      "question": "Function generators create:",
+      "options": [
+        "Static functions",
+        "Dynamic functions",
+        "Classes",
+        "Objects"
+      ],
+      "correctAnswer": 1,
+      "explanation": "By yielding functions from a generator, you can programmatically assemble a set of operations based on configuration or time. Consumers can then apply those generated functions to data, effectively treating behavior itself as a streamable resource."
+    },
+    {
+      "_id": "m4_q41",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 41,
+      "question": "Transducer composition focuses on:",
+      "options": [
+        "Mutation",
+        "Composable data transformations",
+        "Inheritance",
+        "Side effects"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Transducers compose map, filter, and similar steps into a single reusable transformer that works independently of the concrete collection. This avoids creating intermediate arrays between steps and centralizes transformation logic into composable units."
+    },
+    {
+      "_id": "m4_q42",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 42,
+      "question": "Lazy sequences provide:",
+      "options": [
+        "Eager evaluation",
+        "On-demand element generation",
+        "Immediate arrays",
+        "Random access"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Lazy sequences only compute elements when they are requested, often by chaining iterators or generators. This makes operations on potentially infinite or very large sequences feasible without allocating everything up front."
+    },
+    {
+      "_id": "m4_q43",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 43,
+      "question": "Functor laws help ensure:",
+      "options": [
+        "Performance",
+        "Predictable mapping behavior",
+        "Mutation safety",
+        "Type inference"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The functor identity and composition laws guarantee that using map does not unexpectedly change structure or semantics. This means map is safe to use as a generic abstraction over containers, because it behaves consistently regardless of the underlying type."
+    },
+    {
+      "_id": "m4_q44",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 44,
+      "question": "Monad laws verify:",
+      "options": [
+        "Execution speed",
+        "Correct sequencing behavior",
+        "Type soundness",
+        "Immutability"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Monad laws such as left identity, right identity, and associativity ensure that chaining with bind or flatMap is associative and respects units. This keeps complex effectful pipelines, like async or Maybe flows, from behaving differently depending on how they are grouped."
+    },
+    {
+      "_id": "m4_q45",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 45,
+      "question": "Free monads allow:",
+      "options": [
+        "Mutation",
+        "Describing effects separately from interpretation",
+        "In-place updates",
+        "Synchronous only code"
+      ],
+      "correctAnswer": 1,
+      "explanation": "With a free monad you encode a sequence of operations as data rather than performing them immediately, then interpret that structure later. This separation lets you swap interpreters for testing, logging, or different runtimes without changing the original program description."
+    },
+    {
+      "_id": "m4_q46",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 46,
+      "question": "Church encodings represent:",
+      "options": [
+        "Numbers and booleans as functions",
+        "Classes as objects",
+        "Promises as arrays",
+        "Generators as loops"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Church encoding models data structures like booleans, numbers, and pairs purely as higher-order functions. This demonstrates that functions alone are sufficient to represent computation and is the theoretical basis for many functional patterns."
+    },
+    {
+      "_id": "m4_q47",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 47,
+      "question": "Lambda calculus in JS emphasizes:",
+      "options": [
+        "Side effects",
+        "Functions as the core building block",
+        "Classes and objects",
+        "Prototype chains"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Expressing algorithms in a lambda-calculus style in JavaScript focuses on pure functions, application, and abstraction. This reinforces treating behavior and transformations as first-class values rather than relying on mutable state and statements."
+    },
+    {
+      "_id": "m4_q48",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 48,
+      "question": "Y-combinator enables:",
+      "options": [
+        "Loops without functions",
+        "Recursion without named functions",
+        "Classes without prototypes",
+        "Promises without callbacks"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The Y-combinator is a fixed-point combinator that lets an anonymous function refer to itself indirectly, enabling recursion without naming the function. It is mostly of theoretical interest, but it illustrates how recursion arises purely from higher-order functions."
+    },
+    {
+      "_id": "m4_q49",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 49,
+      "question": "Fixed-point combinators in general:",
+      "options": [
+        "Prevent recursion",
+        "Produce self-referential functions",
+        "Eliminate functions",
+        "Guarantee termination"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A fixed-point combinator finds a value that remains unchanged when passed to a given function, which for functions corresponds to a self-referential definition. In the functional setting, this turns non-recursive function definitions into recursive behavior."
+    },
+    {
+      "_id": "m4_q50",
+      "module": "Module4-Functions-Patterns",
+      "questionNumber": 50,
+      "question": "Functional programming core principle:",
+      "options": [
+        "Mutation",
+        "Immutability and composition",
+        "Inheritance",
+        "Classes"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Functional programming prefers immutable data so that values never change after creation and emphasizes building complex behavior by composing small pure functions. This reduces hidden interactions, makes reasoning about code easier, and improves testability."
+    }
+  ]
+  
