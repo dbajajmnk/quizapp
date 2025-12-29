@@ -174,8 +174,12 @@ router.post('/forgotpassword', [
 
     await user.save({ validateBeforeSave: false });
 
-    // Create reset URL
-    const resetUrl = `${process.env.FRONTEND_URL || 'http://localhost:3000'}/reset-password/${resetToken}`;
+    // Create reset URL - use production URL if in production, otherwise localhost
+    const frontendUrl = process.env.FRONTEND_URL || 
+      (process.env.NODE_ENV === 'production' 
+        ? 'https://homeautomation-206fb.web.app' 
+        : 'http://localhost:3001');
+    const resetUrl = `${frontendUrl}/reset-password/${resetToken}`;
 
     const message = `
       <h2>Password Reset Request</h2>
@@ -194,16 +198,17 @@ router.post('/forgotpassword', [
 
       res.json({
         success: true,
-        message: 'Email sent'
+        message: 'Password reset email sent successfully. Please check your inbox.'
       });
     } catch (error) {
+      console.error('Email sending error:', error.message);
       user.resetPasswordToken = undefined;
       user.resetPasswordExpire = undefined;
       await user.save({ validateBeforeSave: false });
 
       return res.status(500).json({
         success: false,
-        message: 'Email could not be sent'
+        message: error.message || 'Email could not be sent. Please check your email configuration.'
       });
     }
   } catch (error) {
