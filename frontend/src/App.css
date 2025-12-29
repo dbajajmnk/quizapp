@@ -440,6 +440,10 @@ h3 {
   margin-bottom: var(--spacing-lg);
   color: var(--gray-900);
   font-size: 1.25rem;
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  line-height: 1.6;
 }
 
 .options {
@@ -458,6 +462,15 @@ h3 {
   text-align: left;
   transition: all var(--transition-base);
   font-size: 1rem;
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  width: 100%;
+  min-height: 3rem;
+  display: flex;
+  align-items: center;
+  line-height: 1.5;
 }
 
 .option:hover {
@@ -769,6 +782,11 @@ h3 {
   .option {
     padding: var(--spacing-md) !important;
     font-size: 0.95rem !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    white-space: normal !important;
+    line-height: 1.5 !important;
   }
   
   .quiz-navigation {
@@ -984,6 +1002,12 @@ h3 {
   .option {
     padding: var(--spacing-sm) var(--spacing-md) !important;
     font-size: 0.9rem !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    white-space: normal !important;
+    line-height: 1.5 !important;
+    min-height: 2.5rem !important;
   }
   
   /* Quiz Results */
