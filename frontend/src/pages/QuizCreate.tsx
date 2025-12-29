@@ -142,13 +142,13 @@ const QuizCreate: React.FC = () => {
   const totalQuestions = selectedModuleData?.totalQuestions || 0;
 
   return (
-    <div className="quiz-create fade-in" style={{ padding: '2rem 1rem', minHeight: '100vh', background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', position: 'relative', zIndex: 1 }}>
+    <div className="quiz-create fade-in" style={{ padding: '1rem', minHeight: '100vh', background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', position: 'relative', zIndex: 1 }}>
       <div style={{ maxWidth: '900px', margin: '0 auto', position: 'relative', zIndex: 2 }}>
-        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-          <h1 style={{ color: '#ffffff', fontSize: '2.5rem', marginBottom: '0.5rem', fontWeight: '700', textShadow: '2px 2px 6px rgba(0,0,0,0.4)' }} className="quiz-create-title">
+        <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+          <h1 className="quiz-create-title" style={{ color: '#ffffff', fontSize: 'clamp(1.75rem, 5vw, 2.5rem)', marginBottom: '0.5rem', fontWeight: '700', textShadow: '2px 2px 6px rgba(0,0,0,0.4)' }}>
             🎯 Create Quiz
           </h1>
-          <p style={{ color: '#ffffff', fontSize: '1.1rem', textShadow: '1px 1px 3px rgba(0,0,0,0.4)' }} className="quiz-create-subtitle">
+          <p className="quiz-create-subtitle" style={{ color: '#ffffff', fontSize: 'clamp(0.9rem, 3vw, 1.1rem)', textShadow: '1px 1px 3px rgba(0,0,0,0.4)', padding: '0 0.5rem' }}>
             Select a technology and module to start your quiz
           </p>
         </div>
@@ -168,30 +168,33 @@ const QuizCreate: React.FC = () => {
 
         <div style={{
           background: 'white',
-          padding: '2.5rem',
+          padding: 'clamp(1rem, 4vw, 2.5rem)',
           borderRadius: '1.5rem',
           boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
         }} className="quiz-create-card">
           <form onSubmit={handleSubmit}>
             {/* Technology Selection */}
-            <div className="form-group" style={{ marginBottom: '2rem' }}>
-              <label style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem', display: 'block', color: '#374151' }}>
+            <div className="form-group" style={{ marginBottom: '1.5rem' }}>
+              <label style={{ fontSize: 'clamp(0.95rem, 2.5vw, 1.1rem)', fontWeight: '600', marginBottom: '0.75rem', display: 'block', color: '#374151' }}>
                 Select Technology <span style={{ color: '#ef4444' }}>*</span>
               </label>
-              <div className="checkbox-group" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+              <div className="checkbox-group" style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
                 {['JavaScript', 'React'].map(tech => (
                   <label key={tech} style={{
                     display: 'flex',
                     alignItems: 'center',
-                    padding: '0.75rem 1.25rem',
+                    padding: 'clamp(0.5rem, 2vw, 0.75rem) clamp(0.75rem, 3vw, 1.25rem)',
                     background: selectedTechnologies.includes(tech) ? '#667eea' : '#f3f4f6',
                     color: selectedTechnologies.includes(tech) ? '#ffffff' : '#374151',
                     borderRadius: '0.5rem',
                     cursor: 'pointer',
                     transition: 'all 0.2s',
                     fontWeight: '600',
+                    fontSize: 'clamp(0.875rem, 2.5vw, 1rem)',
                     border: selectedTechnologies.includes(tech) ? '2px solid #667eea' : '2px solid transparent',
-                    boxShadow: selectedTechnologies.includes(tech) ? '0 4px 6px rgba(0,0,0,0.2)' : 'none'
+                    boxShadow: selectedTechnologies.includes(tech) ? '0 4px 6px rgba(0,0,0,0.2)' : 'none',
+                    flex: '1 1 auto',
+                    minWidth: '120px'
                   }}>
                     <input
                       type="checkbox"
@@ -200,9 +203,10 @@ const QuizCreate: React.FC = () => {
                       style={{ 
                         marginRight: '0.5rem', 
                         cursor: 'pointer', 
-                        width: '18px', 
-                        height: '18px',
-                        accentColor: selectedTechnologies.includes(tech) ? '#ffffff' : '#667eea'
+                        width: 'clamp(16px, 4vw, 18px)', 
+                        height: 'clamp(16px, 4vw, 18px)',
+                        accentColor: selectedTechnologies.includes(tech) ? '#ffffff' : '#667eea',
+                        flexShrink: 0
                       }}
                     />
                     <span style={{ 
@@ -222,7 +226,7 @@ const QuizCreate: React.FC = () => {
             {/* Available Modules */}
             {selectedTechnologies.length > 0 && (
               <div className="form-group">
-                <label style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '1rem', display: 'block', color: '#374151' }}>
+                <label style={{ fontSize: 'clamp(0.95rem, 2.5vw, 1.1rem)', fontWeight: '600', marginBottom: '0.75rem', display: 'block', color: '#374151' }}>
                   Select Module <span style={{ color: '#ef4444' }}>*</span>
                 </label>
 
@@ -247,7 +251,7 @@ const QuizCreate: React.FC = () => {
                     overflowY: 'auto',
                     border: '1px solid #e5e7eb',
                     borderRadius: '0.75rem',
-                    padding: '1rem',
+                    padding: 'clamp(0.75rem, 2vw, 1rem)',
                     background: '#fafafa'
                   }}>
                     {availableModules.map(module => {
@@ -263,7 +267,7 @@ const QuizCreate: React.FC = () => {
                           style={{
                             display: 'flex',
                             alignItems: 'flex-start',
-                            padding: '1.25rem',
+                            padding: 'clamp(0.75rem, 2.5vw, 1.25rem)',
                             marginBottom: '0.75rem',
                             background: isSelected ? '#e0e7ff' : 'white',
                             borderRadius: '0.75rem',
@@ -282,54 +286,62 @@ const QuizCreate: React.FC = () => {
                             onChange={() => hasQuestions && handleModuleSelect(module._id)}
                             disabled={!hasQuestions}
                             style={{ 
-                              marginRight: '1rem', 
+                              marginRight: 'clamp(0.5rem, 2vw, 1rem)', 
                               marginTop: '0.25rem',
                               cursor: hasQuestions ? 'pointer' : 'not-allowed',
-                              width: '20px',
-                              height: '20px',
-                              accentColor: '#667eea'
+                              width: 'clamp(18px, 4vw, 20px)',
+                              height: 'clamp(18px, 4vw, 20px)',
+                              accentColor: '#667eea',
+                              flexShrink: 0
                             }}
                           />
-                          <div style={{ flex: 1 }}>
+                          <div style={{ flex: 1, minWidth: 0 }}>
                             <div style={{ 
                               display: 'flex', 
                               alignItems: 'center', 
                               justifyContent: 'space-between',
-                              marginBottom: '0.5rem' 
+                              marginBottom: '0.5rem',
+                              flexWrap: 'wrap',
+                              gap: '0.5rem'
                             }}>
-                              <div style={{ fontWeight: '600', fontSize: '1.1rem', color: '#111827' }}>
+                              <div style={{ fontWeight: '600', fontSize: 'clamp(0.95rem, 2.5vw, 1.1rem)', color: '#111827', flex: '1 1 auto', minWidth: '200px' }}>
                                 {module.title}
                                 {hasAttempted && (
                                   <span style={{ 
-                                    marginLeft: '0.75rem', 
-                                    fontSize: '0.75rem', 
-                                    padding: '0.25rem 0.5rem',
+                                    marginLeft: '0.5rem', 
+                                    fontSize: 'clamp(0.65rem, 2vw, 0.75rem)', 
+                                    padding: '0.2rem 0.4rem',
                                     background: '#dbeafe',
                                     color: '#1e40af',
                                     borderRadius: '0.25rem',
-                                    fontWeight: '500'
+                                    fontWeight: '500',
+                                    display: 'inline-block',
+                                    whiteSpace: 'nowrap'
                                   }}>
                                     Attempted {attemptCount}x
                                   </span>
                                 )}
                               </div>
                               <div style={{ 
-                                fontSize: '0.875rem', 
+                                fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', 
                                 color: hasQuestions ? '#667eea' : '#9ca3af', 
                                 fontWeight: '600',
                                 padding: '0.25rem 0.75rem',
                                 background: hasQuestions ? '#e0e7ff' : '#f3f4f6',
-                                borderRadius: '0.5rem'
+                                borderRadius: '0.5rem',
+                                whiteSpace: 'nowrap',
+                                flexShrink: 0
                               }}>
                                 {module.totalQuestions} {module.totalQuestions === 1 ? 'Question' : 'Questions'}
                               </div>
                             </div>
                             {module.description && (
                               <div style={{ 
-                                fontSize: '0.9rem', 
+                                fontSize: 'clamp(0.8rem, 2.2vw, 0.9rem)', 
                                 color: '#6b7280', 
                                 marginBottom: '0.5rem',
-                                lineHeight: '1.5'
+                                lineHeight: '1.5',
+                                wordWrap: 'break-word'
                               }}>
                                 {module.description}
                               </div>
@@ -364,26 +376,26 @@ const QuizCreate: React.FC = () => {
                 {selectedModule && selectedModuleData && (
                   <div style={{
                     marginTop: '1.5rem',
-                    padding: '1.25rem',
+                    padding: 'clamp(1rem, 3vw, 1.25rem)',
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                     borderRadius: '0.75rem',
                     border: 'none',
                     color: 'white'
                   }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <div>
-                        <div style={{ fontSize: '0.875rem', opacity: 0.9, marginBottom: '0.25rem' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
+                      <div style={{ flex: '1 1 auto', minWidth: '200px' }}>
+                        <div style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', opacity: 0.9, marginBottom: '0.25rem' }}>
                           Selected Module
                         </div>
-                        <div style={{ fontSize: '1.25rem', fontWeight: '700' }}>
+                        <div style={{ fontSize: 'clamp(1rem, 3vw, 1.25rem)', fontWeight: '700', wordWrap: 'break-word' }}>
                           {selectedModuleData.title}
                         </div>
                       </div>
-                      <div style={{ textAlign: 'right' }}>
-                        <div style={{ fontSize: '0.875rem', opacity: 0.9, marginBottom: '0.25rem' }}>
+                      <div style={{ textAlign: 'right', flexShrink: 0 }}>
+                        <div style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', opacity: 0.9, marginBottom: '0.25rem' }}>
                           Total Questions
                         </div>
-                        <div style={{ fontSize: '1.5rem', fontWeight: '700' }}>
+                        <div style={{ fontSize: 'clamp(1.25rem, 4vw, 1.5rem)', fontWeight: '700' }}>
                           {totalQuestions}
                         </div>
                       </div>
@@ -399,9 +411,9 @@ const QuizCreate: React.FC = () => {
               className="btn-primary"
               style={{
                 width: '100%',
-                marginTop: '2rem',
-                padding: '1rem',
-                fontSize: '1.1rem',
+                marginTop: '1.5rem',
+                padding: 'clamp(0.875rem, 2.5vw, 1rem)',
+                fontSize: 'clamp(0.95rem, 2.5vw, 1.1rem)',
                 fontWeight: '600',
                 background: (selectedTechnologies.length === 0 || !selectedModule) 
                   ? '#d1d5db' 

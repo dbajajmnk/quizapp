@@ -718,30 +718,55 @@ h3 {
   }
   
   .quiz-create-title {
-    font-size: 2rem !important;
+    font-size: 1.75rem !important;
     margin-bottom: 0.5rem !important;
+    padding: 0 0.5rem !important;
   }
   
   .quiz-create-subtitle {
-    font-size: 1rem !important;
+    font-size: 0.9rem !important;
+    padding: 0 0.5rem !important;
   }
   
   .quiz-create-card {
-    padding: 1.5rem !important;
+    padding: 1.25rem !important;
+    border-radius: 1rem !important;
   }
   
   .quiz-create .form-group {
-    margin-bottom: 1.5rem !important;
+    margin-bottom: 1.25rem !important;
+  }
+  
+  .quiz-create .form-group label {
+    font-size: 0.95rem !important;
   }
   
   .quiz-create .checkbox-group {
-    flex-direction: column;
-    gap: 0.75rem;
+    flex-direction: row;
+    gap: 0.5rem;
   }
   
   .quiz-create .checkbox-group label {
-    width: 100%;
-    justify-content: flex-start;
+    flex: 1 1 auto;
+    min-width: 120px;
+    padding: 0.625rem 1rem !important;
+    font-size: 0.875rem !important;
+  }
+  
+  .quiz-create .checkbox-group input {
+    width: 16px !important;
+    height: 16px !important;
+    margin-right: 0.5rem !important;
+  }
+  
+  /* Module cards responsive */
+  .quiz-create [style*="display: flex"][style*="alignItems: flex-start"] {
+    flex-wrap: wrap !important;
+  }
+  
+  .quiz-create [style*="display: flex"][style*="justifyContent: space-between"] {
+    flex-wrap: wrap !important;
+    gap: 0.5rem !important;
   }
   
   /* Quiz Take */
@@ -913,6 +938,34 @@ h3 {
   
   .dashboard-header h1 {
     font-size: 1.5rem;
+  }
+  
+  /* Quiz Create - Extra small screens */
+  .quiz-create {
+    padding: 0.75rem 0.5rem !important;
+  }
+  
+  .quiz-create-title {
+    font-size: 1.5rem !important;
+  }
+  
+  .quiz-create-subtitle {
+    font-size: 0.85rem !important;
+  }
+  
+  .quiz-create-card {
+    padding: 1rem !important;
+    border-radius: 0.75rem !important;
+  }
+  
+  .quiz-create .checkbox-group {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .quiz-create .checkbox-group label {
+    width: 100%;
+    padding: 0.75rem 1rem !important;
   }
   
   .card {
