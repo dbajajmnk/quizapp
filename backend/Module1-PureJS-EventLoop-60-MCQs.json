@@ -1,0 +1,542 @@
+[
+  {
+    "_id": "mcq_1",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 1,
+    "question": "Modern JS event loop phases (order):",
+    "options": ["Timers→Poll→Check", "Timers→Pending→Idle→Poll→Check→Close", "Microtasks→Timers", "Render→Microtasks"],
+    "correctAnswer": 1,
+    "explanation": "Complete Node.js/browser event loop: 1) Timers (setTimeout/setInterval), 2) Pending callbacks (deferred I/O), 3) Idle/prepare (internal), 4) Poll (I/O completion), 5) Check (setImmediate), 6) Close callbacks. Microtasks run between phases, render after all phases."
+  },
+  {
+    "_id": "mcq_2",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 2,
+    "question": "Predict output: console.log('A'); setTimeout(()=>console.log('B'),0); Promise.resolve().then(()=>console.log('C')); queueMicrotask(()=>console.log('D')); console.log('E');",
+    "options": ["ABCDE", "AEBC D", "A E C D B", "ACDEB"],
+    "correctAnswer": 2,
+    "explanation": "Execution: 1) Sync code (A→E), 2) Microtask queue drains completely (C→D), 3) Macrotask queue (B). Event loop prioritizes sync → microtasks → macrotasks. Both Promise.then() and queueMicrotask() are microtasks."
+  },
+  {
+    "_id": "mcq_3",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 3,
+    "question": "Best use case for queueMicrotask():",
+    "options": ["Heavy computation", "DOM measurements before paint", "Timers", "Network requests"],
+    "correctAnswer": 1,
+    "explanation": "queueMicrotask() runs after sync code but before browser paint. Ideal for DOM measurements (getBoundingClientRect(), offsetWidth) needing accurate layout before visual update. Avoids flicker and ensures current state measurements."
+  },
+  {
+    "_id": "mcq_4",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 4,
+    "question": "Promise.allSettled() waits for:",
+    "options": ["First failure", "All promises to settle", "Fastest promise", "No difference"],
+    "correctAnswer": 1,
+    "explanation": "Waits for ALL promises to settle (resolve/reject), returns [{status:'fulfilled/rejected', value/reason}]. Unlike Promise.all() (rejects on first failure), allSettled() always resolves for complete error analysis and retry logic."
+  },
+  {
+    "_id": "mcq_5",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 5,
+    "question": "Async generators with for await...of process:",
+    "options": ["All data at once", "One chunk at a time", "Parallel chunks", "Blocking"],
+    "correctAnswer": 1,
+    "explanation": "Processes one yield at a time with built-in backpressure. Consumer controls pace via for await...of. Memory efficient for streams/large datasets as data generates on-demand rather than buffering everything."
+  },
+  {
+    "_id": "mcq_6",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 6,
+    "question": "Web Workers communicate via:",
+    "options": ["Shared variables", "postMessage() structured cloning", "Shared DOM", "SharedArrayBuffer only"],
+    "correctAnswer": 1,
+    "explanation": "postMessage() uses structured clone algorithm for thread-safe data transfer. No shared memory (except SharedArrayBuffer). Workers have isolated global scope, no DOM access, preventing race conditions."
+  },
+  {
+    "_id": "mcq_7",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 7,
+    "question": "MessageChannel creates:",
+    "options": ["Web Worker", "Two-port message pipe", "Event bus", "Promise resolver"],
+    "correctAnswer": 1,
+    "explanation": "Creates two connected MessagePort objects for direct bidirectional communication. port1.postMessage() → port2.onmessage, port2.postMessage() → port1.onmessage. Efficient for main thread ↔ worker or cross-context messaging."
+  },
+  {
+    "_id": "mcq_8",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 8,
+    "question": "AbortController improves:",
+    "options": ["Promise speed", "Async cleanup/cancellation", "Memory usage", "Event loop priority"],
+    "correctAnswer": 1,
+    "explanation": "Standardizes async cancellation (fetch, AbortSignal.timeout). signal.aborted tracks state, abort() triggers AbortError. Prevents memory leaks from abandoned promises/streams and enables user-initiated cancellation (stop button)."
+  },
+  {
+    "_id": "mcq_9",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 9,
+    "question": "Node.js process.nextTick() runs:",
+    "options": ["After microtasks", "Before microtasks", "As macrotask", "After timers"],
+    "correctAnswer": 1,
+    "explanation": "Highest priority after current execution context. Runs before microtasks (Promise.then) and all macrotasks. Can cause starvation if overused, but essential for preserving callback ordering in libuv event loop."
+  },
+  {
+    "_id": "mcq_10",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 10,
+    "question": "Atomics.notify wakes:",
+    "options": ["Main thread", "Worker threads", "Event loop", "All threads"],
+    "correctAnswer": 1,
+    "explanation": "Wakes worker threads blocked on Atomics.wait(). Enables efficient thread coordination with SharedArrayBuffer. Main thread can't block on Atomics.wait(), only workers use this for producer-consumer patterns."
+  },
+  {
+    "_id": "mcq_11",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 11,
+    "question": "Promise.race() with timeout:",
+    "options": ["Waits for all", "Returns first settled", "Slower one wins", "Never rejects"],
+    "correctAnswer": 1,
+    "explanation": "Settles with first promise to resolve OR reject. Perfect for timeout patterns: race(fetch(url), timeoutPromise). Fastest winner determines result, others ignored. Essential for responsive UIs."
+  },
+  {
+    "_id": "mcq_12",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 12,
+    "question": "Async generators use less memory because:",
+    "options": ["Parallel execution", "Lazy chunk processing", "Blocking", "Pre-fetching"],
+    "correctAnswer": 1,
+    "explanation": "Generates values on-demand via yield*. No full dataset buffering. Backpressure via for await...of prevents overwhelming slow consumers. Ideal for processing large streams (video, logs) without OOM."
+  },
+  {
+    "_id": "mcq_13",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 13,
+    "question": "Event Loop Pending Callbacks phase purpose:",
+    "options": ["Execute timers", "Handle pending callbacks from previous cycle", "Process microtasks", "Render UI"],
+    "correctAnswer": 1,
+    "explanation": "Node.js phase executes I/O callbacks deferred from previous poll phase. Prevents callback reordering across loop iterations. Ensures deterministic execution order for time-sensitive operations."
+  },
+  {
+    "_id": "mcq_14",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 14,
+    "question": "This creates infinite microtask loop:",
+    "options": ["setTimeout(fn,0)", "requestAnimationFrame(fn)", "Promise.resolve().then(fn) recursive", "queueMicrotask(fn) only"],
+    "correctAnswer": 2,
+    "explanation": "Recursive Promise.then() fills microtask queue endlessly. Event loop drains ALL microtasks before macrotasks, starving timers/RAF. Browser freezes until stack overflow or manual termination."
+  },
+  {
+    "_id": "mcq_15",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 15,
+    "question": "V8 processes microtasks:",
+    "options": ["Per event loop turn", "All at once before render", "Interleaved with macrotasks", "After paint"],
+    "correctAnswer": 1,
+    "explanation": "V8 drains entire microtask queue in single batch before render phase. Ensures consistent Promise ordering. setTimeout(0) waits until ALL microtasks complete, preventing interleaving."
+  },
+  {
+    "_id": "mcq_16",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 16,
+    "question": "libuv poll phase executes:",
+    "options": ["Timers", "I/O callbacks", "Microtasks", "Close callbacks"],
+    "correctAnswer": 1,
+    "explanation": "Executes callbacks for completed I/O (fs.readFile, network). Blocks until timeout or new events. Node.js single-threaded async via libuv handles thousands of concurrent operations."
+  },
+  {
+    "_id": "mcq_17",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 17,
+    "question": "Cluster forks:",
+    "options": ["Threads", "Processes", "Cores", "Workers"],
+    "correctAnswer": 1,
+    "explanation": "Node.js cluster.fork() spawns separate OS processes sharing TCP port. True process isolation vs Worker Threads (shared memory). Scales to multicore CPUs with load balancing."
+  },
+  {
+    "_id": "mcq_18",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 18,
+    "question": "AsyncLocalStorage preserves:",
+    "options": ["Global variables", "Async context across await", "DOM state", "Worker state"],
+    "correctAnswer": 1,
+    "explanation": "Node.js 14+ preserves context (userId, requestId) across async/await boundaries without CLS hacks. als.run(context, asyncFn) → als.getStore() anywhere in async chain. Essential for tracing."
+  },
+  {
+    "_id": "mcq_19",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 19,
+    "question": "Stream pipeline handles backpressure by:",
+    "options": ["Buffering everything", "Pausing slow consumers", "Dropping data", "Blocking"],
+    "correctAnswer": 1,
+    "explanation": "Slow consumers signal readable.pause(). Producers wait instead of buffering unlimited data. Prevents OOM in stream processing (logs, video). pipeline() auto-manages flow control."
+  },
+  {
+    "_id": "mcq_20",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 20,
+    "question": "ReadableStream controller methods:",
+    "options": ["write/read", "enqueue/close/error", "pipe/start", "transform/yield"],
+    "correctAnswer": 1,
+    "explanation": "controller.enqueue(data), controller.close(), controller.error(err) control stream lifecycle. start(controller) receives controller. Enables streaming responses without full buffering."
+  },
+  {
+    "_id": "mcq_21",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 21,
+    "question": "TransformStream transform() receives:",
+    "options": ["Full stream", "Single chunk + controller", "End signal only", "Array buffer"],
+    "correctAnswer": 1,
+    "explanation": "transform(chunk, controller) processes one chunk. controller.enqueue() pushes transformed data. Stateless per-chunk processing perfect for gzip, CSV parsing, encryption pipelines."
+  },
+  {
+    "_id": "mcq_22",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 22,
+    "question": "for await...of on ReadableStream:",
+    "options": ["Loads all data", "Respects backpressure", "Ignores pause", "Sync iteration"],
+    "correctAnswer": 1,
+    "explanation": "Slow for await...of consumers trigger readable.pause(). Producer respects backpressure, preventing memory explosion. Native async iteration for streams with flow control."
+  },
+  {
+    "_id": "mcq_23",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 23,
+    "question": "TextDecoder.decode() streaming mode:",
+    "options": ["Complete strings only", "{stream: true} partial decode", "Buffers everything", "Sync only"],
+    "correctAnswer": 1,
+    "explanation": "decode(bytes, {stream:true}) handles partial UTF-8 sequences. Subsequent decode() continues from remainder. Essential for real-time streaming text (WebSockets, fetch streams)."
+  },
+  {
+    "_id": "mcq_24",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 24,
+    "question": "URLSearchParams handles:",
+    "options": ["Sync strings only", "URLSearchParams async iteration", "FormData only", "JSON only"],
+    "correctAnswer": 1,
+    "explanation": "for(const [key,value] of new URLSearchParams(query)) iterates key-value pairs. Iterable/asyncIterable. Modern replacement for URLSearchParams.getAll() loops."
+  },
+  {
+    "_id": "mcq_25",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 25,
+    "question": "fetch() returns:",
+    "options": ["JSON", "Response with ReadableStream body", "Buffer", "Text"],
+    "correctAnswer": 1,
+    "explanation": "response.body is ReadableStream for streaming consumption. r.body.getReader() enables chunked processing. Prevents loading entire response into memory for large files/APIs."
+  },
+  {
+    "_id": "mcq_26",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 26,
+    "question": "AbortSignal.timeout(1000) aborts after:",
+    "options": ["1000ms exactly", "~1000ms", "Never", "Immediate"],
+    "correctAnswer": 1,
+    "explanation": "Non-blocking timeout via macrotask. Approximate due to event loop scheduling. AbortSignal.timeout(1000).throwIfAborted() for fetch cancellation patterns."
+  },
+  {
+    "_id": "mcq_27",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 27,
+    "question": "Structured Clone Algorithm cannot clone:",
+    "options": ["Objects", "Functions", "Arrays", "Primitives"],
+    "correctAnswer": 1,
+    "explanation": "postMessage(), structuredClone() reject functions, DOM nodes, circular refs. Deep copies serializable data (ArrayBuffer transfers ownership). Workers can't share functions."
+  },
+  {
+    "_id": "mcq_28",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 28,
+    "question": "postMessage(arrayBuffer, [arrayBuffer]):",
+    "options": ["Copies data", "Transfers ownership", "Shares reference", "Clones deeply"],
+    "correctAnswer": 1,
+    "explanation": "Zero-copy transfer. Original ArrayBuffer.byteLength becomes 0. Receiver gets full buffer. Most efficient for large binary data (video frames, audio)."
+  },
+  {
+    "_id": "mcq_29",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 29,
+    "question": "MessageChannel creates:",
+    "options": ["1 port", "2 connected ports", "Event bus", "Promise"],
+    "correctAnswer": 1,
+    "explanation": "new MessageChannel() returns {port1, port2}. Bidirectional: port1 → port2, port2 → port1. Direct thread communication without postMessage indirection."
+  },
+  {
+    "_id": "mcq_30",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 30,
+    "question": "BroadcastChannel works:",
+    "options": ["Same tab only", "Cross tabs same origin", "Workers only", "iframes only"],
+    "correctAnswer": 1,
+    "explanation": "new BroadcastChannel('name') broadcasts to all same-origin tabs/windows. Cross-tab sync (localStorage alternative). Simple pub/sub without BroadcastChannel.onmessage listener."
+  },
+  {
+    "_id": "mcq_31",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 31,
+    "question": "SharedWorker lifetime:",
+    "options": ["Per tab", "Until last client disconnects", "Page lifetime", "Browser lifetime"],
+    "correctAnswer": 1,
+    "explanation": "Single SharedWorker instance shared across tabs. Lives until final port.close(). Efficient resource sharing vs per-tab Web Workers."
+  },
+  {
+    "_id": "mcq_32",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 32,
+    "question": "ServiceWorker intercepts:",
+    "options": ["XHR only", "fetch() + navigation", "WebSocket", "All network"],
+    "correctAnswer": 1,
+    "explanation": "'fetch' event intercepts fetch() + navigation requests. Cache strategies, offline support. No XHR/WebSocket interception (separate events)."
+  },
+  {
+    "_id": "mcq_33",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 33,
+    "question": "Cache-first strategy uses:",
+    "options": ["fetch first", "caches.match() first", "Network only", "No cache"],
+    "correctAnswer": 1,
+    "explanation": "caches.match(request).then(hit ? hit : fetch()). Fastest UX, offline capable. caches.open('v1').then(cache => cache.addAll(resources)) pre-caches."
+  },
+  {
+    "_id": "mcq_34",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 34,
+    "question": "Longtasks >50ms trigger:",
+    "options": ["Warnings", "PerformanceObserver", "Errors", "Nothing"],
+    "correctAnswer": 1,
+    "explanation": "PerformanceObserver({entryTypes:['longtask']}) captures tasks blocking main thread >50ms. Critical for Core Web Vitals, responsiveness. while(performance.now()-start<60){} triggers."
+  },
+  {
+    "_id": "mcq_35",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 35,
+    "question": "PerformanceNavigationTiming provides:",
+    "options": ["Paint times", "Navigation metrics", "Resource timing", "Memory usage"],
+    "correctAnswer": 1,
+    "explanation": "performance.getEntriesByType('navigation')[0] gives domContentLoadedEventEnd, loadEventEnd. Page load waterfall timing. Essential for RUM analysis."
+  },
+  {
+    "_id": "mcq_36",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 36,
+    "question": "Resource timing tracks:",
+    "options": ["CPU usage", "Network resource load times", "GC pauses", "Layout shifts"],
+    "correctAnswer": 1,
+    "explanation": "PerformanceObserver('resource') tracks fetchStart→responseEnd per script/CSS/image. Network bottleneck identification. r.responseEnd-r.fetchStart reveals slow resources."
+  },
+  {
+    "_id": "mcq_37",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 37,
+    "question": "First Contentful Paint measures:",
+    "options": ["Largest content", "First text/image", "Interactive", "Total load"],
+    "correctAnswer": 1,
+    "explanation": "First text node, image (!empty/lazy), svg, or non-white canvas paint. Core Web Vital. PerformanceObserver('paint', {name:'first-contentful-paint'})."
+  },
+  {
+    "_id": "mcq_38",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 38,
+    "question": "LCP measures:",
+    "options": ["First paint", "Largest image/block", "Total paint", "Interactive paint"],
+    "correctAnswer": 1,
+    "explanation": "Largest contentful element (image, video, text block) paint time. Core Web Vital <2.5s. Largest text/image in viewport, recalculates on layout shifts."
+  },
+  {
+    "_id": "mcq_39",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 39,
+    "question": "CLS measures:",
+    "options": ["Load speed", "Unexpected layout shifts", "Interactivity", "Network"],
+    "correctAnswer": 1,
+    "explanation": "Cumulative Layout Shift score. Unexpected element movement (ads, dynamic content). Core Web Vital <0.1. sessionStorage impact calculation."
+  },
+  {
+    "_id": "mcq_40",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 40,
+    "question": "INP measures:",
+    "options": ["First input", "Input to paint latency", "Total interactivity", "Load time"],
+    "correctAnswer": 1,
+    "explanation": "Input delay + task processing + presentation. Replaces FID. Measures ALL interactions (click, tap, key). Core Web Vital <200ms."
+  },
+  {
+    "_id": "mcq_41",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 41,
+    "question": "requestIdleCallback provides:",
+    "options": ["Fixed time slices", "deadline.timeRemaining()", "Infinite time", "RAF timing"],
+    "correctAnswer": 1,
+    "explanation": "Non-urgent work during idle periods. deadline.timeRemaining() gives available time (~50ms). while(deadline.timeRemaining()>0) {} prevents frame drops."
+  },
+  {
+    "_id": "mcq_42",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 42,
+    "question": "Scheduler.postTask priorities:",
+    "options": ["high/medium/low", "user-visible/background/user-blocking", "sync/async/idle", "normal/urgent/idle"],
+    "correctAnswer": 1,
+    "explanation": "Chrome 113+: user-blocking (immediate), user-visible (visible updates), background (non-UI). scheduler.postTask(callback, {priority}). Modern setTimeout replacement."
+  },
+  {
+    "_id": "mcq_43",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 43,
+    "question": "Main thread scheduling coordinates:",
+    "options": ["Only JS", "JS + Layout + Paint", "GPU only", "Network only"],
+    "correctAnswer": 1,
+    "explanation": "Critical path: JS → Style → Layout → Paint → Composite. Long JS blocks all downstream. requestAnimationFrame syncs with paint."
+  },
+  {
+    "_id": "mcq_44",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 44,
+    "question": "Long tasks block main thread for:",
+    "options": [">16ms", ">50ms", ">100ms", "Any task"],
+    "correctAnswer": 1,
+    "explanation": ">50ms main thread tasks reported as longtasks. Causes jank, missed frames. PerformanceObserver('longtask') for monitoring. 16ms=60fps frame budget."
+  },
+  {
+    "_id": "mcq_45",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 45,
+    "question": "Performance.measure() measures:",
+    "options": ["Memory", "Time between marks", "Network", "Paint"],
+    "correctAnswer": 1,
+    "explanation": "performance.measure('name', 'startMark', 'endMark'). Custom app timing. performance.getEntriesByName('name') retrieves duration. User Timing API standard."
+  },
+  {
+    "_id": "mcq_46",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 46,
+    "question": "performance.getEntriesByType('measure') shows:",
+    "options": ["Network", "Custom user timings", "Paint timings", "Navigation"],
+    "correctAnswer": 1,
+    "explanation": "Developer-defined performance.measure() entries. Distinguishes from browser metrics. console.table(performance.getEntriesByType('measure')) for analysis."
+  },
+  {
+    "_id": "mcq_47",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 47,
+    "question": "navigator.sendBeacon() advantages:",
+    "options": ["Sync request", "Reliable - survives page unload", "Unreliable delivery", "Large payloads"],
+    "correctAnswer": 1,
+    "explanation": "Async, survives page unload/refresh. Queued by browser for reliable delivery. Perfect for analytics (page views, rage clicks). navigator.sendBeacon(url, blob)."
+  },
+  {
+    "_id": "mcq_48",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 48,
+    "question": "navigator.connection.effectiveType indicates:",
+    "options": ["Exact speed", "4G/3G/slow-2g", "Latency", "Provider"],
+    "correctAnswer": 1,
+    "explanation": "Browser-estimated connection quality: '4g','3g','2g','slow-2g'. downlink Mbps estimate. Adaptive quality (video bitrate, image formats)."
+  },
+  {
+    "_id": "mcq_49",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 49,
+    "question": "navigator.hardwareConcurrency returns:",
+    "options": ["Memory", "CPU cores", "GPU cores", "Always 4"],
+    "correctAnswer": 1,
+    "explanation": "Logical CPU cores available to browser. Guides Web Worker count, parallel processing. navigator.hardwareConcurrency=8 means 8 workers optimal."
+  },
+  {
+    "_id": "mcq_50",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 50,
+    "question": "navigator.getBattery() provides:",
+    "options": ["Exact capacity", "Charging state + level", "Temperature", "Cycles"],
+    "correctAnswer": 1,
+    "explanation": "navigator.getBattery().then(b => b.charging, b.level). Battery API for power-aware apps. Reduce quality/work when b.level<0.2."
+  },
+  {
+    "_id": "mcq_51",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 51,
+    "question": "Network Information API exposes:",
+    "options": ["IP address", "Connection type + speed", "DNS", "MTU"],
+    "correctAnswer": 1,
+    "explanation": "navigator.connection.effectiveType + downlink. Adaptive loading strategies. No IP/DNS for privacy."
+  },
+  {
+    "_id": "mcq_52",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 52,
+    "question": "performance.memory provides:",
+    "options": ["RSS", "Heap sizes", "Stack size", "GPU memory"],
+    "correctAnswer": 1,
+    "explanation": "usedJSHeapSize, totalJSHeapSize, jsHeapSizeLimit. Heap usage monitoring. if(performance.memory.usedJSHeapSize > limit*0.8) cleanup()."
+  },
+  {
+    "_id": "mcq_53",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 53,
+    "question": "CPU throttling detected via:",
+    "options": ["navigator.hardwareConcurrency", "Repeated timing tests", "Battery API", "Network API"],
+    "correctAnswer": 1,
+    "explanation": "Benchmark loop: while(performance.now()-start<100) i++. Compare across runs. Detects thermal throttling, low-power mode."
+  },
+  {
+    "_id": "mcq_54",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 54,
+    "question": "Thermal throttling indicated by:",
+    "options": ["High memory", "Repeated perf degradation", "Network slowdown", "Battery drain"],
+    "correctAnswer": 1,
+    "explanation": "Benchmark scores degrade over sustained load. setInterval(benchmark,1000).slice(-5) trend analysis. Reduce quality during heat."
+  },
+  {
+    "_id": "mcq_55",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 55,
+    "question": "document.visibilityState values:",
+    "options": ["show/hide", "visible/hidden", "foreground/background", "active/inactive"],
+    "correctAnswer": 1,
+    "explanation": "'visibilitychange' → visible/hidden. Pause heavy work when hidden. document.visibilityState === 'hidden' → analytics.sendBeacon()."
+  },
+  {
+    "_id": "mcq_56",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 56,
+    "question": "IntersectionObserver rootMargin:",
+    "options": ["CSS margin", "Viewport padding", "Scroll offset", "DOM offset"],
+    "correctAnswer": 1,
+    "explanation": "new IntersectionObserver(callback, {rootMargin:'50px'}). Expands viewport by 50px. Preloads images before visible. '100px 0' = top/bottom padding."
+  },
+  {
+    "_id": "mcq_57",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 57,
+    "question": "ResizeObserver callbacks execute:",
+    "options": ["Per resize", "Batched per frame", "Async queue", "Immediate"],
+    "correctAnswer": 1,
+    "explanation": "Batched to rAF timing. Multiple resize events → single callback per frame. Prevents layout thrashing from rapid window resize."
+  },
+  {
+    "_id": "mcq_58",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 58,
+    "question": "MutationObserver callbacks run:",
+    "options": ["Sync", "Microtask queue", "Macrotask", "RAF"],
+    "correctAnswer": 1,
+    "explanation": "Async microtask delivery. observe({childList:true}). Multiple DOM mutations → batched callback. Non-blocking DOM change monitoring."
+  },
+  {
+    "_id": "mcq_59",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 59,
+    "question": "PerformanceObserver bufferSize limits:",
+    "options": ["100 entries", "1000 entries", "Unlimited", "10000"],
+    "correctAnswer": 1,
+    "explanation": "{buffered:true, bufferSize:1000}. Oldest entries dropped when full. Captures events before observer attached."
+  },
+  {
+    "_id": "mcq_60",
+    "module": "Module1-PureJS-EventLoop",
+    "questionNumber": 60,
+    "question": "Event Timing API measures:",
+    "options": ["Network", "Input delay to processing", "Paint", "Load times"],
+    "correctAnswer": 1,
+    "explanation": "PerformanceObserver('event'). processingStart-startTime = input delay. Chrome 112+. Measures responsiveness beyond FID."
+  }
+]

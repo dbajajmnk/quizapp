@@ -1,0 +1,452 @@
+[
+  {
+    "_id": "mcq_1",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 1,
+    "question": "What does a closure really capture?",
+    "options": ["Global variables only", "Lexical scope variables (with current values)", "Only parameters", "Copies of variables"],
+    "correctAnswer": 1,
+    "explanation": "Closures capture references to lexical scope variables, not values. Changes to outer variables propagate to inner functions. This enables data privacy and state persistence across function calls."
+  },
+  {
+    "_id": "mcq_2",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 2,
+    "question": "Common closure memory leak pattern:",
+    "options": ["Arrow functions", "Event listeners capturing large DOM", "const variables", "useCallback"],
+    "correctAnswer": 1,
+    "explanation": "Event handlers retain DOM references indefinitely if not removed. Chrome DevTools Heap Snapshot shows 'Detached DOM tree' leaks. Always use removeEventListener() or WeakMap for cleanup."
+  },
+  {
+    "_id": "mcq_3",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 3,
+    "question": "Async callback closure pitfall:",
+    "options": ["Always correct", "Stale closure values", "Memory leaks only", "Performance only"],
+    "correctAnswer": 1,
+    "explanation": "setTimeout/for(var i=0) captures final loop value (stale closure). Use let/const block scope or IIFE per iteration. let i creates new binding each iteration, fixing async closures."
+  },
+  {
+    "_id": "mcq_4",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 4,
+    "question": "let vs var shadowing behavior:",
+    "options": ["Identical", "let creates new block scope", "var block scoped", "No shadowing"],
+    "correctAnswer": 1,
+    "explanation": "let/const are block-scoped ({...}). var is function/global scoped. Shadowing creates new variable in inner block without affecting outer. Essential for loop closures and privacy."
+  },
+  {
+    "_id": "mcq_5",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 5,
+    "question": "Lexical scope + hoisting interaction:",
+    "options": ["Hoisting breaks lexical", "Lexical wins, hoisting = undefined", "Dynamic scope", "No interaction"],
+    "correctAnswer": 1,
+    "explanation": "var hoists to undefined, but lexical scope resolution finds nearest outer declaration. Inner functions see hoisted undefined until assignment. Lexical always determines lookup path."
+  },
+  {
+    "_id": "mcq_6",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 6,
+    "question": "Timer closure captures:",
+    "options": ["Latest value always", "Value at setTimeout time", "Global only", "Nothing"],
+    "correctAnswer": 1,
+    "explanation": "Closures capture variable state at creation time. let x=1; setTimeout(()=>console.log(x),0); x=2; logs 1. Use function parameters or block scope for fresh values."
+  },
+  {
+    "_id": "mcq_7",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 7,
+    "question": "WeakMap garbage collection:",
+    "options": ["Never GC'd", "GC when keys collected", "Manual cleanup", "Strong references"],
+    "correctAnswer": 1,
+    "explanation": "WeakMap keys (objects) don't prevent garbage collection. wm.set(obj,'data'); obj=null; entry auto-cleans. Perfect for caches, DOM event maps without memory leaks."
+  },
+  {
+    "_id": "mcq_8",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 8,
+    "question": "Module pattern uses closures for:",
+    "options": ["Performance", "Private state", "Inheritance", "Prototypes"],
+    "correctAnswer": 1,
+    "explanation": "(function(){ let secret=42; return{getSecret:()=>secret}; })() creates private variables inaccessible externally. Pre-ES6 encapsulation pattern. State persists via closure."
+  },
+  {
+    "_id": "mcq_9",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 9,
+    "question": "let x before declaration throws:",
+    "options": ["undefined", "ReferenceError (TDZ)", "null", "Global"],
+    "correctAnswer": 1,
+    "explanation": "Temporal Dead Zone (TDZ): let/const inaccessible from declaration to initialization. console.log(x); let x=1; → ReferenceError. var returns undefined. Prevents accidental global use."
+  },
+  {
+    "_id": "mcq_10",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 10,
+    "question": "IIFE primary use:",
+    "options": ["Performance", "Avoid global pollution", "Async execution", "Generators"],
+    "correctAnswer": 1,
+    "explanation": "(function(){const local='hidden';})(); creates block scope without globals. Essential pre-ES6 modules. Immediately executes, returns API while hiding implementation."
+  },
+  {
+    "_id": "mcq_11",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 11,
+    "question": "Closures in 10k+ component apps cause:",
+    "options": ["Performance boost", "Memory leaks (DOM retention)", "Bundle bloat", "No issues"],
+    "correctAnswer": 1,
+    "explanation": "Event handlers capturing component arrays/DOM retain references forever. 10k components × 10KB each = 100MB leak. Use WeakMap, event delegation, or cleanup handlers."
+  },
+  {
+    "_id": "mcq_12",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 12,
+    "question": "TDZ duration:",
+    "options": ["Forever", "Declaration to initialization", "Block scope only", "Function scope"],
+    "correctAnswer": 1,
+    "explanation": "let x; console.log(x); x=1; → ReferenceError until assignment. Protects against using uninitialized variables. Scope ends normally after initialization."
+  },
+  {
+    "_id": "mcq_13",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 13,
+    "question": "let/const scope:",
+    "options": ["Function/global", "Block scope", "Module scope", "Dynamic"],
+    "correctAnswer": 1,
+    "explanation": "if(true){let x=1;} console.log(x); → undefined. Block scope {...} limits lifetime. var leaks to function scope. Essential for loop counters, try/catch variables."
+  },
+  {
+    "_id": "mcq_14",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 14,
+    "question": "WeakMap advantage:",
+    "options": ["Faster lookup", "Auto cleanup", "Ordered iteration", "Larger capacity"],
+    "correctAnswer": 1,
+    "explanation": "WeakMap doesn't prevent key GC. let obj={}; wm.set(obj,'data'); obj=null; → auto cleanup. Map retains strongly. Perfect for metadata caches, event handler maps."
+  },
+  {
+    "_id": "mcq_15",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 15,
+    "question": "ES6 modules replace:",
+    "options": ["Classes", "IIFE/module pattern", "Prototypes", "Closures"],
+    "correctAnswer": 1,
+    "explanation": "export let x=1; provides private scope + live bindings. Replaces IIFE patterns. Static analysis enables tree-shaking. import creates closure-like encapsulation."
+  },
+  {
+    "_id": "mcq_16",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 16,
+    "question": "Arrow functions this binding:",
+    "options": ["Dynamic", "Lexical (outer scope)", "Global", "undefined"],
+    "correctAnswer": 1,
+    "explanation": "() => this" captures outer lexical this. Perfect for callbacks preserving object context. Regular functions use dynamic this (caller context)."
+  },
+  {
+    "_id": "mcq_17",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 17,
+    "question": "Currying uses closures to:",
+    "options": ["Parallel execute", "Remember partial args", "Memoize", "Generate"],
+    "correctAnswer": 1,
+    "explanation": "function add(a){return b=>{return c=>a+b+c;}} Captures partial arguments. add(1)(2)(3). Enables function composition, configuration before execution."
+  },
+  {
+    "_id": "mcq_18",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 18,
+    "question": "Debounce implementation uses:",
+    "options": ["Classes", "Closure + timeout ref", "Prototypes", "WeakMap"],
+    "correctAnswer": 1,
+    "explanation": "function debounce(fn,delay){let timeout; return (...args)=>{clearTimeout(timeout); timeout=setTimeout(()=>fn(...args),delay);}} Closure remembers timeout ID across calls."
+  },
+  {
+    "_id": "mcq_19",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 19,
+    "question": "Event delegation advantage:",
+    "options": ["More listeners", "Single listener + closures", "Faster bubbling", "Memory leaks"],
+    "correctAnswer": 1,
+    "explanation": "document.addEventListener('click',e=>e.target.dataset.id) handles dynamic children with one listener. Closures capture target info. Scales to thousands of elements."
+  },
+  {
+    "_id": "mcq_20",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 20,
+    "question": "Strict mode this in non-method:",
+    "options": ["window", "undefined", "caller", "new target"],
+    "correctAnswer": 1,
+    "explanation": "'use strict'; const fn=function(){console.log(this)}; fn(); → undefined. Prevents accidental global binding. Regular mode → window/global."
+  },
+  {
+    "_id": "mcq_21",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 21,
+    "question": "Proxy trap + closure pattern creates:",
+    "options": ["Performance boost", "Reactive objects", "Memory leaks", "Prototype pollution"],
+    "correctAnswer": 1,
+    "explanation": "new Proxy(obj,{set(target,prop,value){target[prop]=value; listeners.forEach(fn=>fn());}}) notifies subscribers on mutation. Vue.js reactivity pattern using closures."
+  },
+  {
+    "_id": "mcq_22",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 22,
+    "question": "Hoisted function + closure resolves:",
+    "options": ["To nearest lexical", "Hoisted function scope", "Global", "Dynamic"],
+    "correctAnswer": 1,
+    "explanation": "function outer(){console.log(fn()); var fn=function(){return x;}; var x=42;} Hoisted var fn creates function scope. inner() sees lexical x."
+  },
+  {
+    "_id": "mcq_23",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 23,
+    "question": "let in for loop creates:",
+    "options": ["Shared variable", "New binding per iteration", "Function scope", "Global scope"],
+    "correctAnswer": 1,
+    "explanation": "for(let i=0;i<3;i++) setTimeout(()=>console.log(i),0) → 0 1 2. New let binding each iteration. var → 3 3 3 (shared closure)."
+  },
+  {
+    "_id": "mcq_24",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 24,
+    "question": "IIFE async preserves:",
+    "options": ["Global scope", "Lexical scope across await", "Dynamic scope", "No closure"],
+    "correctAnswer": 1,
+    "explanation": "(async function(){let x=1; await Promise.resolve(); console.log(x);})() maintains lexical x across await. Essential for async factories."
+  },
+  {
+    "_id": "mcq_25",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 25,
+    "question": "Generator maintains state via:",
+    "options": ["Global variables", "Internal closure", "Prototypes", "Parameters"],
+    "correctAnswer": 1,
+    "explanation": "function* counter(){let i=0; while(true) yield i++;} Internal closure preserves i between yield/next(). Generator state machine pattern."
+  },
+  {
+    "_id": "mcq_26",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 26,
+    "question": "WeakRef prevents:",
+    "options": ["GC entirely", "Closure memory leaks", "Performance issues", "Scope errors"],
+    "correctAnswer": 1,
+    "explanation": "const ref=new WeakRef(obj); closure=()=>ref.deref()?.data; obj=null; prevents strong retention. Modern WeakMap alternative for safe references."
+  },
+  {
+    "_id": "mcq_27",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 27,
+    "question": "Private fields (#) replace closures when:",
+    "options": ["Need dynamic", "Class encapsulation", "Module scope", "Always closures"],
+    "correctAnswer": 1,
+    "explanation": "class Counter{#count=0; increment(){return ++this.#count;}} Native private fields. No closure overhead. SyntaxError on external #count access."
+  },
+  {
+    "_id": "mcq_28",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 28,
+    "question": "Symbols in closures provide:",
+    "options": ["String keys", "Unique property identifiers", "Performance", "Serialization"],
+    "correctAnswer": 1,
+    "explanation": "const sym=Symbol('secret'); obj[sym]=42; closure=()=>obj[sym]; Unique, non-enumerable keys. Perfect for metadata, framework internals."
+  },
+  {
+    "_id": "mcq_29",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 29,
+    "question": "ES6 module exports create:",
+    "options": ["Global variables", "Live bindings (closures)", "Static copies", "Promises"],
+    "correctAnswer": 1,
+    "explanation": "export let x=1; import{x} from './mod'; Changes to x reflected live. Proxy-like closure bindings. Static analysis enables tree-shaking."
+  },
+  {
+    "_id": "mcq_30",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 30,
+    "question": "Dynamic import preserves:",
+    "options": ["No closure", "Lexical scope", "Dynamic scope", "Module scope only"],
+    "correctAnswer": 1,
+    "explanation": "function outer(){let secret=42; return import('./mod').then(m=>console.log(secret));} Captures lexical secret across dynamic boundaries."
+  },
+  {
+    "_id": "mcq_31",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 31,
+    "question": "Class fields capture:",
+    "options": ["Prototype", "Lexical scope", "Instance scope", "Static scope"],
+    "correctAnswer": 1,
+    "explanation": "function outer(){const prefix='ID:'; class User{constructor(id){this.id=`${prefix}${id}`;}}} Captures lexical prefix in class body."
+  },
+  {
+    "_id": "mcq_32",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 32,
+    "question": "Static fields capture:",
+    "options": ["Instance scope", "Lexical scope", "Prototype", "Global"],
+    "correctAnswer": 1,
+    "explanation": "const namespace='App'; class Logger{static log(msg){console.log(`${namespace}: ${msg}`);}} Static methods capture lexical scope."
+  },
+  {
+    "_id": "mcq_33",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 33,
+    "question": "Object method closures capture:",
+    "options": ["this only", "this + lexical scope", "Global only", "Parameters only"],
+    "correctAnswer": 1,
+    "explanation": "{method(){return `${this.prefix} ${prefix}`;}} Captures both object properties (this.prefix) and lexical variables (prefix)."
+  },
+  {
+    "_id": "mcq_34",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 34,
+    "question": "Arrow methods preserve:",
+    "options": ["Dynamic this", "Lexical this", "Global this", "undefined"],
+    "correctAnswer": 1,
+    "explanation": "{arrowMethod:() => this.name} Captures lexical this from definition site. Regular methods use dynamic this from call site."
+  },
+  {
+    "_id": "mcq_35",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 35,
+    "question": "Constructor captures:",
+    "options": ["Prototype", "Lexical scope", "Instance scope", "Static scope"],
+    "correctAnswer": 1,
+    "explanation": "function createUsers(count){return class User{constructor(id){this.id=`${count}-${id}`;}};} Captures factory parameter in constructor."
+  },
+  {
+    "_id": "mcq_36",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 36,
+    "question": "Prototype methods capture:",
+    "options": ["Instance only", "Lexical + this", "Static only", "Global"],
+    "correctAnswer": 1,
+    "explanation": "const prefix='Proto'; class Example{static getPrefix(){return prefix;}} Static prototype methods capture lexical scope."
+  },
+  {
+    "_id": "mcq_37",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 37,
+    "question": "super() in subclass captures:",
+    "options": ["Global", "Parent constructor lexical", "Child lexical", "Dynamic"],
+    "correctAnswer": 1,
+    "explanation": "class Child extends Parent{constructor(){super(); console.log(this.prefix);}} Inherits parent lexical scope through super() chain."
+  },
+  {
+    "_id": "mcq_38",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 38,
+    "question": "Generator methods maintain:",
+    "options": ["Global state", "Internal closure state", "Prototype state", "Parameter state"],
+    "correctAnswer": 1,
+    "explanation": "class Counter{*generate(){let i=0; while(true) yield i++;}} Generator closure maintains i between yield/next() calls."
+  },
+  {
+    "_id": "mcq_39",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 39,
+    "question": "Async methods preserve:",
+    "options": ["Sync scope only", "Lexical scope across awaits", "Dynamic scope", "Global scope"],
+    "correctAnswer": 1,
+    "explanation": "class Timer{async tick(){let count=0; await Promise.resolve(); return ++count;}} Lexical variables survive await boundaries."
+  },
+  {
+    "_id": "mcq_40",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 40,
+    "question": "Object literal methods capture:",
+    "options": ["Only properties", "Lexical + object properties", "Global only", "No closures"],
+    "correctAnswer": 1,
+    "explanation": "const prefix='Literal'; const obj={prefix, method(){return `${this.prefix} ${prefix}`;}} Captures both this.prefix and lexical prefix."
+  },
+  {
+    "_id": "mcq_41",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 41,
+    "question": "IIAFE preserves:",
+    "options": ["Global scope", "Lexical scope across async", "Dynamic scope", "Module scope"],
+    "correctAnswer": 1,
+    "explanation": "(async function(){let x=42; await Promise.resolve(); console.log(x);})() maintains lexical scope across async execution."
+  },
+  {
+    "_id": "mcq_42",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 42,
+    "question": "Nested closures capture:",
+    "options": ["Innermost only", "All outer scopes", "Global only", "Dynamic"],
+    "correctAnswer": 1,
+    "explanation": "function level1(x1){return function level2(x2){return function level3(x3){return x1+x2+x3;};};} Captures complete lexical chain."
+  },
+  {
+    "_id": "mcq_43",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 43,
+    "question": "Circular closures cause:",
+    "options": ["Performance boost", "Memory leaks", "Errors", "No issues"],
+    "correctAnswer": 1,
+    "explanation": "const a={fn:()=>b}; const b={fn:()=>a}; Mutual strong references prevent GC. Use WeakRef/WeakMap for circular-safe patterns."
+  },
+  {
+    "_id": "mcq_44",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 44,
+    "question": "Prototype method + closure resolves:",
+    "options": ["Prototype first", "Lexical scope first", "Dynamic scope", "Global"],
+    "correctAnswer": 1,
+    "explanation": "Lexical scope resolution always precedes prototype chain. const outerVar='lexical'; obj.method() finds outerVar before proto."
+  },
+  {
+    "_id": "mcq_45",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 45,
+    "question": "V8 optimizes closures as:",
+    "options": ["Always slow", "Hidden classes", "Prototypes only", "Functions only"],
+    "correctAnswer": 1,
+    "explanation": "V8 creates hidden classes for stable closure shapes. Consistent property access patterns → inline caching → optimal performance."
+  },
+  {
+    "_id": "mcq_46",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 46,
+    "question": "V8 inline cache works with stable:",
+    "options": ["All closures", "Closure shapes", "Dynamic closures", "Never"],
+    "correctAnswer": 1,
+    "explanation": "Stable object shapes in closures enable inline caching. Predictable property access → monomorphic → fast execution."
+  },
+  {
+    "_id": "mcq_47",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 47,
+    "question": "V8 hidden classes optimize:",
+    "options": ["Dynamic shapes", "Stable object shapes in closures", "Arrays only", "Functions only"],
+    "correctAnswer": 1,
+    "explanation": "Consistent property addition order creates identical hidden classes. Closures with stable shapes perform like classes."
+  },
+  {
+    "_id": "mcq_48",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 48,
+    "question": "V8 compiles closures:",
+    "options": ["JIT only", "Escape analysis", "Always slow", "Ignored"],
+    "correctAnswer": 1,
+    "explanation": "Escape analysis determines closure allocation. Non-escaping closures optimized inline. Reduces memory allocation overhead."
+  },
+  {
+    "_id": "mcq_49",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 49,
+    "question": "Tail call optimization + closures:",
+    "options": ["Always works", "Requires tail position", "Never works", "Strict mode only"],
+    "correctAnswer": 1,
+    "explanation": "function fact(n,acc=1){if(n<=1)return acc; return fact(n-1,n*acc);} Last operation = recursive call → stack optimized."
+  },
+  {
+    "_id": "mcq_50",
+    "module": "Module2-Closures-Scope",
+    "questionNumber": 50,
+    "question": "Primary closure benefit:",
+    "options": ["Performance", "Encapsulation + state", "Inheritance", "Prototyping"],
+    "correctAnswer": 1,
+    "explanation": "Closures provide data privacy (private variables) + persistent state across invocations. Foundation for modules, counters, event handlers, React hooks."
+  }
+]

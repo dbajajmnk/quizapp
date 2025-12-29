@@ -47,7 +47,6 @@ frontend/extra/
 **/extra/
 
 # Documentation files
-doc/
-backend/doc/
+
 frontend/doc/
 **/doc/
