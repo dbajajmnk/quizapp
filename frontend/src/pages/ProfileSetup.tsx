@@ -64,54 +64,61 @@ const ProfileSetup: React.FC = () => {
   };
 
   return (
-    <div className="profile-setup">
-      <h1>Profile Setup</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>Job Role</label>
-          <select name="jobRole" value={formData.jobRole} onChange={handleChange} required>
-            <option value="">Select job role</option>
-            <option value="Frontend Developer">Frontend Developer</option>
-            <option value="Backend Developer">Backend Developer</option>
-            <option value="Full Stack Developer">Full Stack Developer</option>
-            <option value="React Developer">React Developer</option>
-            <option value="JavaScript Developer">JavaScript Developer</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
-
-        <div className="form-group">
-          <label>Experience</label>
-          <select name="experience" value={formData.experience} onChange={handleChange} required>
-            <option value="">Select experience</option>
-            <option value="0-1 years">0-1 years</option>
-            <option value="1-3 years">1-3 years</option>
-            <option value="3-5 years">3-5 years</option>
-            <option value="5-10 years">5-10 years</option>
-            <option value="10+ years">10+ years</option>
-          </select>
-        </div>
-
-        <div className="form-group">
-          <label>Technology Stack</label>
-          <div className="checkbox-group">
-            {['JavaScript', 'React', 'Node.js', 'TypeScript', 'Vue', 'Angular', 'Python', 'Java'].map(tech => (
-              <label key={tech}>
-                <input
-                  type="checkbox"
-                  checked={formData.technologyStack.includes(tech)}
-                  onChange={() => handleTechStackChange(tech)}
-                />
-                {tech}
-              </label>
-            ))}
+    <div className="profile-setup-container">
+      <div className="profile-setup">
+        <h1>Profile Setup</h1>
+        <p className="profile-setup-subtitle">Complete your profile to get personalized quiz recommendations</p>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label>Job Role</label>
+            <select name="jobRole" value={formData.jobRole} onChange={handleChange} required>
+              <option value="">Select job role</option>
+              <option value="Frontend Developer">Frontend Developer</option>
+              <option value="Backend Developer">Backend Developer</option>
+              <option value="Full Stack Developer">Full Stack Developer</option>
+              <option value="React Developer">React Developer</option>
+              <option value="JavaScript Developer">JavaScript Developer</option>
+              <option value="Other">Other</option>
+            </select>
           </div>
-        </div>
 
-        <button type="submit" disabled={loading} className="btn-primary">
-          {loading ? 'Saving...' : 'Save Profile'}
-        </button>
-      </form>
+          <div className="form-group">
+            <label>Experience</label>
+            <select name="experience" value={formData.experience} onChange={handleChange} required>
+              <option value="">Select experience</option>
+              <option value="0-1 years">0-1 years</option>
+              <option value="1-3 years">1-3 years</option>
+              <option value="3-5 years">3-5 years</option>
+              <option value="5-10 years">5-10 years</option>
+              <option value="10+ years">10+ years</option>
+            </select>
+          </div>
+
+          <div className="form-group">
+            <label>Technology Stack</label>
+            <p className="form-help-text">Select all technologies you work with</p>
+            <div className="checkbox-group">
+              {['JavaScript', 'React', 'Node.js', 'TypeScript', 'Vue', 'Angular', 'Python', 'Java'].map(tech => (
+                <label 
+                  key={tech} 
+                  className={`checkbox-item ${formData.technologyStack.includes(tech) ? 'checked' : ''}`}
+                >
+                  <input
+                    type="checkbox"
+                    checked={formData.technologyStack.includes(tech)}
+                    onChange={() => handleTechStackChange(tech)}
+                  />
+                  <span className="checkbox-label">{tech}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <button type="submit" disabled={loading} className="btn-primary">
+            {loading ? 'Saving...' : 'Save Profile'}
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
