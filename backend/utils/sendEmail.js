@@ -16,6 +16,17 @@ const sendEmail = async (options) => {
     }
   });
 
+  // Verify connection configuration
+  try {
+    await transporter.verify();
+  } catch (error) {
+    console.error('Email configuration error:', error.message);
+    if (error.message.includes('Invalid login') || error.message.includes('authentication failed')) {
+      throw new Error('Gmail configuration is invalid. Please check your App Password. Make sure you\'re using a 16-character App Password (not your regular password), and that 2-Step Verification is enabled on your Google account.');
+    }
+    throw new Error(`Email configuration error: ${error.message}`);
+  }
+
   const message = {
     from: `${process.env.EMAIL_FROM_NAME || 'Quiz App'} <${process.env.EMAIL_USER}>`,
     to: options.email,
