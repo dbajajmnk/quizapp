@@ -185,6 +185,18 @@ router.post('/forgotpassword', [
       <p>If you didn't request this, please ignore this email.</p>
     `;
 
+    // Check if email is configured
+    const isEmailConfigured = process.env.EMAIL_HOST && process.env.EMAIL_USER && process.env.EMAIL_PASS;
+
+    if (!isEmailConfigured) {
+      // Development mode: Return the reset link directly
+      return res.json({
+        success: true,
+        message: 'Password reset link generated (Email not configured - check server logs for link)',
+        resetLink: process.env.NODE_ENV === 'development' ? resetUrl : undefined
+      });
+    }
+
     try {
       await sendEmail({
         email: user.email,
@@ -194,16 +206,19 @@ router.post('/forgotpassword', [
 
       res.json({
         success: true,
-        message: 'Email sent'
+        message: 'Password reset email sent! Check your inbox.'
       });
     } catch (error) {
+      console.error('Email sending error:', error.message);
+      
+      // Return detailed error message
       user.resetPasswordToken = undefined;
       user.resetPasswordExpire = undefined;
       await user.save({ validateBeforeSave: false });
 
       return res.status(500).json({
         success: false,
-        message: 'Email could not be sent'
+        message: error.message || 'Email could not be sent'
       });
     }
   } catch (error) {

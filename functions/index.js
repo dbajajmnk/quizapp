@@ -2,6 +2,12 @@ const { onRequest } = require('firebase-functions/v2/https');
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const admin = require('firebase-admin');
+
+// Initialize Firebase Admin
+if (!admin.apps.length) {
+  admin.initializeApp();
+}
 
 // Import routes
 const authRoutes = require('./routes/auth');
@@ -82,6 +88,15 @@ process.env.JWT_SECRET = process.env.JWT_SECRET || 'quizapp_jwt_secret_key_2025_
 process.env.JWT_EXPIRE = process.env.JWT_EXPIRE || '7d';
 process.env.FRONTEND_URL = process.env.FRONTEND_URL || 'https://homeautomation-206fb.web.app';
 
+// Email configuration - Set via Firebase Functions environment variables
+// Set environment variables with fallback defaults
+const rawPass = process.env.EMAIL_PASS || 'tssg bmsj ckxs fuob';
+process.env.EMAIL_HOST = process.env.EMAIL_HOST || 'smtp.gmail.com';
+process.env.EMAIL_PORT = process.env.EMAIL_PORT || '587';
+process.env.EMAIL_USER = process.env.EMAIL_USER || 'kapil@techlambda.com';
+process.env.EMAIL_PASS = rawPass.replace(/\s+/g, ''); // Remove all spaces from App Password
+process.env.EMAIL_FROM_NAME = process.env.EMAIL_FROM_NAME || 'Quiz App';
+
 // MongoDB Connection
 // Use connection pooling and optimize for serverless
 const MONGODB_URI = process.env.MONGODB_URI;
@@ -118,12 +133,10 @@ const ensureMongoConnection = async () => {
     maxIdleTimeMS: 30000,
   })
   .then(() => {
-    console.log('✅ MongoDB Connected');
-    console.log('📊 Database:', mongoose.connection.name);
     return mongoose.connection;
   })
   .catch(err => {
-    console.error('❌ MongoDB Connection Error:', err.message);
+    console.error('MongoDB Connection Error:', err.message);
     connectionPromise = null; // Reset promise on error
     throw err;
   });
@@ -136,9 +149,9 @@ if (MONGODB_URI) {
   ensureMongoConnection().catch(err => {
     console.error('Failed to connect to MongoDB on startup:', err.message);
   });
-} else {
-  console.error('❌ MONGODB_URI is not configured');
-}
+  } else {
+    console.error('MONGODB_URI is not configured');
+  }
 
 // Middleware to ensure MongoDB connection before processing requests
 app.use(async (req, res, next) => {
@@ -161,11 +174,6 @@ app.use(async (req, res, next) => {
   }
 });
 
-// Debug middleware - log all requests
-app.use((req, res, next) => {
-  console.log(`${req.method} ${req.path}`);
-  next();
-});
 
 // Routes
 app.use('/api/auth', authRoutes);
@@ -199,7 +207,6 @@ app.get('/', (req, res) => {
 
 // 404 handler
 app.use((req, res) => {
-  console.log(`404 - ${req.method} ${req.path}`);
   res.status(404).json({ 
     success: false, 
     message: `Route ${req.method} ${req.path} not found`,
@@ -221,6 +228,6 @@ exports.api = onRequest({
   memory: '512MiB',
   timeoutSeconds: 60,
   maxInstances: 10,
-  cors: true, // Allow all origins - Express middleware will handle specific origins
+  cors: true
 }, app);
 

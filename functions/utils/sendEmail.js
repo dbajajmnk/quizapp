@@ -6,13 +6,19 @@ const sendEmail = async (options) => {
     throw new Error('Email configuration is missing. Please set EMAIL_HOST, EMAIL_USER, and EMAIL_PASS in your .env file');
   }
 
+  // Remove spaces from password (App Passwords sometimes have spaces for readability)
+  const cleanPassword = (process.env.EMAIL_PASS || '').replace(/\s+/g, '');
+
   const transporter = nodemailer.createTransport({
     host: process.env.EMAIL_HOST,
-    port: process.env.EMAIL_PORT || 587,
+    port: parseInt(process.env.EMAIL_PORT || '587'),
     secure: process.env.EMAIL_PORT == 465, // true for 465, false for other ports
     auth: {
       user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS
+      pass: cleanPassword
+    },
+    tls: {
+      rejectUnauthorized: false // For development/testing
     }
   });
 
