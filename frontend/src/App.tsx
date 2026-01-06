@@ -6,6 +6,7 @@ import './App.css';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
 import Dashboard from './pages/Dashboard';
 import ProfileSetup from './pages/ProfileSetup';
 import QuizCreate from './pages/QuizCreate';
@@ -29,6 +30,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password/:resettoken" element={<ResetPassword />} />
           
           {/* Protected Routes */}
           <Route

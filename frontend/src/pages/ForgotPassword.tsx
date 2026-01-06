@@ -21,7 +21,12 @@ const ForgotPassword: React.FC = () => {
       });
 
       if (response.data.success) {
-        setMessage('Password reset email sent! Check your inbox.');
+        if (response.data.resetLink) {
+          // Development mode: Show the reset link
+          setMessage(`Password reset link: ${response.data.resetLink}`);
+        } else {
+          setMessage(response.data.message || 'Password reset email sent! Check your inbox.');
+        }
       }
     } catch (err: any) {
       setError(err.response?.data?.message || 'Failed to send reset email.');
