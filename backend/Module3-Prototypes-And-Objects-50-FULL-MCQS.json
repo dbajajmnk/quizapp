@@ -1,0 +1,703 @@
+[
+    {
+      "_id": "m3_q1",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 1,
+      "question": "Prototype chain lookup finds properties:",
+      "options": [
+        "Linear property scan",
+        "[[Prototype]] delegation",
+        "Hash table only",
+        "Class hierarchy"
+      ],
+      "correctAnswer": 1,
+      "explanation": "When accessing a property, JavaScript first checks the object itself and, if not found, follows the internal [[Prototype]] chain up through Object.prototype until it reaches null. This delegation mechanism is how inheritance works in JavaScript without copying properties."
+    },
+    {
+      "_id": "m3_q2",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 2,
+      "question": "Performance: Object.create(proto) vs new Constructor():",
+      "options": [
+        "Object.create faster",
+        "new slightly faster",
+        "Identical",
+        "Object.create blocks GC"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The new keyword directly calls the constructor and sets up the prototype in one optimized step inside the engine. Object.create performs an extra explicit prototype setup and possible descriptor work, so in benchmarks new is usually slightly faster for large numbers of object creations."
+    },
+    {
+      "_id": "m3_q3",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 3,
+      "question": "Property descriptors control:",
+      "options": [
+        "Object shape",
+        "writable/enumerable/configurable",
+        "Prototype chain",
+        "Memory layout"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Property descriptors let you define whether a property can be reassigned (writable), shows up in enumeration (enumerable), or can be reconfigured or deleted (configurable. By adjusting these flags you control how properties behave without changing the prototype chain."
+    },
+    {
+      "_id": "m3_q4",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 4,
+      "question": "hasOwnProperty vs 'in' operator:",
+      "options": [
+        "Identical",
+        "hasOwnProperty: own props, 'in': prototype chain",
+        "in checks writability",
+        "hasOwnProperty checks prototype"
+      ],
+      "correctAnswer": 1,
+      "explanation": "hasOwnProperty only returns true for properties defined directly on the object itself, ignoring anything on the prototype chain. The in operator walks the prototype chain, returning true if the property exists anywhere in the object or its prototypes."
+    },
+    {
+      "_id": "m3_q5",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 5,
+      "question": "Symbol.iterator enables:",
+      "options": [
+        "Private properties",
+        "for...of iteration",
+        "Performance",
+        "Serialization"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Defining Symbol.iterator on an object tells JavaScript how to produce a sequence of values when that object is used in for...of, spread syntax, or other iteration contexts. The method returns an iterator object whose next method yields each value in order."
+    },
+    {
+      "_id": "m3_q6",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 6,
+      "question": "Object.freeze() prevents:",
+      "options": [
+        "Property addition",
+        "All modifications",
+        "Prototype changes",
+        "Value changes only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Object.freeze makes all existing properties non-writable and non-configurable, and it also prevents new properties from being added. After freezing, you cannot change values, delete keys, or redefine descriptors on that object."
+    },
+    {
+      "_id": "m3_q7",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 7,
+      "question": "Modern replacement for mixins:",
+      "options": [
+        "Classes",
+        "Object composition",
+        "Multiple inheritance",
+        "Prototypes only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Object composition builds objects by combining smaller capability objects instead of mixing many behaviors into a single big prototype. This keeps responsibilities separated, avoids name collisions, and is easier to reason about than classic mixin patterns."
+    },
+    {
+      "_id": "m3_q8",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 8,
+      "question": "Private fields (#field) accessible from:",
+      "options": [
+        "Global",
+        "Class methods only",
+        "Subclasses",
+        "Same module"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Private fields declared with # are only accessible inside the class body that defines them, including its instance and static methods. Even subclasses and external code cannot read or write these fields directly, which enforces true encapsulation at the language level."
+    },
+    {
+      "_id": "m3_q9",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 9,
+      "question": "Prototype pollution via:",
+      "options": [
+        "Object.assign safe",
+        "__proto__ mutation",
+        "WeakMap",
+        "Symbols"
+      ],
+      "correctAnswer": 1,
+      "explanation": "If untrusted input contains a __proto__ key and you merge it into a normal object, it can modify Object.prototype for all objects. This is prototype pollution, and it can make unexpected properties appear on every object, creating serious security issues."
+    },
+    {
+      "_id": "m3_q10",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 10,
+      "question": "Object.assign polyfill handles:",
+      "options": [
+        "Shallow copy only",
+        "Enumerable own properties",
+        "Prototypes",
+        "Descriptors"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Object.assign copies only own enumerable properties from each source into the target, performing a shallow copy of values. It does not copy the prototype or preserve descriptor flags like writable or configurable, so deeper structure and behavior are not cloned."
+    },
+    {
+      "_id": "m3_q11",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 11,
+      "question": "__proto__ vs Object.getPrototypeOf():",
+      "options": [
+        "Identical performance",
+        "getPrototypeOf() preferred",
+        "__proto__ mutable only",
+        "No difference"
+      ],
+      "correctAnswer": 1,
+      "explanation": "__proto__ is an older, non-standard accessor that mutates or reads the prototype, while Object.getPrototypeOf is the standardized way to read an object's prototype. Using Object.getPrototypeOf avoids pitfalls with special __proto__ behavior and is recommended in modern code."
+    },
+    {
+      "_id": "m3_q12",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 12,
+      "question": "Symbol.species controls:",
+      "options": [
+        "Iteration",
+        "Constructor for operations",
+        "Private props",
+        "Performance"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Symbol.species lets a class specify which constructor should be used when built-in methods like map or slice create derived instances. This allows a subclass to return plain Array or some other type instead of itself when those methods are called."
+    },
+    {
+      "_id": "m3_q13",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 13,
+      "question": "Object.keys returns:",
+      "options": [
+        "All properties",
+        "Enumerable own properties",
+        "Prototype properties",
+        "Symbols"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Object.keys returns an array of the object's own enumerable string keys in insertion order. It does not include properties from the prototype chain or symbol-keyed properties, which keeps the result focused on that object's direct data."
+    },
+    {
+      "_id": "m3_q14",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 14,
+      "question": "WeakSet stores:",
+      "options": [
+        "Primitives",
+        "Objects (weak refs)",
+        "Strings",
+        "Numbers"
+      ],
+      "correctAnswer": 1,
+      "explanation": "WeakSet can only hold object references, and those references are weak, meaning they do not prevent garbage collection of the objects. This makes WeakSet useful for tracking objects without creating memory leaks when the last strong reference disappears."
+    },
+    {
+      "_id": "m3_q15",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 15,
+      "question": "Proxy performance vs direct access:",
+      "options": [
+        "Always faster",
+        "10-50x slower",
+        "Identical",
+        "Faster with optimization"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Proxies intercept operations like get and set, adding extra layers of indirection that engines cannot fully optimize away. In hot paths such as tight loops, property access through a Proxy can be an order of magnitude slower than direct object access."
+    },
+    {
+      "_id": "m3_q16",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 16,
+      "question": "React VDOM nodes use prototypes for:",
+      "options": [
+        "Performance boost",
+        "Shared methods (no duplication)",
+        "Memory leaks",
+        "Bundle size"
+      ],
+      "correctAnswer": 1,
+      "explanation": "By placing common methods on a shared prototype, every virtual DOM node instance can reference the same functions instead of copying them. This dramatically reduces memory usage when rendering thousands of nodes and also improves cache locality for method calls."
+    },
+    {
+      "_id": "m3_q17",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 17,
+      "question": "PersistentHashMap uses:",
+      "options": [
+        "Deep cloning",
+        "Persistent data structure + prototype",
+        "Mutable objects",
+        "WeakMaps"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Persistent data structures create new versions by sharing structure with previous versions instead of deep copying. Combining that idea with prototype-like sharing allows many map versions to reuse most of their internal nodes while exposing a simple immutable API."
+    },
+    {
+      "_id": "m3_q18",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 18,
+      "question": "Object.defineProperties sets:",
+      "options": [
+        "Single descriptor",
+        "Multiple properties at once",
+        "Prototype properties",
+        "Symbols only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Object.defineProperties lets you describe a whole set of properties, each with its own descriptor, in a single call. This is efficient when you want to define several read-only or non-enumerable properties while keeping full control over their behavior."
+    },
+    {
+      "_id": "m3_q19",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 19,
+      "question": "Deep copy property descriptors using:",
+      "options": [
+        "JSON.parse/stringify",
+        "getOwnPropertyDescriptors + defineProperties",
+        "Object.assign",
+        "structuredClone"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Object.getOwnPropertyDescriptors extracts the full descriptor information for each own property, including flags and getters or setters. Passing that into Object.defineProperties on a new object recreates the same properties with the same descriptor behavior instead of just copying values."
+    },
+    {
+      "_id": "m3_q20",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 20,
+      "question": "Reflect.defineProperty returns:",
+      "options": [
+        "Always true",
+        "Success boolean",
+        "New object",
+        "Undefined"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Reflect.defineProperty mirrors Object.defineProperty but returns true or false to indicate success instead of throwing on failure. This makes it easier to compose property definition logic with conditional flows without needing try/catch."
+    },
+    {
+      "_id": "m3_q21",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 21,
+      "question": "Reflect.get(target, prop, receiver) uses:",
+      "options": [
+        "target[prop]",
+        "receiver[prop]",
+        "this[prop]",
+        "prop directly"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Reflect.get respects the receiver argument when resolving getters and prototype lookups, matching the internal [[Get]] behavior. In proxy traps this allows you to forward property reads while preserving correct this binding for accessors."
+    },
+    {
+      "_id": "m3_q22",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 22,
+      "question": "Proxy.revocable() returns:",
+      "options": [
+        "Single proxy",
+        "Proxy + revoke function",
+        "Promise",
+        "WeakRef"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Proxy.revocable creates a proxy together with a revoke function that permanently disables it when called. After revocation any operation on the proxy throws, which is useful for temporary access control or sandboxing lifetimes."
+    },
+    {
+      "_id": "m3_q23",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 23,
+      "question": "Symbol.toPrimitive controls:",
+      "options": [
+        "JSON.stringify",
+        "Primitive coercion",
+        "Iteration",
+        "Enumeration"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Implementing Symbol.toPrimitive lets an object define how it should convert to a primitive in numeric, string, or default contexts. This customizes expressions like +obj, obj + 1, or String(obj) without relying on legacy valueOf and toString heuristics."
+    },
+    {
+      "_id": "m3_q24",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 24,
+      "question": "Primitive coercion order:",
+      "options": [
+        "toString → valueOf",
+        "valueOf → toString",
+        "Simultaneous",
+        "Random"
+      ],
+      "correctAnswer": 1,
+      "explanation": "For ordinary objects in numeric or default coercion, JavaScript first tries valueOf to get a primitive. If valueOf returns a non-primitive, it then falls back to toString, which is why overriding valueOf usually takes precedence in expressions like obj + ''."
+    },
+    {
+      "_id": "m3_q25",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 25,
+      "question": "BigInt(1n).__proto__ equals:",
+      "options": [
+        "Number.prototype",
+        "BigInt.prototype",
+        "Object.prototype",
+        "null"
+      ],
+      "correctAnswer": 1,
+      "explanation": "BigInt values have their own prototype, BigInt.prototype, separate from Number.prototype, because they represent integer-only arbitrary-precision values. This separation keeps methods appropriate for big integer arithmetic distinct from floating-point number methods."
+    },
+    {
+      "_id": "m3_q26",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 26,
+      "question": "Uint8Array.prototype includes:",
+      "options": [
+        "Object methods only",
+        "Array + typed methods",
+        "Typed methods only",
+        "No prototype"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Typed arrays like Uint8Array inherit many array-like methods such as map, filter, and includes, implemented to return typed arrays instead of plain arrays. In addition they have typed access semantics, so each element is stored as a specific numeric type in an underlying ArrayBuffer."
+    },
+    {
+      "_id": "m3_q27",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 27,
+      "question": "DataView provides:",
+      "options": [
+        "Array access",
+        "Byte-level buffer access",
+        "Typed array access",
+        "String access"
+      ],
+      "correctAnswer": 1,
+      "explanation": "DataView sits on top of an ArrayBuffer and lets you read and write raw bytes at specific offsets with explicit endianness and type. It is ideal when you need to parse or construct binary protocols where field layout matters more than contiguous typed numbers."
+    },
+    {
+      "_id": "m3_q28",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 28,
+      "question": "ArrayBuffer postMessage([buffer]) results:",
+      "options": [
+        "Copies buffer",
+        "Transfers ownership (source length becomes 0)",
+        "Shares reference",
+        "Errors"
+      ],
+      "correctAnswer": 1,
+      "explanation": "When an ArrayBuffer is passed as a transferable in postMessage, its underlying memory is moved to the receiving context instead of being copied. The original buffer becomes detached with byteLength zero, which makes inter-thread communication of large binary data efficient."
+    },
+    {
+      "_id": "m3_q29",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 29,
+      "question": "WeakRef provides:",
+      "options": [
+        "deref/get",
+        "deref() only",
+        "cleanup",
+        "subscribe"
+      ],
+      "correctAnswer": 1,
+      "explanation": "WeakRef wraps an object in a weak reference and exposes a deref method that either returns the target or null if it has been garbage collected. There are no strong getters or setters, so using deref is the only supported way to safely attempt to access the object."
+    },
+    {
+      "_id": "m3_q30",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 30,
+      "question": "FinalizationRegistry calls:",
+      "options": [
+        "On creation",
+        "When target is garbage collected",
+        "On deref",
+        "Never"
+      ],
+      "correctAnswer": 1,
+      "explanation": "FinalizationRegistry lets you register a callback to run sometime after a target object is collected, receiving associated held data. This is useful for cleaning up external resources like native handles, but the exact timing is non-deterministic and should not drive critical logic."
+    },
+    {
+      "_id": "m3_q31",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 31,
+      "question": "Temporal.PlainDate prototype provides:",
+      "options": [
+        "Mutators",
+        "Immutable date methods",
+        "Legacy Date",
+        "Strings"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Temporal.PlainDate instances are immutable, so methods like add or with return new date objects instead of modifying the original. This avoids many bugs caused by Date's in-place mutation and makes Temporal better suited for functional and concurrent code."
+    },
+    {
+      "_id": "m3_q32",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 32,
+      "question": "Record objects are:",
+      "options": [
+        "Mutable",
+        "Immutable plain objects",
+        "Classes",
+        "Proxies"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The Records and Tuples proposal introduces deeply immutable, value-based object-like structures that behave like plain objects but cannot be mutated. This allows them to be safely shared, compared structurally, and used as keys without worrying about later changes."
+    },
+    {
+      "_id": "m3_q33",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 33,
+      "question": "Pattern matching proposal extracts:",
+      "options": [
+        "Primitives only",
+        "Object/array destructuring",
+        "Mutations",
+        "Runtime only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "JavaScript pattern matching proposals build on destructuring ideas to match shapes of objects and arrays in a declarative way. Patterns express both the structure you expect and bindings you want to extract, making complex branching more readable than nested if chains."
+    },
+    {
+      "_id": "m3_q34",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 34,
+      "question": "Object.fromEntries converts:",
+      "options": [
+        "Object to array",
+        "Array to object",
+        "JSON",
+        "Map only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Object.fromEntries takes an iterable of [key, value] pairs and constructs a new object with those keys and values. It is the inverse of Object.entries and pairs naturally with methods that produce key-value sequences, such as Map or array transforms."
+    },
+    {
+      "_id": "m3_q35",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 35,
+      "question": "Object.entries flattens:",
+      "options": [
+        "Prototype properties",
+        "Enumerable own properties",
+        "Symbols",
+        "Non-enumerable"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Object.entries returns an array of [key, value] pairs for the object's own enumerable string properties. It ignores properties on the prototype and any non-enumerable or symbol-keyed properties, making it a clean way to iterate an object's visible data."
+    },
+    {
+      "_id": "m3_q36",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 36,
+      "question": "Object.values returns:",
+      "options": [
+        "Key-value pairs",
+        "Values array",
+        "Entries",
+        "Symbols"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Object.values collects the values of an object's own enumerable string-keyed properties into an array. It mirrors Object.keys and Object.entries but focuses purely on the values, useful when keys are not needed."
+    },
+    {
+      "_id": "m3_q37",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 37,
+      "question": "Object.groupBy groups by:",
+      "options": [
+        "Values",
+        "Callback return value",
+        "Keys",
+        "Indices"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Object.groupBy iterates an array and calls the callback for each element, using the callback's return value as a grouping key. It then builds an object where each key holds an array of items whose callback result matched that key."
+    },
+    {
+      "_id": "m3_q38",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 38,
+      "question": "Map.prototype.emplace creates:",
+      "options": [
+        "Existing value",
+        "New value via constructor",
+        "Updates only",
+        "Deletes"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The emplace pattern for Map is designed so you can lazily create a value for a key using a constructor or factory when it does not already exist. This centralizes the 'create or update' logic and avoids writing the same if (!map.has(key)) boilerplate everywhere."
+    },
+    {
+      "_id": "m3_q39",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 39,
+      "question": "Set.prototype.emplace adds:",
+      "options": [
+        "Duplicate",
+        "New instance",
+        "Updates existing",
+        "Nothing"
+      ],
+      "correctAnswer": 1,
+      "explanation": "For Set, emplace semantics revolve around adding a newly created instance when the set does not already contain an equivalent value. Since sets are about membership rather than key-value pairs, this is mainly useful when you want to lazily construct complex members."
+    },
+    {
+      "_id": "m3_q40",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 40,
+      "question": "WeakMap.prototype.emplace creates:",
+      "options": [
+        "Strong reference",
+        "Weak reference instance",
+        "Deletes on GC",
+        "Errors"
+      ],
+      "correctAnswer": 1,
+      "explanation": "WeakMap.emplace associates a weakly referenced key with a value that can be lazily constructed if not present. This provides a convenient way to attach metadata to objects without preventing their garbage collection when no other strong references remain."
+    },
+    {
+      "_id": "m3_q41",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 41,
+      "question": "Array.groupBy groups by:",
+      "options": [
+        "Index",
+        "Callback return value",
+        "Value",
+        "Length"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Array.prototype.groupBy calls the provided callback for each element and uses its return value as a grouping key. The result is a plain object mapping each key to an array of elements that produced that key, matching how you often manually group arrays in business logic."
+    },
+    {
+      "_id": "m3_q42",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 42,
+      "question": "Array.toReversed() returns:",
+      "options": [
+        "Mutates original",
+        "New reversed array",
+        "In-place reverse",
+        "Promise"
+      ],
+      "correctAnswer": 1,
+      "explanation": "toReversed is a non-mutating variant of reverse that returns a new array with the elements in reverse order, leaving the original array unchanged. This fits immutable programming styles and avoids subtle bugs where shared arrays unexpectedly change."
+    },
+    {
+      "_id": "m3_q43",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 43,
+      "question": "Array.toSorted() provides:",
+      "options": [
+        "Mutates",
+        "Immutable sort",
+        "Stable only",
+        "In-place"
+      ],
+      "correctAnswer": 1,
+      "explanation": "toSorted behaves like sort but returns a new array that is sorted, without modifying the original. This is important in codebases that rely on referential transparency and do not want shared arrays to be reordered by accident."
+    },
+    {
+      "_id": "m3_q44",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 44,
+      "question": "Array.toSpliced() returns:",
+      "options": [
+        "Mutates",
+        "New array with splice changes",
+        "Empty array",
+        "Original"
+      ],
+      "correctAnswer": 1,
+      "explanation": "toSpliced is the immutable counterpart to splice: it creates and returns a new array with the described removals and insertions applied, while leaving the original array untouched. This makes common insert and delete operations safer in shared data structures."
+    },
+    {
+      "_id": "m3_q45",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 45,
+      "question": "String.replaceAll replaces:",
+      "options": [
+        "First match",
+        "All matches",
+        "Regex only",
+        "Global flag required"
+      ],
+      "correctAnswer": 1,
+      "explanation": "replaceAll replaces every occurrence of the given substring or regex in the string, not just the first one. It also handles plain string patterns without needing a global regular expression, simplifying many find-and-replace tasks."
+    },
+    {
+      "_id": "m3_q46",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 46,
+      "question": "String.matchAll returns:",
+      "options": [
+        "First match",
+        "Iterator of all matches",
+        "Array",
+        "Promise"
+      ],
+      "correctAnswer": 1,
+      "explanation": "matchAll returns an iterator that yields every match of a global regular expression, including capture groups, without creating a large intermediate array. This is efficient when you want to stream over matches or stop early once you have enough information."
+    },
+    {
+      "_id": "m3_q47",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 47,
+      "question": "Object.hasOwn(obj, prop) checks:",
+      "options": [
+        "Prototype chain",
+        "Own properties only",
+        "All properties",
+        "Symbols"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Object.hasOwn is a static method that checks whether an object has the given property as its own property, similar to calling Object.prototype.hasOwnProperty but without borrowing the method. It does not look at the prototype chain, which avoids false positives from inherited props."
+    },
+    {
+      "_id": "m3_q48",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 48,
+      "question": "Number.isSafeInteger(9007199254740992) returns:",
+      "options": [
+        "true",
+        "false",
+        "undefined",
+        "NaN"
+      ],
+      "correctAnswer": 1,
+      "explanation": "JavaScript numbers are IEEE 754 doubles, and integers larger than Number.MAX_SAFE_INTEGER cannot be represented exactly. Number.isSafeInteger returns false for those values, signaling that adding or subtracting one might not actually change the stored number."
+    },
+    {
+      "_id": "m3_q49",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 49,
+      "question": "ArrayBuffer.isView checks:",
+      "options": [
+        "Array",
+        "TypedArray/DataView",
+        "Buffer",
+        "Objects"
+      ],
+      "correctAnswer": 1,
+      "explanation": "ArrayBuffer.isView returns true for any view object that reads or writes an ArrayBuffer, including typed arrays and DataView. It returns false for the ArrayBuffer itself and for plain arrays, which helps distinguish raw buffers from their views."
+    },
+    {
+      "_id": "m3_q50",
+      "module": "Module3-Prototypes-And-Objects",
+      "questionNumber": 50,
+      "question": "Prototype chain lookup performance:",
+      "options": [
+        "Linear O(n)",
+        "Effectively constant with caching",
+        "Hash table",
+        "Exponential"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Although conceptually the engine may follow several links on the prototype chain, JavaScript engines aggressively inline and cache property lookups. For common access patterns this makes prototype chain reads effectively constant time, unless you mutate prototypes in ways that deoptimize those caches."
+    }
+  ]
+  

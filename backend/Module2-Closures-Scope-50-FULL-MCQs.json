@@ -141,7 +141,7 @@
     "question": "Arrow functions this binding:",
     "options": ["Dynamic", "Lexical (outer scope)", "Global", "undefined"],
     "correctAnswer": 1,
-    "explanation": "() => this" captures outer lexical this. Perfect for callbacks preserving object context. Regular functions use dynamic this (caller context)."
+    "explanation": "() => this captures outer lexical this. Perfect for callbacks preserving object context. Regular functions use dynamic this (caller context)."
   },
   {
     "_id": "mcq_17",

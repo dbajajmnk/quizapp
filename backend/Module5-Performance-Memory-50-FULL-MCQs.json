@@ -1,0 +1,703 @@
+[
+    {
+      "_id": "m5_q1",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 1,
+      "question": "V8 Garbage Collection phases (order):",
+      "options": [
+        "Mark → Sweep → Compact",
+        "Sweep → Mark → Compact",
+        "Incremental only",
+        "Mark → Compact → Sweep"
+      ],
+      "correctAnswer": 0,
+      "explanation": "V8 uses Mark-and-Sweep with three phases: Mark identifies reachable objects from roots, Sweep reclaims unreachable memory, and Compact moves surviving objects together to eliminate fragmentation and improve cache locality."
+    },
+    {
+      "_id": "m5_q2",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 2,
+      "question": "Chrome DevTools detects memory leaks via:",
+      "options": [
+        "Network tab",
+        "Heap snapshots",
+        "Performance tab only",
+        "Console"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Heap snapshots in Chrome DevTools capture the complete object graph at a moment in time. Comparing snapshots or looking for Detached DOM trees reveals objects that should have been garbage collected but remain retained by closures or event listeners."
+    },
+    {
+      "_id": "m5_q3",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 3,
+      "question": "Array push/pop complexity:",
+      "options": [
+        "O(n)",
+        "O(1) amortized",
+        "O(log n)",
+        "O(n²)"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Arrays use dynamic resizing by doubling capacity when full, so push/pop at the end are amortized O(1) because occasional resize operations are spread across many cheap appends. Shift/unshift remain O(n) due to element shifting."
+    },
+    {
+      "_id": "m5_q4",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 4,
+      "question": "JSON.parse vs manual parsing:",
+      "options": [
+        "Manual faster",
+        "JSON.parse optimized",
+        "Identical",
+        "JSON.parse blocks"
+      ],
+      "correctAnswer": 1,
+      "explanation": "V8 has highly optimized C++ JSON parsing with SIMD acceleration and minimal allocations. Manual JavaScript parsing cannot match this native performance, especially for large payloads where string scanning dominates."
+    },
+    {
+      "_id": "m5_q5",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 5,
+      "question": "Event delegation vs direct listeners:",
+      "options": [
+        "Direct faster",
+        "Delegation scales better",
+        "Identical",
+        "Delegation slower"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Event delegation uses one parent listener instead of thousands of element listeners, dramatically reducing memory usage and avoiding listener cleanup on dynamic content. Event bubbling naturally routes child events through the parent handler."
+    },
+    {
+      "_id": "m5_q6",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 6,
+      "question": "Reflow triggers:",
+      "options": [
+        "Color changes",
+        "Layout changes",
+        "Paint only",
+        "GPU only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Reflow recalculates the entire layout tree geometry due to changes in width, height, position, or content size. This is much more expensive than repaint since it invalidates positions and triggers cascading reflows in parent and sibling elements."
+    },
+    {
+      "_id": "m5_q7",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 7,
+      "question": "Service Worker cache strategies:",
+      "options": [
+        "Network first",
+        "Cache-first + stale-while-revalidate",
+        "Cache only",
+        "Network only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Cache-first with stale-while-revalidate serves cached content immediately for fast perceived load time, then fetches fresh content in the background to update the cache. This balances UX speed with data freshness."
+    },
+    {
+      "_id": "m5_q8",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 8,
+      "question": "Heap snapshot types:",
+      "options": [
+        "Summary/Comparison/Domination",
+        "Summary/Comparison/Containment",
+        "Network/Performance",
+        "CPU/Profile"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Summary shows object counts by constructor, Comparison highlights growth between snapshots, and Containment reveals retainers preventing garbage collection. These views together pinpoint leak sources and growth patterns."
+    },
+    {
+      "_id": "m5_q9",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 9,
+      "question": "10k+ list optimization:",
+      "options": [
+        "Create all DOM",
+        "Virtual scrolling",
+        "CSS transforms",
+        "Web Workers"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Virtual scrolling renders only visible items plus overscan, recycling DOM nodes as the user scrolls. For 100k items this renders ~20 DOM nodes instead of 100k, achieving constant memory regardless of dataset size."
+    },
+    {
+      "_id": "m5_q10",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 10,
+      "question": "WeakMap prevents leaks by:",
+      "options": [
+        "Strong references",
+        "Weak key references",
+        "Manual cleanup",
+        "No caching"
+      ],
+      "correctAnswer": 1,
+      "explanation": "WeakMap holds weak references to object keys, so when no other strong references exist to those keys, both the key and its value become eligible for garbage collection. This automatically cleans metadata caches without manual intervention."
+    },
+    {
+      "_id": "m5_q11",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 11,
+      "question": "Array operations complexity:",
+      "options": [
+        "All O(1)",
+        "push/pop: O(1), shift/unshift: O(n)",
+        "All O(n)",
+        "Random"
+      ],
+      "correctAnswer": 1,
+      "explanation": "End operations push/pop amortize to O(1) due to contiguous storage, while shift/unshift require moving all subsequent elements, costing O(n). Always prefer end operations for queues or stacks."
+    },
+    {
+      "_id": "m5_q12",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 12,
+      "question": "Object property lookup:",
+      "options": [
+        "Array index",
+        "Hash table O(1) average",
+        "Linear scan",
+        "Prototype chain only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "JavaScript objects use hash tables for O(1) average-case property access. Collisions degrade to linear probing but remain fast for typical key distributions."
+    },
+    {
+      "_id": "m5_q13",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 13,
+      "question": "V8 hidden classes optimize:",
+      "options": [
+        "Dynamic shapes",
+        "Stable property order",
+        "Arrays only",
+        "Functions"
+      ],
+      "correctAnswer": 1,
+      "explanation": "V8 assigns hidden classes based on exact property layout. Objects with identical property order share the same hidden class, enabling fast inline caching and avoiding expensive map transitions."
+    },
+    {
+      "_id": "m5_q14",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 14,
+      "question": "Monomorphic inline cache:",
+      "options": [
+        "Multiple types",
+        "Single property type",
+        "Always miss",
+        "Polymorphic"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Monomorphic caches store one optimized code path for a specific property access pattern. When every access uses the same property on the same hidden class, V8 generates the fastest possible machine code."
+    },
+    {
+      "_id": "m5_q15",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 15,
+      "question": "Megamorphic (>4 types) causes:",
+      "options": [
+        "Faster access",
+        "Cache miss + deoptimization",
+        "Inline cache hit",
+        "No effect"
+      ],
+      "correctAnswer": 1,
+      "explanation": "When V8 sees more than 4 different receiver types or hidden classes for the same property access, it gives up specialized optimization and falls back to generic slow path code."
+    },
+    {
+      "_id": "m5_q16",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 16,
+      "question": "V8 eliminates bounds checks when:",
+      "options": [
+        "Dynamic length",
+        "Known fixed length",
+        "Sparse arrays",
+        "TypedArrays only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "For arrays with proven fixed length and access patterns within bounds, V8 proves the checks are unnecessary and removes them entirely from the optimized machine code."
+    },
+    {
+      "_id": "m5_q17",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 17,
+      "question": "TurboFan optimizes:",
+      "options": [
+        "Bytecode",
+        "Sea of nodes (SSA)",
+        "Simple loops",
+        "JIT only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "TurboFan uses Sea-of-Nodes intermediate representation to perform advanced optimizations across function boundaries, producing higher-quality machine code than the older Crankshaft loop optimizer."
+    },
+    {
+      "_id": "m5_q18",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 18,
+      "question": "Ignition generates:",
+      "options": [
+        "Machine code",
+        "Bytecode interpreter",
+        "AST",
+        "WebAssembly"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Ignition is V8's bytecode interpreter that quickly generates compact bytecode from source, providing instant startup performance before TurboFan JIT kicks in on hot code paths."
+    },
+    {
+      "_id": "m5_q19",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 19,
+      "question": "WebAssembly vs JS performance:",
+      "options": [
+        "JS faster",
+        "WASM 2-10x faster",
+        "Identical",
+        "WASM slower"
+      ],
+      "correctAnswer": 1,
+      "explanation": "WebAssembly compiles to near-native machine code with no dynamic type checks or garbage collection pauses, making numerical compute 2-10x faster than equivalent JIT-optimized JavaScript."
+    },
+    {
+      "_id": "m5_q20",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 20,
+      "question": "SIMD.js accelerates:",
+      "options": [
+        "String ops",
+        "Vector math",
+        "DOM",
+        "Network"
+      ],
+      "correctAnswer": 1,
+      "explanation": "SIMD instructions process 4-16 numbers simultaneously using vector registers, accelerating matrix math, image processing, and physics simulations that would otherwise run sequentially."
+    },
+    {
+      "_id": "m5_q21",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 21,
+      "question": "TypedArray vs Array buffer access:",
+      "options": [
+        "Array faster",
+        "TypedArray 2x faster",
+        "Identical",
+        "TypedArray slower"
+      ],
+      "correctAnswer": 1,
+      "explanation": "TypedArrays eliminate JavaScript's dynamic type checks and boxing, providing direct access to typed memory buffers with predictable layout and no prototype lookups."
+    },
+    {
+      "_id": "m5_q22",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 22,
+      "question": "Property order affects:",
+      "options": [
+        "No effect",
+        "Hidden class + cache",
+        "Garbage collection",
+        "Serialization"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Consistent property addition order creates identical hidden classes across objects, enabling monomorphic inline caches and avoiding expensive shape transitions during property access."
+    },
+    {
+      "_id": "m5_q23",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 23,
+      "question": "V8 interns:",
+      "options": [
+        "All strings",
+        "Small constant strings",
+        "Dynamic strings",
+        "Never"
+      ],
+      "correctAnswer": 1,
+      "explanation": "V8 maintains a pool of short constant strings, so multiple references to the same string literal point to the same object, saving memory and enabling === comparison optimization."
+    },
+    {
+      "_id": "m5_q24",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 24,
+      "question": "V8 caches:",
+      "options": [
+        "All numbers",
+        "Small integers (-1000 to 1000)",
+        "Floats only",
+        "BigInts"
+      ],
+      "correctAnswer": 1,
+      "explanation": "V8 preallocates and caches small integer objects so literals in that range reuse the same boxed instances, avoiding allocation and enabling fast === comparisons for small numbers."
+    },
+    {
+      "_id": "m5_q25",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 25,
+      "question": "RegExp literal caching:",
+      "options": [
+        "Never cached",
+        "Function scope cached",
+        "Global cache",
+        "No caching"
+      ],
+      "correctAnswer": 1,
+      "explanation": "RegExp literals within the same function scope reuse the same RegExp instance, sharing compilation results. RegExp constructors always create new instances."
+    },
+    {
+      "_id": "m5_q26",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 26,
+      "question": "V8 inlines functions smaller than:",
+      "options": [
+        "100 bytes",
+        "~100-500 bytes",
+        "Unlimited",
+        "Never"
+      ],
+      "correctAnswer": 1,
+      "explanation": "V8 aggressively inlines small functions to eliminate call overhead and enable further optimizations across call boundaries. Larger functions exceed inline budget limits."
+    },
+    {
+      "_id": "m5_q27",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 27,
+      "question": "Loop unrolling reduces:",
+      "options": [
+        "Memory usage",
+        "Branch prediction overhead",
+        "Code size",
+        "GC pressure"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Unrolling replaces multiple loop iterations with explicit statements, eliminating branch instructions that tax the branch predictor and improving instruction-level parallelism."
+    },
+    {
+      "_id": "m5_q28",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 28,
+      "question": "Dead code elimination removes:",
+      "options": [
+        "All conditionals",
+        "Unreachable code",
+        "Loops",
+        "Functions"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Static analysis identifies code that can never execute due to constant conditions or unused branches, removing it entirely to reduce executable size and parsing costs."
+    },
+    {
+      "_id": "m5_q29",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 29,
+      "question": "Constant folding precomputes:",
+      "options": [
+        "Dynamic values",
+        "Literals",
+        "Variables",
+        "Functions"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The optimizer evaluates constant expressions at compile time rather than runtime, replacing them with their computed results to eliminate redundant calculations."
+    },
+    {
+      "_id": "m5_q30",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 30,
+      "question": "Flame chart shows:",
+      "options": [
+        "Memory usage",
+        "CPU time per function",
+        "Network",
+        "Paint times"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Flame charts visualize call stack duration with width proportional to CPU time spent in each function, helping identify hotspots and self vs child execution time."
+    },
+    {
+      "_id": "m5_q31",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 31,
+      "question": "Long tasks exceed:",
+      "options": [
+        "16ms",
+        "50ms",
+        "100ms",
+        "200ms"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Tasks blocking the main thread for more than 50ms make the page feel unresponsive. PerformanceObserver with 'longtask' entryType helps identify and break up these blocking operations."
+    },
+    {
+      "_id": "m5_q32",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 32,
+      "question": "requestIdleCallback runs during:",
+      "options": [
+        "Load",
+        "Idle periods",
+        "RAF",
+        "Microtasks"
+      ],
+      "correctAnswer": 1,
+      "explanation": "requestIdleCallback schedules non-critical work during browser idle time between frame deadlines, using deadline.timeRemaining() to yield before the frame budget expires."
+    },
+    {
+      "_id": "m5_q33",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 33,
+      "question": "IntersectionObserver throttle:",
+      "options": [
+        "None",
+        "~16ms RAF",
+        "Custom only",
+        "100ms"
+      ],
+      "correctAnswer": 1,
+      "explanation": "IntersectionObserver batches callbacks to requestAnimationFrame timing, avoiding excessive layout thrashing during rapid scroll or resize events."
+    },
+    {
+      "_id": "m5_q34",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 34,
+      "question": "ResizeObserver batches:",
+      "options": [
+        "Per event",
+        "Per frame",
+        "Async",
+        "Immediate"
+      ],
+      "correctAnswer": 1,
+      "explanation": "ResizeObserver delivers callbacks batched per animation frame, coalescing multiple resize events into single notifications to prevent layout thrashing."
+    },
+    {
+      "_id": "m5_q35",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 35,
+      "question": "MutationObserver executes:",
+      "options": [
+        "Sync",
+        "Batched microtasks",
+        "Macrotasks",
+        "RAF"
+      ],
+      "correctAnswer": 1,
+      "explanation": "MutationObserver queues changes and delivers them as a single microtask batch after the current macrotask, avoiding interruption during synchronous DOM mutations."
+    },
+    {
+      "_id": "m5_q36",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 36,
+      "question": "CSS contain: layout/style/paint isolates:",
+      "options": [
+        "JS execution",
+        "Layout calculations",
+        "Network requests",
+        "GC"
+      ],
+      "correctAnswer": 1,
+      "explanation": "CSS containment hints tell the browser which subtrees affect layout, style, or paint independently, preventing expensive traversal of unaffected parts during changes."
+    },
+    {
+      "_id": "m5_q37",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 37,
+      "question": "will-change hints browser to:",
+      "options": [
+        "Ignore element",
+        "Optimize for animations",
+        "Rasterize immediately",
+        "Remove from layout"
+      ],
+      "correctAnswer": 1,
+      "explanation": "will-change: transform tells the browser to prepare compositing layers and GPU resources early for animated elements, avoiding jank during transitions."
+    },
+    {
+      "_id": "m5_q38",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 38,
+      "question": "transform3d creates:",
+      "options": [
+        "CPU compositing",
+        "GPU compositing layer",
+        "Reflow",
+        "Repaint only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "3D transforms promote elements to their own compositing layer processed entirely on GPU, bypassing expensive CPU layout and paint for transforms, opacity, and filters."
+    },
+    {
+      "_id": "m5_q39",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 39,
+      "question": "font-display: swap shows:",
+      "options": [
+        "Blank text",
+        "Fallback → custom font",
+        "Blocks rendering",
+        "No effect"
+      ],
+      "correctAnswer": 1,
+      "explanation": "font-display: swap renders fallback fonts immediately while custom font downloads, then swaps seamlessly when ready, avoiding invisible text during font load."
+    },
+    {
+      "_id": "m5_q40",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 40,
+      "question": "<link rel=\"preload\"> vs \"prefetch\":",
+      "options": [
+        "Same priority",
+        "preload: critical, prefetch: speculative",
+        "prefetch blocks",
+        "No difference"
+      ],
+      "correctAnswer": 1,
+      "explanation": "preload fetches critical resources immediately with high priority for current page, while prefetch speculatively loads next-page resources with low priority during idle time."
+    },
+    {
+      "_id": "m5_q41",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 41,
+      "question": "Service Worker cache strategies (perf order):",
+      "options": [
+        "Network → Cache",
+        "Cache → Network (stale-while-revalidate)",
+        "Cache only",
+        "Network only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Cache-first strategies serve instantly from cache while background-updating provide the best perceived performance, especially on repeat visits with good cache hit rates."
+    },
+    {
+      "_id": "m5_q42",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 42,
+      "question": "HTTP/2 advantage over HTTP/1.1:",
+      "options": [
+        "Smaller headers",
+        "Multiple requests single connection",
+        "Binary protocol",
+        "All above"
+      ],
+      "correctAnswer": 1,
+      "explanation": "HTTP/2 multiplexing sends many requests/responses simultaneously over one TCP connection, eliminating head-of-line blocking and connection setup latency."
+    },
+    {
+      "_id": "m5_q43",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 43,
+      "question": "Critical CSS improves:",
+      "options": [
+        "Bundle size",
+        "FCP (First Contentful Paint)",
+        "TTI",
+        "Memory"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Inline critical above-the-fold CSS eliminates render-blocking external stylesheets, allowing content to paint immediately without waiting for network roundtrips."
+    },
+    {
+      "_id": "m5_q44",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 44,
+      "question": "Optimal bundle split:",
+      "options": [
+        "Single bundle",
+        "Route + shared + lazy",
+        "Vendor only",
+        "No splitting"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Split into route-specific chunks, shared vendor libraries, and lazy-loaded features to minimize initial download while keeping common code cached across navigation."
+    },
+    {
+      "_id": "m5_q45",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 45,
+      "question": "Tree shaking removes:",
+      "options": [
+        "All unused code",
+        "Unused ES6 exports",
+        "Runtime code",
+        "CommonJS"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Tree shaking analyzes ES6 import/export static structure to eliminate unused exports entirely from final bundles, but cannot analyze dynamic CommonJS requires."
+    },
+    {
+      "_id": "m5_q46",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 46,
+      "question": "Waterfall occurs when:",
+      "options": [
+        "Parallel chunks",
+        "Sequential dynamic imports",
+        "Bundled together",
+        "Cached"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Sequential await import('./A'); await import('./B') forces B to wait for A completion, creating waterfall latency. Promise.all parallelizes independent chunks."
+    },
+    {
+      "_id": "m5_q47",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 47,
+      "question": "Bundle Analyzer visualizes:",
+      "options": [
+        "Source maps",
+        "Module sizes + tree",
+        "Runtime errors",
+        "Network"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Webpack Bundle Analyzer generates treemaps showing module sizes, dependencies, and gzip savings to identify large or duplicated dependencies for optimization."
+    },
+    {
+      "_id": "m5_q48",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 48,
+      "question": "Lighthouse perf score factors:",
+      "options": [
+        "Bundle size only",
+        "FCP/LCP/CLS/INP",
+        "JS execution",
+        "Memory only"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Lighthouse Performance score weights Core Web Vitals (LCP, INP, CLS) plus FCP, TTFB, and TTI to measure user-centric loading, interactivity, and visual stability."
+    },
+    {
+      "_id": "m5_q49",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 49,
+      "question": "Core Web Vitals 2025 targets:",
+      "options": [
+        "1s/100ms/0.1",
+        "2.5s/200ms/0.1",
+        "4s/500ms/0.25",
+        "No targets"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Google defines good Core Web Vitals as LCP ≤2.5s, INP ≤200ms, CLS ≤0.1, representing Largest Contentful Paint, Interaction to Next Paint, and Cumulative Layout Shift thresholds."
+    },
+    {
+      "_id": "m5_q50",
+      "module": "Module5-Performance-Memory",
+      "questionNumber": 50,
+      "question": "#1 JS perf bottleneck:",
+      "options": [
+        "Network",
+        "Forced synchronous layout",
+        "GC pauses",
+        "Bundle size"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Reading layout properties like offsetWidth between DOM writes forces synchronous reflow, blocking the main thread until layout completes. Batch reads and writes to minimize this."
+    }
+  ]
+  

@@ -40,6 +40,7 @@ const QuizTake: React.FC = () => {
       });
     }, 1000);
     return () => clearInterval(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleAnswer = (answerIndex: number) => {
@@ -136,14 +137,18 @@ const QuizTake: React.FC = () => {
       </div>
 
       <div className="quiz-navigation">
-        <button
-          onClick={() => setCurrentQuestion(Math.min(quiz.questions.length - 1, currentQuestion + 1))}
-          disabled={currentQuestion === quiz.questions.length - 1}
-        >
-          Next
-        </button>
-        {currentQuestion === quiz.questions.length - 1 && (
-          <button onClick={handleSubmit} className="btn-primary">
+        {answers[currentQuestion] !== null && answers[currentQuestion] !== undefined && currentQuestion < quiz.questions.length - 1 && (
+          <button
+            onClick={() => setCurrentQuestion(Math.min(quiz.questions.length - 1, currentQuestion + 1))}
+          >
+            Next
+          </button>
+        )}
+        {currentQuestion === quiz.questions.length - 1 && answers[currentQuestion] !== null && answers[currentQuestion] !== undefined && (
+          <button 
+            onClick={handleSubmit} 
+            className="btn-primary"
+          >
             Submit Quiz
           </button>
         )}
