@@ -1,0 +1,1004 @@
+{
+  "module": {
+    "id": 10,
+    "title": "React Patterns & Advanced - Multiple Choice Questions",
+    "description": "Master component patterns, custom hooks, compound components, Context API, testing, and accessibility in React",
+    "totalQuestions": 70,
+    "difficulty": "Advanced",
+    "estimatedTime": "2.5 hours",
+    "topics": [
+      "Custom Hooks",
+      "Compound Components",
+      "Render Props & HOCs",
+      "Context API",
+      "Controlled vs Uncontrolled",
+      "Portals & Refs",
+      "Error Boundaries",
+      "Code Splitting & Lazy Loading",
+      "Testing Patterns",
+      "Accessibility (a11y)"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "category": "Custom Hooks",
+      "difficulty": "Advanced",
+      "question": "What is the primary purpose of custom hooks?",
+      "options": {
+        "A": "To replace class components",
+        "B": "To reuse stateful logic across multiple components",
+        "C": "To manage global state",
+        "D": "To optimize performance"
+      },
+      "correct": "B",
+      "explanation": "Custom hooks encapsulate stateful logic and allow sharing it across many components without prop drilling or HOCs."
+    },
+    {
+      "id": 2,
+      "category": "Custom Hooks",
+      "difficulty": "Advanced",
+      "question": "What is the naming convention for custom hooks?",
+      "options": {
+        "A": "Can be any name",
+        "B": "Must start with 'use' prefix",
+        "C": "Must start with 'hook'",
+        "D": "Must start with 'custom'"
+      },
+      "correct": "B",
+      "explanation": "Custom hooks must start with 'use' so React's linter rules can identify them and enforce hook rules."
+    },
+    {
+      "id": 3,
+      "category": "Custom Hooks",
+      "difficulty": "Advanced",
+      "question": "Can custom hooks return multiple values?",
+      "options": {
+        "A": "No, only one value",
+        "B": "Yes, typically as an array or object",
+        "C": "Only with special syntax",
+        "D": "No, hooks don't support this"
+      },
+      "correct": "B",
+      "explanation": "Custom hooks return arrays (for destructuring) or objects (for named properties), allowing multiple values to be returned."
+    },
+    {
+      "id": 4,
+      "category": "Custom Hooks",
+      "difficulty": "Advanced",
+      "question": "What is the useEffect cleanup pattern used for?",
+      "options": {
+        "A": "Removing unused dependencies",
+        "B": "Cleaning up resources (listeners, timers, subscriptions) when component unmounts or deps change",
+        "C": "Clearing state",
+        "D": "Removing event handlers"
+      },
+      "correct": "B",
+      "explanation": "The cleanup function (returned from useEffect) runs before the effect runs again or component unmounts, preventing memory leaks."
+    },
+    {
+      "id": 5,
+      "category": "Custom Hooks",
+      "difficulty": "Advanced",
+      "question": "Can you call a custom hook conditionally?",
+      "options": {
+        "A": "Yes, always",
+        "B": "No, hooks must be called at the top level unconditionally",
+        "C": "Only with special wrappers",
+        "D": "Only in class components"
+      },
+      "correct": "B",
+      "explanation": "Hooks must be called unconditionally at the top level. Conditional calls violate the Rules of Hooks."
+    },
+    {
+      "id": 6,
+      "category": "Compound Components",
+      "difficulty": "Advanced",
+      "question": "What is a Compound Component pattern?",
+      "options": {
+        "A": "A component composed of multiple smaller components",
+        "B": "Components that share internal state via Context but have a flexible, declarative API",
+        "C": "Components that inherit from a base class",
+        "D": "Multiple components in one file"
+      },
+      "correct": "B",
+      "explanation": "Compound components (like Tabs or Accordion) manage shared state internally but expose flexible sub-components for composition."
+    },
+    {
+      "id": 7,
+      "category": "Compound Components",
+      "difficulty": "Advanced",
+      "question": "How does a compound component share state with its sub-components?",
+      "options": {
+        "A": "Props drilling",
+        "B": "Context API",
+        "C": "Global state",
+        "D": "Direct manipulation"
+      },
+      "correct": "B",
+      "explanation": "Compound components use Context to share state (like activeTab) with their sub-components without prop drilling."
+    },
+    {
+      "id": 8,
+      "category": "Compound Components",
+      "difficulty": "Advanced",
+      "question": "What is a real-world example of a compound component pattern?",
+      "options": {
+        "A": "A button",
+        "B": "Tabs, Accordion, Dropdown, Menu (with Header, Item, Content sub-components)",
+        "C": "A list",
+        "D": "Input field"
+      },
+      "correct": "B",
+      "explanation": "Tabs is a compound component: Tabs.TabList, Tabs.Tab, Tabs.Panel work together while managing shared state."
+    },
+    {
+      "id": 9,
+      "category": "Render Props & HOCs",
+      "difficulty": "Advanced",
+      "question": "What is the Render Props pattern?",
+      "options": {
+        "A": "Passing props to render function",
+        "B": "A function prop that receives data and returns JSX",
+        "C": "Rendering multiple components",
+        "D": "A deprecated pattern"
+      },
+      "correct": "B",
+      "explanation": "Render props accept a function as a child/prop that receives component state and returns JSX, sharing logic without wrapping."
+    },
+    {
+      "id": 10,
+      "category": "Render Props & HOCs",
+      "difficulty": "Advanced",
+      "question": "What is a Higher-Order Component (HOC)?",
+      "options": {
+        "A": "A component with higher performance",
+        "B": "A component that takes a component and returns an enhanced component",
+        "C": "A nested component structure",
+        "D": "A class component"
+      },
+      "correct": "B",
+      "explanation": "An HOC is a function that takes a component and returns a new component with additional props/behavior (e.g., withTheme, withRouter)."
+    },
+    {
+      "id": 11,
+      "category": "Render Props & HOCs",
+      "difficulty": "Advanced",
+      "question": "What is the problem with HOCs regarding static methods?",
+      "options": {
+        "A": "HOCs are incompatible with static methods",
+        "B": "Static methods on the original component are not automatically copied to the wrapped component",
+        "C": "Static methods break HOCs",
+        "D": "No problem"
+      },
+      "correct": "B",
+      "explanation": "HOC wrappers don't automatically copy static methods. You must use hoistNonReactStatics to copy them to the wrapped component."
+    },
+    {
+      "id": 12,
+      "category": "Render Props & HOCs",
+      "difficulty": "Advanced",
+      "question": "Which pattern is preferred: Render Props or Hooks?",
+      "options": {
+        "A": "Render Props",
+        "B": "HOCs",
+        "C": "Hooks (modern approach, less nesting)",
+        "D": "Class components"
+      },
+      "correct": "C",
+      "explanation": "Hooks are the modern preferred approach. They avoid wrapper hell and are cleaner than Render Props or HOCs."
+    },
+    {
+      "id": 13,
+      "category": "Context API",
+      "difficulty": "Advanced",
+      "question": "What is Context in React?",
+      "options": {
+        "A": "A replacement for props",
+        "B": "A way to pass data through component tree without prop drilling",
+        "C": "A state management library",
+        "D": "A performance optimization"
+      },
+      "correct": "B",
+      "explanation": "Context allows passing data to deeply nested components without prop drilling. Use sparingly for global state (theme, user)."
+    },
+    {
+      "id": 14,
+      "category": "Context API",
+      "difficulty": "Advanced",
+      "question": "How do you create a Context?",
+      "options": {
+        "A": "new Context()",
+        "B": "createContext(defaultValue)",
+        "C": "Context()",
+        "D": "React.Context()"
+      },
+      "correct": "B",
+      "explanation": "React.createContext(defaultValue) creates a Context object with Provider and Consumer components."
+    },
+    {
+      "id": 15,
+      "category": "Context API",
+      "difficulty": "Advanced",
+      "question": "What causes a Context value change to trigger?",
+      "options": {
+        "A": "Always re-renders all consumers",
+        "B": "Re-renders only if the provider value changes (object reference)",
+        "C": "Never causes re-renders",
+        "D": "Depends on the browser"
+      },
+      "correct": "B",
+      "explanation": "Context consumers re-render when the Provider's value prop reference changes. Use useMemo to prevent unnecessary re-renders."
+    },
+    {
+      "id": 16,
+      "category": "Context API",
+      "difficulty": "Advanced",
+      "question": "What is the best practice for Context value structure?",
+      "options": {
+        "A": "Always put everything in one Context",
+        "B": "Create multiple Contexts for different concerns, separate state and dispatch",
+        "C": "Only use Context for read-only data",
+        "D": "Never use Context"
+      },
+      "correct": "B",
+      "explanation": "Separate Contexts by concern (theme, user, notification). Also separate state from dispatch to avoid unnecessary re-renders."
+    },
+    {
+      "id": 17,
+      "category": "Controlled vs Uncontrolled",
+      "difficulty": "Advanced",
+      "question": "What is a controlled component?",
+      "options": {
+        "A": "A component that controls other components",
+        "B": "An input whose value is controlled by React state",
+        "C": "A component with lifecycle methods",
+        "D": "A component that validates input"
+      },
+      "correct": "B",
+      "explanation": "A controlled component's value is managed by React state. onChange updates state, which updates the input value."
+    },
+    {
+      "id": 18,
+      "category": "Controlled vs Uncontrolled",
+      "difficulty": "Advanced",
+      "question": "What is an uncontrolled component?",
+      "options": {
+        "A": "A component without state",
+        "B": "An input that manages its own state in the DOM, accessed via ref",
+        "C": "A component that doesn't accept props",
+        "D": "A broken component"
+      },
+      "correct": "B",
+      "explanation": "An uncontrolled component keeps state in the DOM. You access it via useRef(). Useful for file inputs or integrating with non-React code."
+    },
+    {
+      "id": 19,
+      "category": "Controlled vs Uncontrolled",
+      "difficulty": "Advanced",
+      "question": "When should you use uncontrolled components?",
+      "options": {
+        "A": "Always",
+        "B": "File inputs, integrating with non-React code, or simple forms",
+        "C": "Never",
+        "D": "Only with class components"
+      },
+      "correct": "B",
+      "explanation": "Uncontrolled components are useful for file inputs (can't be set programmatically) and integrating with non-React code."
+    },
+    {
+      "id": 20,
+      "category": "Portals & Refs",
+      "difficulty": "Advanced",
+      "question": "What is a Portal in React?",
+      "options": {
+        "A": "A navigation component",
+        "B": "Rendering a component outside its parent DOM hierarchy",
+        "C": "A transport mechanism",
+        "D": "A performance tool"
+      },
+      "correct": "B",
+      "explanation": "ReactDOM.createPortal renders a component into a different DOM node, useful for modals, tooltips, and dropdowns."
+    },
+    {
+      "id": 21,
+      "category": "Portals & Refs",
+      "difficulty": "Advanced",
+      "question": "Why use a Portal for modals?",
+      "options": {
+        "A": "Better performance",
+        "B": "To render outside the parent's CSS context (z-index, overflow hidden)",
+        "C": "Required for accessibility",
+        "D": "No particular reason"
+      },
+      "correct": "B",
+      "explanation": "Portals render modals outside the parent, avoiding CSS overflow/z-index issues that would clip the modal."
+    },
+    {
+      "id": 22,
+      "category": "Portals & Refs",
+      "difficulty": "Advanced",
+      "question": "What is a ref in React?",
+      "options": {
+        "A": "A reference to a value",
+        "B": "Direct access to a DOM node or component instance",
+        "C": "A prop",
+        "D": "A state variable"
+      },
+      "correct": "B",
+      "explanation": "A ref (created with useRef) provides direct access to a DOM node or class component instance, bypassing the declarative model."
+    },
+    {
+      "id": 23,
+      "category": "Portals & Refs",
+      "difficulty": "Advanced",
+      "question": "When should you use refs?",
+      "options": {
+        "A": "Always instead of state",
+        "B": "Managing focus, triggering animations, integrating with third-party DOM libraries",
+        "C": "Never",
+        "D": "For props"
+      },
+      "correct": "B",
+      "explanation": "Refs are for imperative operations: managing focus, triggering animations, or working with third-party libraries."
+    },
+    {
+      "id": 24,
+      "category": "Error Boundaries",
+      "difficulty": "Advanced",
+      "question": "What is an Error Boundary?",
+      "options": {
+        "A": "A try/catch block",
+        "B": "A class component with getDerivedStateFromError/componentDidCatch to catch render errors",
+        "C": "An error handler",
+        "D": "A debugging tool"
+      },
+      "correct": "B",
+      "explanation": "Error Boundaries are class components that catch errors in child components during rendering and lifecycle methods."
+    },
+    {
+      "id": 25,
+      "category": "Error Boundaries",
+      "difficulty": "Advanced",
+      "question": "What errors do Error Boundaries NOT catch?",
+      "options": {
+        "A": "Render errors",
+        "B": "Event handler errors, async code, server-side rendering",
+        "C": "All errors",
+        "D": "No errors"
+      },
+      "correct": "B",
+      "explanation": "Error Boundaries don't catch: event handlers (use try/catch), async code (use .catch()), SSR, or errors in the Error Boundary itself."
+    },
+    {
+      "id": 26,
+      "category": "Error Boundaries",
+      "difficulty": "Advanced",
+      "question": "Can you have multiple Error Boundaries on one page?",
+      "options": {
+        "A": "No, only one allowed",
+        "B": "Yes, multiple boundaries can catch errors in different subtrees",
+        "C": "Only at the root",
+        "D": "Only with special setup"
+      },
+      "correct": "B",
+      "explanation": "Multiple Error Boundaries can wrap different parts of the tree, catching errors in each subtree independently."
+    },
+    {
+      "id": 27,
+      "category": "Code Splitting & Lazy Loading",
+      "difficulty": "Advanced",
+      "question": "What is React.lazy?",
+      "options": {
+        "A": "A performance optimization",
+        "B": "A hook for lazy loading",
+        "C": "A function to dynamically import components",
+        "D": "A debugging feature"
+      },
+      "correct": "C",
+      "explanation": "React.lazy dynamically imports a component, allowing it to be code-split and loaded only when needed."
+    },
+    {
+      "id": 28,
+      "category": "Code Splitting & Lazy Loading",
+      "difficulty": "Advanced",
+      "question": "What must wrap a lazy component?",
+      "options": {
+        "A": "Error Boundary",
+        "B": "Suspense boundary with fallback",
+        "C": "Context",
+        "D": "Nothing required"
+      },
+      "correct": "B",
+      "explanation": "Lazy components must be wrapped in Suspense to show a fallback while the component is loading."
+    },
+    {
+      "id": 29,
+      "category": "Code Splitting & Lazy Loading",
+      "difficulty": "Advanced",
+      "question": "How does code splitting reduce initial bundle size?",
+      "options": {
+        "A": "It doesn't",
+        "B": "Routes/components are only loaded when needed, not in the main bundle",
+        "C": "It compresses files",
+        "D": "It removes unused code"
+      },
+      "correct": "B",
+      "explanation": "Code splitting loads routes/features on-demand. Initial bundle is smaller; features load when user navigates to them."
+    },
+    {
+      "id": 30,
+      "category": "Code Splitting & Lazy Loading",
+      "difficulty": "Advanced",
+      "question": "What is the difference between code splitting and tree shaking?",
+      "options": {
+        "A": "Same thing",
+        "B": "Code splitting: load on-demand; tree shaking: remove unused exports at build time",
+        "C": "Tree shaking is better",
+        "D": "Code splitting is deprecated"
+      },
+      "correct": "B",
+      "explanation": "Code splitting loads chunks on-demand. Tree shaking removes unused code during bundling. Both reduce bundle size differently."
+    },
+    {
+      "id": 31,
+      "category": "Testing Patterns",
+      "difficulty": "Advanced",
+      "question": "What is the purpose of render in React Testing Library?",
+      "options": {
+        "A": "To compile JSX",
+        "B": "To render components in a test DOM for assertions",
+        "C": "To display components in the browser",
+        "D": "To check performance"
+      },
+      "correct": "B",
+      "explanation": "render mounts a component in a test DOM (not the browser), allowing you to query and assert on the rendered output."
+    },
+    {
+      "id": 32,
+      "category": "Testing Patterns",
+      "difficulty": "Advanced",
+      "question": "What is the best query to use in React Testing Library?",
+      "options": {
+        "A": "getByTestId (most preferred)",
+        "B": "getByText or getByRole (user-centric)",
+        "C": "querySelector",
+        "D": "getByClassName"
+      },
+      "correct": "B",
+      "explanation": "Best practice: getByRole > getByLabelText > getByPlaceholder > getByText. Avoid TestId unless necessary. Query by role (accessibility)."
+    },
+    {
+      "id": 33,
+      "category": "Testing Patterns",
+      "difficulty": "Advanced",
+      "question": "How do you test async behavior in React Testing Library?",
+      "options": {
+        "A": "Use setTimeout",
+        "B": "Use findBy queries or waitFor",
+        "C": "Use getBy with async",
+        "D": "Async testing isn't supported"
+      },
+      "correct": "B",
+      "explanation": "findBy queries wait for elements to appear (includes waitFor logic). waitFor lets you wait for any condition with retry logic."
+    },
+    {
+      "id": 34,
+      "category": "Testing Patterns",
+      "difficulty": "Advanced",
+      "question": "How do you test custom hooks in React?",
+      "options": {
+        "A": "Import and call directly in tests",
+        "B": "Use renderHook from testing library",
+        "C": "Create a wrapper component",
+        "D": "Hooks cannot be tested"
+      },
+      "correct": "B",
+      "explanation": "renderHook from @testing-library/react allows you to test hooks in isolation with proper React lifecycle."
+    },
+    {
+      "id": 35,
+      "category": "Testing Patterns",
+      "difficulty": "Advanced",
+      "question": "What is mocking used for in React testing?",
+      "options": {
+        "A": "Making code faster",
+        "B": "Replacing real modules/functions with fakes to isolate components",
+        "C": "Debugging",
+        "D": "Performance testing"
+      },
+      "correct": "B",
+      "explanation": "Mocking replaces real dependencies (API calls, external modules) with fakes, isolating the component being tested."
+    },
+    {
+      "id": 36,
+      "category": "Accessibility (a11y)",
+      "difficulty": "Advanced",
+      "question": "What is ARIA and why is it important?",
+      "options": {
+        "A": "A JavaScript library",
+        "B": "Accessible Rich Internet Applications - attributes that improve screen reader support",
+        "C": "An acronym",
+        "D": "A CSS framework"
+      },
+      "correct": "B",
+      "explanation": "ARIA attributes (role, aria-label, aria-hidden, etc.) provide semantic meaning for assistive technologies like screen readers."
+    },
+    {
+      "id": 37,
+      "category": "Accessibility (a11y)",
+      "difficulty": "Advanced",
+      "question": "What is the purpose of semantic HTML?",
+      "options": {
+        "A": "Better styling",
+        "B": "More meaning for browsers and assistive tech (nav, main, button vs div)",
+        "C": "Faster rendering",
+        "D": "Optional"
+      },
+      "correct": "B",
+      "explanation": "Semantic HTML (button, nav, main, section) provides meaning that browsers/screen readers understand, improving accessibility."
+    },
+    {
+      "id": 38,
+      "category": "Accessibility (a11y)",
+      "difficulty": "Advanced",
+      "question": "What is focus management?",
+      "options": {
+        "A": "Managing button focus color",
+        "B": "Moving keyboard focus to important elements (after navigation, dialog open)",
+        "C": "CSS focus states",
+        "D": "Browser feature"
+      },
+      "correct": "B",
+      "explanation": "Focus management moves keyboard focus to relevant elements: modal on open, results on search, etc. Critical for keyboard navigation."
+    },
+    {
+      "id": 39,
+      "category": "Accessibility (a11y)",
+      "difficulty": "Advanced",
+      "question": "What is the purpose of alt text on images?",
+      "options": {
+        "A": "SEO only",
+        "B": "Describes image for screen readers and shows if image fails to load",
+        "C": "Optional",
+        "D": "Styling purposes"
+      },
+      "correct": "B",
+      "explanation": "alt text makes images accessible to screen readers and provides fallback text if images don't load."
+    },
+    {
+      "id": 40,
+      "category": "Accessibility (a11y)",
+      "difficulty": "Advanced",
+      "question": "How do you make a custom button accessible?",
+      "options": {
+        "A": "Use a div with custom styles",
+        "B": "Use semantic <button>, keyboard events, focus management, aria-label if needed",
+        "C": "Use <input type='button'>",
+        "D": "Divs are fine"
+      },
+      "correct": "B",
+      "explanation": "Use <button> (semantic, keyboard accessible). Add aria-label for icon buttons. Manage focus and keyboard events properly."
+    },
+    {
+      "id": 41,
+      "category": "Custom Hooks",
+      "difficulty": "Advanced",
+      "question": "What is a dependency array in useEffect and why is it important?",
+      "options": {
+        "A": "A list of props",
+        "B": "Values that determine when the effect re-runs; missing deps can cause bugs",
+        "C": "Required for all effects",
+        "D": "Performance optimization"
+      },
+      "correct": "B",
+      "explanation": "Dependency array tells React when to re-run an effect. Missing deps causes stale closures; extra deps causes unnecessary runs."
+    },
+    {
+      "id": 42,
+      "category": "Context API",
+      "difficulty": "Advanced",
+      "question": "What is the Context selector pattern?",
+      "options": {
+        "A": "Selecting which Context to use",
+        "B": "Creating multiple Contexts to avoid re-rendering non-relevant consumers",
+        "C": "A library",
+        "D": "A deprecated pattern"
+      },
+      "correct": "B",
+      "explanation": "Use multiple Contexts by concern (user, theme, notification) so consumers only re-render when their Context changes."
+    },
+    {
+      "id": 43,
+      "category": "Compound Components",
+      "difficulty": "Advanced",
+      "question": "What is the advantage of Compound Components over prop-based APIs?",
+      "options": {
+        "A": "No advantage",
+        "B": "More flexible/readable; components can be in any order with shared state via Context",
+        "C": "Faster performance",
+        "D": "Easier to implement"
+      },
+      "correct": "B",
+      "explanation": "Compound components provide flexible, readable composition. Tabs.Tab can be anywhere in Tabs and still work with shared state."
+    },
+    {
+      "id": 44,
+      "category": "Render Props & HOCs",
+      "difficulty": "Advanced",
+      "question": "What is prop spreading in React?",
+      "options": {
+        "A": "Spreading props across multiple components",
+        "B": "Using {...props} to pass all props to a child",
+        "C": "A performance technique",
+        "D": "Not a real pattern"
+      },
+      "correct": "B",
+      "explanation": "Prop spreading ({...props}) passes all props to a child component. Useful in HOCs and wrapper components."
+    },
+    {
+      "id": 45,
+      "category": "Testing Patterns",
+      "difficulty": "Advanced",
+      "question": "How do you test a component that uses Context?",
+      "options": {
+        "A": "Cannot be tested",
+        "B": "Wrap the component with the Context Provider in tests",
+        "C": "Mock the Context",
+        "D": "Use a wrapper function"
+      },
+      "correct": "B",
+      "explanation": "Wrap the component with its Context Provider, passing test values, so the component can access the Context."
+    },
+    {
+      "id": 46,
+      "category": "Code Splitting & Lazy Loading",
+      "difficulty": "Advanced",
+      "question": "What is route-based code splitting?",
+      "options": {
+        "A": "Splitting CSS for each route",
+        "B": "Lazy loading entire route components, loading only when user navigates",
+        "C": "Routing configuration",
+        "D": "Browser feature"
+      },
+      "correct": "B",
+      "explanation": "Route-based code splitting lazy loads entire page components. Users only download code for the route they visit."
+    },
+    {
+      "id": 47,
+      "category": "Controlled vs Uncontrolled",
+      "difficulty": "Advanced",
+      "question": "Can you mix controlled and uncontrolled for the same input?",
+      "options": {
+        "A": "Yes, always",
+        "B": "No, it causes errors and unpredictable behavior",
+        "C": "Only with special handling",
+        "D": "Depends on the input type"
+      },
+      "correct": "B",
+      "explanation": "Switching between controlled and uncontrolled mid-render causes warnings and unpredictable behavior. Choose one approach."
+    },
+    {
+      "id": 48,
+      "category": "Error Boundaries",
+      "difficulty": "Advanced",
+      "question": "What lifecycle method is used in Error Boundaries to update state?",
+      "options": {
+        "A": "componentDidCatch",
+        "B": "getDerivedStateFromError",
+        "C": "componentDidMount",
+        "D": "Both A and B are used together"
+      },
+      "correct": "D",
+      "explanation": "getDerivedStateFromError updates state to show fallback UI. componentDidCatch logs errors. Both are typically used together."
+    },
+    {
+      "id": 49,
+      "category": "Performance Optimization",
+      "difficulty": "Advanced",
+      "question": "What is useMemo used for?",
+      "options": {
+        "A": "Improving component readability",
+        "B": "Memoizing expensive computations to prevent recalculation",
+        "C": "Managing memory",
+        "D": "Debugging"
+      },
+      "correct": "B",
+      "explanation": "useMemo memoizes the result of an expensive computation, recalculating only when dependencies change."
+    },
+    {
+      "id": 50,
+      "category": "Performance Optimization",
+      "difficulty": "Advanced",
+      "question": "What is useCallback used for?",
+      "options": {
+        "A": "Running async code",
+        "B": "Memoizing a function so its reference doesn't change unnecessarily",
+        "C": "Improving component speed",
+        "D": "Error handling"
+      },
+      "correct": "B",
+      "explanation": "useCallback memoizes a function. The function reference stays the same if dependencies don't change, preventing child re-renders."
+    },
+    {
+      "id": 51,
+      "category": "Custom Hooks",
+      "difficulty": "Advanced",
+      "question": "What is the useAsync custom hook pattern?",
+      "options": {
+        "A": "A built-in React hook",
+        "B": "A custom hook for managing async data fetching state (loading, error, data)",
+        "C": "A deprecated feature",
+        "D": "Not a real pattern"
+      },
+      "correct": "B",
+      "explanation": "useAsync is a common custom hook that manages loading state, error state, and data for async operations."
+    },
+    {
+      "id": 52,
+      "category": "Compound Components",
+      "difficulty": "Advanced",
+      "question": "How do compound components differ from component factories?",
+      "options": {
+        "A": "No difference",
+        "B": "Compound components share state via Context; factories create components dynamically",
+        "C": "Factories are better",
+        "D": "Compound components are factories"
+      },
+      "correct": "B",
+      "explanation": "Compound components (Tabs, TabList, Tab) share Context state. Factories (makeButton(theme)) dynamically create components."
+    },
+    {
+      "id": 53,
+      "category": "Portals & Refs",
+      "difficulty": "Advanced",
+      "question": "How do you forward refs through a component with forwardRef?",
+      "options": {
+        "A": "Refs automatically forward",
+        "B": "Use React.forwardRef to wrap the component and pass ref to DOM element",
+        "C": "Use passing refs as props",
+        "D": "Refs cannot be forwarded"
+      },
+      "correct": "B",
+      "explanation": "React.forwardRef wraps a component, accepting a ref parameter that can be passed to an underlying DOM element."
+    },
+    {
+      "id": 54,
+      "category": "Testing Patterns",
+      "difficulty": "Advanced",
+      "question": "What is the user-centric testing approach?",
+      "options": {
+        "A": "Testing internal implementation details",
+        "B": "Testing how users interact with the component (roles, labels, text)",
+        "C": "Testing component props",
+        "D": "Testing performance"
+      },
+      "correct": "B",
+      "explanation": "User-centric testing queries by role/label/text, not implementation. Tests behavior users care about, not internal details."
+    },
+    {
+      "id": 55,
+      "category": "Accessibility (a11y)",
+      "difficulty": "Advanced",
+      "question": "What is the purpose of aria-label and aria-labelledby?",
+      "options": {
+        "A": "CSS styling",
+        "B": "Providing accessible names for elements (aria-label: string, aria-labelledby: element ID)",
+        "C": "Navigation",
+        "D": "Performance"
+      },
+      "correct": "B",
+      "explanation": "aria-label provides a text label (for elements without visible text like icons). aria-labelledby references another element's text."
+    },
+    {
+      "id": 56,
+      "category": "Performance Optimization",
+      "difficulty": "Advanced",
+      "question": "What does React.memo do?",
+      "options": {
+        "A": "Manages memory",
+        "B": "Memoizes a component, preventing re-render if props are the same",
+        "C": "Caches component output",
+        "D": "Optimizes performance automatically"
+      },
+      "correct": "B",
+      "explanation": "React.memo wraps a component to prevent re-renders if props haven't changed (shallow comparison by default)."
+    },
+    {
+      "id": 57,
+      "category": "Code Splitting & Lazy Loading",
+      "difficulty": "Advanced",
+      "question": "What is the difference between static and dynamic imports?",
+      "options": {
+        "A": "No difference",
+        "B": "Static imports are bundled upfront; dynamic imports (import()) load on-demand",
+        "C": "Dynamic imports are faster",
+        "D": "Static imports are deprecated"
+      },
+      "correct": "B",
+      "explanation": "Static imports (import foo) load immediately. Dynamic imports (import('foo')) return a Promise, allowing code splitting."
+    },
+    {
+      "id": 58,
+      "category": "Context API",
+      "difficulty": "Advanced",
+      "question": "What is a common anti-pattern with Context?",
+      "options": {
+        "A": "Using multiple Contexts",
+        "B": "Putting all global state in one Context, causing unnecessary re-renders",
+        "C": "Using useContext",
+        "D": "Context is always good"
+      },
+      "correct": "B",
+      "explanation": "Putting all state in one Context causes every consumer to re-render when any value changes. Separate Contexts by concern."
+    },
+    {
+      "id": 59,
+      "category": "Testing Patterns",
+      "difficulty": "Advanced",
+      "question": "How do you handle timers in React tests (jest.fake/jest.useFakeTimers)?",
+      "options": {
+        "A": "Use real timers, no special handling",
+        "B": "Use jest.useFakeTimers to speed up tests, advance time with jest.runAllTimers()",
+        "C": "Timers cannot be tested",
+        "D": "Use setTimeout directly"
+      },
+      "correct": "B",
+      "explanation": "jest.useFakeTimers mocks timers. Use jest.runAllTimers() or jest.advanceTimersByTime() to advance time in tests."
+    },
+    {
+      "id": 60,
+      "category": "Accessibility (a11y)",
+      "difficulty": "Advanced",
+      "question": "What is keyboard navigation and why is it important?",
+      "options": {
+        "A": "Not important",
+        "B": "Users navigate with Tab/Enter/Arrow keys; critical for accessibility",
+        "C": "Only for game development",
+        "D": "Browser feature"
+      },
+      "correct": "B",
+      "explanation": "Keyboard navigation is essential for users who can't use a mouse. Components must work with Tab, Enter, Arrow keys, Escape."
+    },
+    {
+      "id": 61,
+      "category": "Custom Hooks",
+      "difficulty": "Advanced",
+      "question": "What is the exhaustive-deps ESLint rule?",
+      "options": {
+        "A": "A deprecated rule",
+        "B": "Warns if useEffect/useMemo dependency array is missing dependencies",
+        "C": "A performance rule",
+        "D": "Optional"
+      },
+      "correct": "B",
+      "explanation": "exhaustive-deps warns when you forget to include dependencies in useEffect/useMemo, helping prevent stale closure bugs."
+    },
+    {
+      "id": 62,
+      "category": "Render Props & HOCs",
+      "difficulty": "Advanced",
+      "question": "What is wrapper hell?",
+      "options": {
+        "A": "Too many CSS wrappers",
+        "B": "Deeply nested HOC/Render Props wrappers (each level adds depth)",
+        "C": "Not a real problem",
+        "D": "A performance issue"
+      },
+      "correct": "B",
+      "explanation": "Wrapper hell occurs with multiple HOCs: Component wrapped by withA wrapped by withB wrapped by withC (deep nesting, hard to debug)."
+    },
+    {
+      "id": 63,
+      "category": "Error Boundaries",
+      "difficulty": "Advanced",
+      "question": "What does componentDidCatch receive as parameters?",
+      "options": {
+        "A": "Just the error",
+        "B": "Error and error info (component stack)",
+        "C": "Error and props",
+        "D": "Nothing"
+      },
+      "correct": "B",
+      "explanation": "componentDidCatch(error, info) where info.componentStack shows where the error occurred in the component tree."
+    },
+    {
+      "id": 64,
+      "category": "Portals & Refs",
+      "difficulty": "Advanced",
+      "question": "Can event handlers on a Portal bubble to the parent component?",
+      "options": {
+        "A": "No, Portals prevent bubbling",
+        "B": "Yes, events bubble up to the component tree parent (not DOM parent)",
+        "C": "Only with special setup",
+        "D": "Depends on the event"
+      },
+      "correct": "B",
+      "explanation": "Events in a Portal bubble to React component tree parents (not DOM parents), even though the Portal is rendered elsewhere."
+    },
+    {
+      "id": 65,
+      "category": "Performance Optimization",
+      "difficulty": "Advanced",
+      "question": "What is the difference between useMemo and useCallback?",
+      "options": {
+        "A": "No difference",
+        "B": "useMemo memoizes values, useCallback memoizes functions",
+        "C": "useCallback is always better",
+        "D": "useMemo is deprecated"
+      },
+      "correct": "B",
+      "explanation": "useMemo(fn, deps) returns memoized result. useCallback(fn, deps) returns memoized function (useMemo's shorthand)."
+    },
+    {
+      "id": 66,
+      "category": "Testing Patterns",
+      "difficulty": "Advanced",
+      "question": "What is the act() function in React testing?",
+      "options": {
+        "A": "Debugging tool",
+        "B": "Wraps state updates to ensure they're processed before assertions",
+        "C": "Not important",
+        "D": "For mocking"
+      },
+      "correct": "B",
+      "explanation": "act() wraps state updates, ensuring React processes them before you make assertions, avoiding 'not wrapped in act()' warnings."
+    },
+    {
+      "id": 67,
+      "category": "Accessibility (a11y)",
+      "difficulty": "Advanced",
+      "question": "What does aria-live do?",
+      "options": {
+        "A": "Makes content interactive",
+        "B": "Announces dynamic content changes to screen readers (polite, assertive, off)",
+        "C": "Styling",
+        "D": "Not necessary"
+      },
+      "correct": "B",
+      "explanation": "aria-live='polite' announces changes to screen reader users. 'assertive' interrupts, 'off' is default. Critical for dynamic content."
+    },
+    {
+      "id": 68,
+      "category": "Custom Hooks",
+      "difficulty": "Advanced",
+      "question": "What is a custom hook for managing form state commonly called?",
+      "options": {
+        "A": "useForm",
+        "B": "useFormInput or useField",
+        "C": "useInput",
+        "D": "All above are common"
+      },
+      "correct": "D",
+      "explanation": "Custom form hooks have various names: useForm, useFormInput, useField, useFormField. Multiple conventions exist."
+    },
+    {
+      "id": 69,
+      "category": "Compound Components",
+      "difficulty": "Advanced",
+      "question": "How do you prevent a Compound Component's Context from affecting unrelated components?",
+      "options": {
+        "A": "Use global Context",
+        "B": "Create a new Context inside the component, scoped to that component",
+        "C": "Use multiple Contexts globally",
+        "D": "Cannot be prevented"
+      },
+      "correct": "B",
+      "explanation": "Create Context inside the component (local scope), so it only affects that component's sub-components, not unrelated parts."
+    },
+    {
+      "id": 70,
+      "category": "Performance Optimization",
+      "difficulty": "Advanced",
+      "question": "What is the purpose of key prop in lists?",
+      "options": {
+        "A": "Just for styling",
+        "B": "Helps React identify which items have changed, improving list performance and preventing state bugs",
+        "C": "Security",
+        "D": "Not important"
+      },
+      "correct": "B",
+      "explanation": "Keys help React match old elements with new ones. Without keys, reordering/filtering causes state to attach to wrong items."
+    }
+  ]
+}

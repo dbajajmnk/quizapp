@@ -1,0 +1,581 @@
+{
+  "module": {
+    "id": 8,
+    "title": "React Compiler & Signals - Multiple Choice Questions",
+    "description": "Master automatic memoization, signals, fine-grained reactivity, and React optimization techniques",
+    "totalQuestions": 40,
+    "difficulty": "Advanced",
+    "estimatedTime": "1.5 hours",
+    "topics": [
+      "React Compiler Overview",
+      "Automatic Memoization",
+      "Signals & Fine-grained Reactivity",
+      "Computed Signals",
+      "Compiler Transformations",
+      "Performance Optimization",
+      "Signals Ecosystem"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "category": "React Compiler Overview",
+      "difficulty": "Advanced",
+      "question": "What is the primary purpose of the React Compiler?",
+      "options": {
+        "A": "To check syntax errors in JSX",
+        "B": "To automatically memoize components and reduce unnecessary re-renders",
+        "C": "To minify JavaScript code",
+        "D": "To convert JSX to HTML"
+      },
+      "correct": "B",
+      "explanation": "The React Compiler automatically memoizes values and functions, tracking dependencies without manual useMemo/useCallback."
+    },
+    {
+      "id": 2,
+      "category": "React Compiler Overview",
+      "difficulty": "Advanced",
+      "question": "What is the status of the React Compiler in React 19?",
+      "options": {
+        "A": "It's the default, always enabled",
+        "B": "It's experimental and opt-in",
+        "C": "It's deprecated",
+        "D": "It's only available in Next.js"
+      },
+      "correct": "B",
+      "explanation": "The React Compiler is experimental in React 19 and must be explicitly enabled. It's expected to be stable in React 20."
+    },
+    {
+      "id": 3,
+      "category": "Automatic Memoization",
+      "difficulty": "Advanced",
+      "question": "What does automatic memoization by the React Compiler eliminate?",
+      "options": {
+        "A": "The need for useState",
+        "B": "The need for useMemo and useCallback",
+        "C": "The need for useEffect",
+        "D": "The need for context"
+      },
+      "correct": "B",
+      "explanation": "The compiler automatically memoizes calculations and function definitions, making useMemo and useCallback unnecessary in most cases."
+    },
+    {
+      "id": 4,
+      "category": "Automatic Memoization",
+      "difficulty": "Advanced",
+      "question": "How does the React Compiler determine if a value should be memoized?",
+      "options": {
+        "A": "By analyzing the code for expensive operations",
+        "B": "By tracking all dependencies automatically",
+        "C": "By checking if the value is used multiple times",
+        "D": "By developer annotation"
+      },
+      "correct": "B",
+      "explanation": "The compiler analyzes code to track dependencies and automatically memoizes values when they don't change, without manual dependency arrays."
+    },
+    {
+      "id": 5,
+      "category": "Signals & Fine-grained Reactivity",
+      "difficulty": "Advanced",
+      "question": "What is a Signal in modern reactive frameworks?",
+      "options": {
+        "A": "A JavaScript function that signals errors",
+        "B": "A reactive primitive that notifies subscribers when its value changes",
+        "C": "A signal sent to the browser",
+        "D": "A CSS signal"
+      },
+      "correct": "B",
+      "explanation": "A Signal is a reactive value wrapper that notifies subscribers (components, computed signals) when the value changes, enabling fine-grained updates."
+    },
+    {
+      "id": 6,
+      "category": "Signals & Fine-grained Reactivity",
+      "difficulty": "Advanced",
+      "question": "What is the key difference between fine-grained reactivity and React's current model?",
+      "options": {
+        "A": "Fine-grained updates only affected components, React updates the whole tree",
+        "B": "React is faster",
+        "C": "Fine-grained reactivity requires more setup",
+        "D": "They are identical"
+      },
+      "correct": "A",
+      "explanation": "Fine-grained reactivity updates only the affected components directly. React's current model updates the component and its descendants."
+    },
+    {
+      "id": 7,
+      "category": "Signals & Fine-grained Reactivity",
+      "difficulty": "Advanced",
+      "question": "How much faster are Signals compared to React state in large lists?",
+      "options": {
+        "A": "2x faster",
+        "B": "10x faster",
+        "C": "50x faster",
+        "D": "Same speed"
+      },
+      "correct": "C",
+      "explanation": "For 10,000 items, Signals approach ~1ms while React state approach ~50ms, making Signals approximately 50x faster."
+    },
+    {
+      "id": 8,
+      "category": "Computed Signals",
+      "difficulty": "Advanced",
+      "question": "What is a Computed Signal?",
+      "options": {
+        "A": "A signal that performs mathematical calculations",
+        "B": "A signal whose value is derived from other signals and updates automatically",
+        "C": "A signal for mathematical operations",
+        "D": "A signal that's pre-computed"
+      },
+      "correct": "B",
+      "explanation": "A Computed Signal derives its value from other signals. It updates automatically when dependencies change, tracking them dynamically."
+    },
+    {
+      "id": 9,
+      "category": "Computed Signals",
+      "difficulty": "Advanced",
+      "question": "How do Computed Signals track their dependencies?",
+      "options": {
+        "A": "Through manual dependency arrays like useEffect",
+        "B": "Automatically by monitoring which signals are read during execution",
+        "C": "By scanning the code",
+        "D": "By developer annotation"
+      },
+      "correct": "B",
+      "explanation": "Computed Signals track dependencies dynamically. When the compute function runs, it automatically registers which signals it reads."
+    },
+    {
+      "id": 10,
+      "category": "Signals & Fine-grained Reactivity",
+      "difficulty": "Advanced",
+      "question": "What happens in fine-grained reactivity when a Signal value changes?",
+      "options": {
+        "A": "The entire component tree re-renders",
+        "B": "Only the components directly using that Signal re-execute their code",
+        "C": "Nothing happens until the component re-renders",
+        "D": "All Signals update"
+      },
+      "correct": "B",
+      "explanation": "With fine-grained reactivity, only code that directly uses the changed Signal re-executes, not the entire component tree."
+    },
+    {
+      "id": 11,
+      "category": "React Compiler Overview",
+      "difficulty": "Advanced",
+      "question": "What is a 'bailout' in the React Compiler context?",
+      "options": {
+        "A": "An error in compilation",
+        "B": "When the compiler cannot optimize a value and must use the original code",
+        "C": "Exiting the render process",
+        "D": "Reverting a compilation"
+      },
+      "correct": "B",
+      "explanation": "A bailout occurs when the compiler detects code that might have side effects or is unsafe to memoize, so it uses the original code."
+    },
+    {
+      "id": 12,
+      "category": "Compiler Transformations",
+      "difficulty": "Advanced",
+      "question": "What does the React Compiler transform object literals into?",
+      "options": {
+        "A": "Symbols",
+        "B": "Maps",
+        "C": "Memoized objects that are only created when contents change",
+        "D": "Primitive values"
+      },
+      "correct": "C",
+      "explanation": "The compiler transforms object literals into memoized objects that are only created once if contents haven't changed between renders."
+    },
+    {
+      "id": 13,
+      "category": "Compiler Transformations",
+      "difficulty": "Advanced",
+      "question": "What happens to function declarations inside components with the React Compiler?",
+      "options": {
+        "A": "They are removed",
+        "B": "They are hoisted",
+        "C": "They are memoized and redefined only when dependencies change",
+        "D": "They are inlined"
+      },
+      "correct": "C",
+      "explanation": "Functions inside components are memoized by the compiler. They're only redefined when their captured values change."
+    },
+    {
+      "id": 14,
+      "category": "Performance Optimization",
+      "difficulty": "Advanced",
+      "question": "How does the React Compiler handle dependency tracking?",
+      "options": {
+        "A": "It doesn't, you must use dependency arrays",
+        "B": "It analyzes code and automatically tracks dependencies without explicit arrays",
+        "C": "It uses TypeScript for tracking",
+        "D": "Manually through annotations"
+      },
+      "correct": "B",
+      "explanation": "The compiler analyzes code to automatically determine dependencies, eliminating the need for manual dependency arrays in many cases."
+    },
+    {
+      "id": 15,
+      "category": "Signals Ecosystem",
+      "difficulty": "Intermediate",
+      "question": "Which of these frameworks use a Signals-like model?",
+      "options": {
+        "A": "React only",
+        "B": "Solid.js, Vue 3, Preact, Angular",
+        "C": "Vue only",
+        "D": "No other frameworks use signals"
+      },
+      "correct": "B",
+      "explanation": "Solid.js, Vue 3 (Composition API), Preact signals, and Angular signals all use fine-grained reactivity with signals."
+    },
+    {
+      "id": 16,
+      "category": "Signals Ecosystem",
+      "difficulty": "Intermediate",
+      "question": "What is Preact signals?",
+      "options": {
+        "A": "A warning system in Preact",
+        "B": "A fine-grained reactivity library for Preact",
+        "C": "A Preact plugin",
+        "D": "A Preact configuration"
+      },
+      "correct": "B",
+      "explanation": "Preact signals provides fine-grained reactivity similar to Vue 3, allowing efficient updates in Preact applications."
+    },
+    {
+      "id": 17,
+      "category": "Automatic Memoization",
+      "difficulty": "Advanced",
+      "question": "Can the React Compiler memoize side effects like API calls?",
+      "options": {
+        "A": "Yes, always",
+        "B": "No, side effects cannot be memoized",
+        "C": "Only if they're pure",
+        "D": "Only with explicit marking"
+      },
+      "correct": "B",
+      "explanation": "The compiler cannot memoize side effects (API calls, mutations, etc.). Only pure computations can be safely memoized."
+    },
+    {
+      "id": 18,
+      "category": "React Compiler Overview",
+      "difficulty": "Advanced",
+      "question": "What is the compilation target for the React Compiler?",
+      "options": {
+        "A": "JavaScript only",
+        "B": "JSX code targeting React components",
+        "C": "TypeScript",
+        "D": "HTML"
+      },
+      "correct": "B",
+      "explanation": "The React Compiler targets JSX/React component code, analyzing and transforming it to add automatic memoization."
+    },
+    {
+      "id": 19,
+      "category": "Signals & Fine-grained Reactivity",
+      "difficulty": "Advanced",
+      "question": "What is the main advantage of Signals over React state?",
+      "options": {
+        "A": "They are easier to understand",
+        "B": "Better performance due to fine-grained updates, not tree traversal",
+        "C": "They replace components",
+        "D": "They support more types"
+      },
+      "correct": "B",
+      "explanation": "Signals update only affected code, not entire component trees. This is much faster for large dynamic lists and complex state."
+    },
+    {
+      "id": 20,
+      "category": "Compiler Transformations",
+      "difficulty": "Advanced",
+      "question": "What does the React Compiler do with array/tuple literals?",
+      "options": {
+        "A": "Removes them",
+        "B": "Converts them to objects",
+        "C": "Memoizes them to prevent recreation when contents don't change",
+        "D": "Inlines them"
+      },
+      "correct": "C",
+      "explanation": "Like objects, array and tuple literals are memoized by the compiler to prevent unnecessary re-creation on each render."
+    },
+    {
+      "id": 21,
+      "category": "Performance Optimization",
+      "difficulty": "Advanced",
+      "question": "How does the React Compiler improve initial render performance?",
+      "options": {
+        "A": "It pre-renders components",
+        "B": "It eliminates unnecessary memoization calculations",
+        "C": "It compresses the bundle",
+        "D": "It uses web workers"
+      },
+      "correct": "B",
+      "explanation": "By memoizing values intelligently, the compiler reduces recalculations during renders, improving performance."
+    },
+    {
+      "id": 22,
+      "category": "Signals Ecosystem",
+      "difficulty": "Intermediate",
+      "question": "How does Vue 3's Composition API relate to Signals?",
+      "options": {
+        "A": "They are unrelated",
+        "B": "Vue 3 uses a signals-like approach with reactive() and ref()",
+        "C": "Vue doesn't use signals",
+        "D": "They are the same thing"
+      },
+      "correct": "B",
+      "explanation": "Vue 3's Composition API with reactive() and ref() is a signals-like approach to fine-grained reactivity."
+    },
+    {
+      "id": 23,
+      "category": "Computed Signals",
+      "difficulty": "Advanced",
+      "question": "What optimization does a Computed Signal provide?",
+      "options": {
+        "A": "It caches the result if dependencies haven't changed",
+        "B": "It prevents infinite loops",
+        "C": "It validates input",
+        "D": "It logs changes"
+      },
+      "correct": "A",
+      "explanation": "Computed Signals cache their result. If dependencies haven't changed since the last computation, the cached value is returned."
+    },
+    {
+      "id": 24,
+      "category": "Automatic Memoization",
+      "difficulty": "Advanced",
+      "question": "What happens when the React Compiler encounters a non-pure function?",
+      "options": {
+        "A": "It errors",
+        "B": "It bails out and doesn't memoize it",
+        "C": "It forces memoization anyway",
+        "D": "It removes the function"
+      },
+      "correct": "B",
+      "explanation": "When the compiler detects a function might have side effects (non-pure), it bails out and uses the original function without memoization."
+    },
+    {
+      "id": 25,
+      "category": "React Compiler Overview",
+      "difficulty": "Advanced",
+      "question": "Does the React Compiler require code changes to use?",
+      "options": {
+        "A": "Yes, you must rewrite all components",
+        "B": "No, it works on existing code without changes",
+        "C": "Only if using TypeScript",
+        "D": "Only if using Next.js"
+      },
+      "correct": "B",
+      "explanation": "The React Compiler is a Babel plugin that works on existing code without requiring any changes to your components."
+    },
+    {
+      "id": 26,
+      "category": "Signals & Fine-grained Reactivity",
+      "difficulty": "Advanced",
+      "question": "How do Signals integrate with React components?",
+      "options": {
+        "A": "They don't, they replace React",
+        "B": "Signals can be used inside React components, with fine-grained updates for parts using them",
+        "C": "React is converting to Signals",
+        "D": "They are incompatible"
+      },
+      "correct": "B",
+      "explanation": "Signals can be used inside React components. Parts of the component using Signals get fine-grained updates while other parts use React's normal diffing."
+    },
+    {
+      "id": 27,
+      "category": "Compiler Transformations",
+      "difficulty": "Advanced",
+      "question": "What is the purpose of the compiler's dependency tracking?",
+      "options": {
+        "A": "To generate dependency graphs",
+        "B": "To automatically determine what values must be memoized together",
+        "C": "To find unused imports",
+        "D": "To validate prop types"
+      },
+      "correct": "B",
+      "explanation": "Dependency tracking helps the compiler determine which values must be recalculated together vs. what can be independently memoized."
+    },
+    {
+      "id": 28,
+      "category": "Performance Optimization",
+      "difficulty": "Advanced",
+      "question": "How does the React Compiler affect bundle size?",
+      "options": {
+        "A": "Increases it (adds compiler overhead)",
+        "B": "Decreases it (removes useMemo/useCallback boilerplate)",
+        "C": "No effect on bundle size",
+        "D": "Doubles it"
+      },
+      "correct": "B",
+      "explanation": "The compiler eliminates the need for useMemo/useCallback boilerplate, actually reducing bundle size slightly."
+    },
+    {
+      "id": 29,
+      "category": "Signals Ecosystem",
+      "difficulty": "Intermediate",
+      "question": "How does Solid.js use Signals as its core reactivity?",
+      "options": {
+        "A": "As an optional feature",
+        "B": "As the entire foundation of its reactivity system",
+        "C": "Only for state management",
+        "D": "Solid.js doesn't use signals"
+      },
+      "correct": "B",
+      "explanation": "Solid.js is built entirely around Signals for its reactivity, making them the core of how components work."
+    },
+    {
+      "id": 30,
+      "category": "Computed Signals",
+      "difficulty": "Advanced",
+      "question": "What happens to a Computed Signal if multiple dependencies change?",
+      "options": {
+        "A": "It recomputes once for each change",
+        "B": "It recomputes once, reading all current values",
+        "C": "It doesn't recompute",
+        "D": "It throws an error"
+      },
+      "correct": "B",
+      "explanation": "A Computed Signal recomputes once, reading all dependency values at their current state, even if multiple changed."
+    },
+    {
+      "id": 31,
+      "category": "React Compiler Overview",
+      "difficulty": "Advanced",
+      "question": "What is the expected timeline for React Compiler to become stable?",
+      "options": {
+        "A": "Already stable in React 19",
+        "B": "Experimental in React 19, expected stable in React 20",
+        "C": "Not planned",
+        "D": "Delayed indefinitely"
+      },
+      "correct": "B",
+      "explanation": "The React Compiler is experimental in React 19 and is expected to become stable in React 20 release."
+    },
+    {
+      "id": 32,
+      "category": "Automatic Memoization",
+      "difficulty": "Advanced",
+      "question": "Can the React Compiler memoize expensive component renders?",
+      "options": {
+        "A": "No, components cannot be memoized",
+        "B": "Yes, if the component's inputs haven't changed",
+        "C": "Only with React.memo",
+        "D": "Only functional components"
+      },
+      "correct": "B",
+      "explanation": "The compiler can prevent re-execution of expensive component code if its props/context haven't changed."
+    },
+    {
+      "id": 33,
+      "category": "Signals & Fine-grained Reactivity",
+      "difficulty": "Advanced",
+      "question": "What is the smallest unit that updates with Signals?",
+      "options": {
+        "A": "An entire component",
+        "B": "A component subtree",
+        "C": "The specific code/effect using the Signal",
+        "D": "The page"
+      },
+      "correct": "C",
+      "explanation": "With Signals, updates are granular. Only the code that directly uses the changed Signal re-executes, not the component."
+    },
+    {
+      "id": 34,
+      "category": "Compiler Transformations",
+      "difficulty": "Advanced",
+      "question": "How does the compiler handle closures with captured values?",
+      "options": {
+        "A": "It removes closures",
+        "B": "It memoizes the function and tracks captured values as dependencies",
+        "C": "It inlines them",
+        "D": "It converts them to global variables"
+      },
+      "correct": "B",
+      "explanation": "The compiler memoizes functions and tracks captured values. If captured values change, the function is redefined."
+    },
+    {
+      "id": 35,
+      "category": "Performance Optimization",
+      "difficulty": "Advanced",
+      "question": "What is the overhead of using Signals in a component?",
+      "options": {
+        "A": "Significant overhead",
+        "B": "Minimal overhead, offset by fine-grained update benefits",
+        "C": "No overhead",
+        "D": "Higher than React state"
+      },
+      "correct": "B",
+      "explanation": "Signals have slight subscription overhead but this is offset by avoiding unnecessary component re-renders."
+    },
+    {
+      "id": 36,
+      "category": "Signals Ecosystem",
+      "difficulty": "Intermediate",
+      "question": "What is the main use case where Signals outperform React state?",
+      "options": {
+        "A": "Simple counters",
+        "B": "Large dynamic lists with frequent item updates",
+        "C": "Static components",
+        "D": "Form validation"
+      },
+      "correct": "B",
+      "explanation": "Signals excel when you have large lists with frequent updates to individual items, where React would re-render many components."
+    },
+    {
+      "id": 37,
+      "category": "Computed Signals",
+      "difficulty": "Advanced",
+      "question": "Can a Computed Signal depend on another Computed Signal?",
+      "options": {
+        "A": "No, circular dependencies",
+        "B": "Yes, computed signals can depend on other computed signals",
+        "C": "Only with special configuration",
+        "D": "Only if declared in reverse order"
+      },
+      "correct": "B",
+      "explanation": "Computed Signals can depend on other Computed Signals, creating chains of reactive dependencies."
+    },
+    {
+      "id": 38,
+      "category": "React Compiler Overview",
+      "difficulty": "Advanced",
+      "question": "Is the React Compiler a build-time tool?",
+      "options": {
+        "A": "No, it runs at runtime",
+        "B": "Yes, it's a Babel plugin that transforms code at build time",
+        "C": "It's a runtime check only",
+        "D": "It requires a separate server"
+      },
+      "correct": "B",
+      "explanation": "The React Compiler is a Babel plugin that runs at build time, transforming your code before it ships to the browser."
+    },
+    {
+      "id": 39,
+      "category": "Signals & Fine-grained Reactivity",
+      "difficulty": "Advanced",
+      "question": "What prevents infinite loops in fine-grained reactivity systems?",
+      "options": {
+        "A": "Nothing, they can loop infinitely",
+        "B": "Update order tracking prevents circular updates",
+        "C": "Signals detect cycles and throw errors",
+        "D": "React prevents signals from updating each other"
+      },
+      "correct": "B",
+      "explanation": "Fine-grained systems prevent infinite loops through update order tracking. A Signal doesn't notify while still executing its own updates."
+    },
+    {
+      "id": 40,
+      "category": "Performance Optimization",
+      "difficulty": "Advanced",
+      "question": "Which provides better performance: React Compiler alone or Compiler + Signals?",
+      "options": {
+        "A": "Compiler alone is better",
+        "B": "They perform the same",
+        "C": "Compiler + Signals together provide the best performance",
+        "D": "Signals alone without compiler"
+      },
+      "correct": "C",
+      "explanation": "Combining the React Compiler with Signals provides the best performance: automatic memoization plus fine-grained reactivity."
+    }
+  ]
+}

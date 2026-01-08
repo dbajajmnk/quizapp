@@ -1,0 +1,722 @@
+{
+  "module": {
+    "id": 9,
+    "title": "Server Components & RSC - Multiple Choice Questions",
+    "description": "Master React Server Components, async components, streaming, Server Actions, and data fetching patterns",
+    "totalQuestions": 50,
+    "difficulty": "Advanced",
+    "estimatedTime": "2 hours",
+    "topics": [
+      "Server vs Client Components",
+      "Async Server Components",
+      "Streaming Rendering",
+      "Server Actions",
+      "Data Fetching Patterns",
+      "Caching & Revalidation",
+      "Next.js 15 Features",
+      "Error Handling in RSC"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "category": "Server vs Client Components",
+      "difficulty": "Advanced",
+      "question": "What is a React Server Component (RSC)?",
+      "options": {
+        "A": "A component that runs on the server and sends HTML to the browser",
+        "B": "A component that only renders on the server, never in the browser",
+        "C": "A component that communicates with a backend server",
+        "D": "A component that uses SSR"
+      },
+      "correct": "B",
+      "explanation": "A Server Component runs exclusively on the server. Only the rendered output (HTML) is sent to the browser, no JavaScript is needed."
+    },
+    {
+      "id": 2,
+      "category": "Server vs Client Components",
+      "difficulty": "Advanced",
+      "question": "How do you mark a component as a Client Component in React?",
+      "options": {
+        "A": "Use @client decorator",
+        "B": "Add 'use client' directive at the top of the file",
+        "C": "Configure it in package.json",
+        "D": "It's the default"
+      },
+      "correct": "B",
+      "explanation": "'use client' directive tells React to render this component and its dependencies in the browser, not on the server."
+    },
+    {
+      "id": 3,
+      "category": "Server vs Client Components",
+      "difficulty": "Advanced",
+      "question": "Can a Server Component use useState?",
+      "options": {
+        "A": "Yes, always",
+        "B": "No, Server Components cannot use hooks that require runtime state",
+        "C": "Only with special configuration",
+        "D": "Only if wrapped in a Client Component"
+      },
+      "correct": "B",
+      "explanation": "Server Components don't have runtime state. They can't use useState, useContext, useReducer, or other state-related hooks."
+    },
+    {
+      "id": 4,
+      "category": "Server vs Client Components",
+      "difficulty": "Advanced",
+      "question": "Can a Server Component have event listeners like onClick?",
+      "options": {
+        "A": "Yes, Server Components support all events",
+        "B": "No, Server Components run on the server only",
+        "C": "Only if using onchange",
+        "D": "Only with JavaScript enabled"
+      },
+      "correct": "B",
+      "explanation": "Server Components can't have event listeners because they don't run in the browser. Events require Client Components."
+    },
+    {
+      "id": 5,
+      "category": "Async Server Components",
+      "difficulty": "Advanced",
+      "question": "Can you use async/await directly in a Server Component?",
+      "options": {
+        "A": "No, async is not allowed",
+        "B": "Yes, Server Components can be async and await data",
+        "C": "Only with special wrappers",
+        "D": "Only for fetch calls"
+      },
+      "correct": "B",
+      "explanation": "Server Components can be async functions. The server waits for all promises to resolve before sending HTML to the browser."
+    },
+    {
+      "id": 6,
+      "category": "Async Server Components",
+      "difficulty": "Advanced",
+      "question": "What happens if a Server Component's async operation takes 10 seconds?",
+      "options": {
+        "A": "The request times out",
+        "B": "The HTML is delayed until the operation completes",
+        "C": "The operation runs in the background",
+        "D": "React shows a fallback"
+      },
+      "correct": "B",
+      "explanation": "With a traditional Server Component, the browser waits for all server operations to complete before receiving HTML. With Suspense, you can send partial HTML."
+    },
+    {
+      "id": 7,
+      "category": "Streaming Rendering",
+      "difficulty": "Advanced",
+      "question": "What is streaming in the context of Server Components?",
+      "options": {
+        "A": "Sending video content",
+        "B": "Progressively sending HTML chunks as they render on the server",
+        "C": "Loading assets in parallel",
+        "D": "Caching responses"
+      },
+      "correct": "B",
+      "explanation": "Streaming sends HTML progressively to the browser as parts of the page render on the server, rather than waiting for the entire page."
+    },
+    {
+      "id": 8,
+      "category": "Streaming Rendering",
+      "difficulty": "Advanced",
+      "question": "What component is used with streaming to show loading states?",
+      "options": {
+        "A": "Loading component",
+        "B": "Suspense boundary with fallback",
+        "C": "SkeletonLoader",
+        "D": "LoadingBoundary"
+      },
+      "correct": "B",
+      "explanation": "Suspense boundaries with fallback props show loading UI while the server component's content is being streamed."
+    },
+    {
+      "id": 9,
+      "category": "Server Actions",
+      "difficulty": "Advanced",
+      "question": "What is a Server Action in React 19?",
+      "options": {
+        "A": "An API endpoint",
+        "B": "A function marked with 'use server' that runs on the server",
+        "C": "A type of event handler",
+        "D": "A middleware"
+      },
+      "correct": "B",
+      "explanation": "A Server Action is a function marked with 'use server' that runs on the server. It can be called from Client Components like an RPC."
+    },
+    {
+      "id": 10,
+      "category": "Server Actions",
+      "difficulty": "Advanced",
+      "question": "How do you call a Server Action from a Client Component?",
+      "options": {
+        "A": "Using await like a normal function",
+        "B": "Using fetch to a special endpoint",
+        "C": "Through a proxy",
+        "D": "Server Actions cannot be called from Client Components"
+      },
+      "correct": "A",
+      "explanation": "Server Actions can be called like normal async functions from Client Components. React automatically handles serialization and transmission."
+    },
+    {
+      "id": 11,
+      "category": "Server Actions",
+      "difficulty": "Advanced",
+      "question": "What does revalidatePath do in Server Actions?",
+      "options": {
+        "A": "Validates the file path",
+        "B": "Clears the cache and re-renders the page path on next request",
+        "C": "Checks if the path exists",
+        "D": "Redirects to a new path"
+      },
+      "correct": "B",
+      "explanation": "revalidatePath clears the cache for a path, forcing re-rendering of Server Components on the next request."
+    },
+    {
+      "id": 12,
+      "category": "Data Fetching Patterns",
+      "difficulty": "Advanced",
+      "question": "How should you fetch data in Server Components?",
+      "options": {
+        "A": "Only using REST APIs",
+        "B": "Using async/await with direct database access or fetch",
+        "C": "Never fetch in Server Components",
+        "D": "Only using GraphQL"
+      },
+      "correct": "B",
+      "explanation": "Server Components can directly access databases and use fetch. Data is fetched on the server before rendering."
+    },
+    {
+      "id": 13,
+      "category": "Data Fetching Patterns",
+      "difficulty": "Advanced",
+      "question": "What is automatic request deduplication in Server Components?",
+      "options": {
+        "A": "Removing duplicate data",
+        "B": "React automatically de-duplicates identical fetch requests in the same render",
+        "C": "Deleting duplicate files",
+        "D": "A caching strategy"
+      },
+      "correct": "B",
+      "explanation": "If multiple components fetch the same URL in one render, React makes only one request and shares the result."
+    },
+    {
+      "id": 14,
+      "category": "Caching & Revalidation",
+      "difficulty": "Advanced",
+      "question": "What is ISR (Incremental Static Regeneration)?",
+      "options": {
+        "A": "Incremental Source Rendering",
+        "B": "Revalidating cached content at specified intervals",
+        "C": "A Next.js feature for re-rendering pages periodically",
+        "D": "Both B and C"
+      },
+      "correct": "D",
+      "explanation": "ISR allows you to set a revalidation time (e.g., 60 seconds). After that time, the next request triggers a re-render."
+    },
+    {
+      "id": 15,
+      "category": "Caching & Revalidation",
+      "difficulty": "Advanced",
+      "question": "How long does Next.js cache Server Component renders by default?",
+      "options": {
+        "A": "Not at all",
+        "B": "1 hour",
+        "C": "Indefinitely (until manually revalidated)",
+        "D": "5 minutes"
+      },
+      "correct": "C",
+      "explanation": "Server Component renders are cached indefinitely by default. You must explicitly revalidate using revalidatePath or revalidateTag."
+    },
+    {
+      "id": 16,
+      "category": "Server vs Client Components",
+      "difficulty": "Advanced",
+      "question": "What is the main bundle size benefit of Server Components?",
+      "options": {
+        "A": "Smaller images",
+        "B": "More Server Component JavaScript is sent to the browser than Client Component JavaScript",
+        "C": "Server Component code stays on the server; only Client Component JS is shipped to browser",
+        "D": "No difference"
+      },
+      "correct": "C",
+      "explanation": "Server Components run on the server, so their code never reaches the browser. This significantly reduces JavaScript bundles."
+    },
+    {
+      "id": 17,
+      "category": "Server Actions",
+      "difficulty": "Advanced",
+      "question": "Can Server Actions be used without form submission?",
+      "options": {
+        "A": "No, they require forms",
+        "B": "Yes, you can call them from any event handler in a Client Component",
+        "C": "Only with special configuration",
+        "D": "Only programmatically"
+      },
+      "correct": "B",
+      "explanation": "Server Actions can be called from any Client Component function, not just form submissions."
+    },
+    {
+      "id": 18,
+      "category": "Server vs Client Components",
+      "difficulty": "Advanced",
+      "question": "Can you pass a Server Component as a prop to a Client Component?",
+      "options": {
+        "A": "No, it's impossible",
+        "B": "Yes, as children or special props, Server Components are rendered on the server first",
+        "C": "Only if wrapped in a div",
+        "D": "Only in Next.js"
+      },
+      "correct": "B",
+      "explanation": "Server Components can be children of Client Components. The Server Component is still rendered on the server."
+    },
+    {
+      "id": 19,
+      "category": "Async Server Components",
+      "difficulty": "Advanced",
+      "question": "What is the relationship between Suspense and async Server Components?",
+      "options": {
+        "A": "They are unrelated",
+        "B": "Suspense wraps async components to show fallback while data loads",
+        "C": "Async Server Components replace Suspense",
+        "D": "Suspense is only for Client Components"
+      },
+      "correct": "B",
+      "explanation": "Suspense boundaries wrap async Server Components. The fallback shows while the component awaits data, then streams the result."
+    },
+    {
+      "id": 20,
+      "category": "Streaming Rendering",
+      "difficulty": "Advanced",
+      "question": "What is progressive enhancement with Server Components and streaming?",
+      "options": {
+        "A": "Slowly improving code",
+        "B": "Pages show HTML immediately (interactive without JS), JS enhances progressively",
+        "C": "Upgrading the server gradually",
+        "D": "Improving CSS over time"
+      },
+      "correct": "B",
+      "explanation": "Server Components enable progressive enhancement: HTML renders immediately (interactive), then JavaScript loads to add interactivity."
+    },
+    {
+      "id": 21,
+      "category": "Next.js 15 Features",
+      "difficulty": "Advanced",
+      "question": "What is Partial Pre-rendering (PPR) in Next.js 15?",
+      "options": {
+        "A": "Rendering part of a page on demand",
+        "B": "Pre-rendering static parts, streaming dynamic parts",
+        "C": "Partial caching",
+        "D": "Half-page rendering"
+      },
+      "correct": "B",
+      "explanation": "PPR pre-renders static parts of a page at build time, then streams dynamic parts on request, combining benefits of both approaches."
+    },
+    {
+      "id": 22,
+      "category": "Server Actions",
+      "difficulty": "Advanced",
+      "question": "What data can you serialize in a Server Action call?",
+      "options": {
+        "A": "Only JSON types",
+        "B": "JSON, FormData, Blob, and File objects",
+        "C": "Any JavaScript object",
+        "D": "Only strings"
+      },
+      "correct": "B",
+      "explanation": "Server Actions support JSON, FormData, Blob, and File objects for serialization across the client-server boundary."
+    },
+    {
+      "id": 23,
+      "category": "Data Fetching Patterns",
+      "difficulty": "Advanced",
+      "question": "Should you fetch data in multiple Server Components or combine into one?",
+      "options": {
+        "A": "Always combine to reduce requests",
+        "B": "Multiple components can fetch independently; React deduplicates identical requests",
+        "C": "One component per data source",
+        "D": "Depends on the database"
+      },
+      "correct": "B",
+      "explanation": "Multiple Server Components can fetch independently. React deduplicates identical requests within the same render."
+    },
+    {
+      "id": 24,
+      "category": "Error Handling in RSC",
+      "difficulty": "Advanced",
+      "question": "What component is used to handle errors in Server Components?",
+      "options": {
+        "A": "Try/catch blocks",
+        "B": "Error boundary (class component)",
+        "C": "Both, error boundaries catch render errors",
+        "D": "Errors cannot be caught"
+      },
+      "correct": "C",
+      "explanation": "Error boundaries catch errors from Server Components. Try/catch in Server Components handles async errors during data fetching."
+    },
+    {
+      "id": 25,
+      "category": "Server vs Client Components",
+      "difficulty": "Advanced",
+      "question": "What is the minimum setup needed to use Server Components?",
+      "options": {
+        "A": "A build tool like webpack",
+        "B": "Next.js with App Router (or similar framework support)",
+        "C": "Only React",
+        "D": "A custom server"
+      },
+      "correct": "B",
+      "explanation": "Server Components require framework support like Next.js with App Router, or a custom React Server Components setup."
+    },
+    {
+      "id": 26,
+      "category": "Streaming Rendering",
+      "difficulty": "Advanced",
+      "question": "What is Time To First Byte (TTFB) affected by in streaming?",
+      "options": {
+        "A": "JavaScript size",
+        "B": "The slowest async operation on the server",
+        "C": "CSS size",
+        "D": "Number of images"
+      },
+      "correct": "B",
+      "explanation": "TTFB is delayed by the slowest Server Component. Suspense/streaming lets you stream faster parts while slow parts still load."
+    },
+    {
+      "id": 27,
+      "category": "Server Actions",
+      "difficulty": "Advanced",
+      "question": "Can Server Actions access environment variables?",
+      "options": {
+        "A": "No, never",
+        "B": "Yes, only server-only environment variables",
+        "C": "Only with special setup",
+        "D": "Only public variables"
+      },
+      "correct": "B",
+      "explanation": "Server Actions can access environment variables marked as server-only (e.g., private keys, database URLs)."
+    },
+    {
+      "id": 28,
+      "category": "Caching & Revalidation",
+      "difficulty": "Advanced",
+      "question": "What does revalidateTag do?",
+      "options": {
+        "A": "Changes the page title",
+        "B": "Revalidates all pages using a specific fetch tag on next request",
+        "C": "Adds metadata",
+        "D": "Nothing"
+      },
+      "correct": "B",
+      "explanation": "revalidateTag clears the cache for all requests tagged with a specific tag, allowing selective cache invalidation."
+    },
+    {
+      "id": 29,
+      "category": "Server Components",
+      "difficulty": "Advanced",
+      "question": "Can you import a Client Component in a Server Component?",
+      "options": {
+        "A": "No, never",
+        "B": "Yes, and it will be available as a Client Component in the browser",
+        "C": "Only with wrappers",
+        "D": "Only in development"
+      },
+      "correct": "B",
+      "explanation": "A Server Component can import and render a Client Component. The Client Component is sent to the browser as normal."
+    },
+    {
+      "id": 30,
+      "category": "Server Actions",
+      "difficulty": "Advanced",
+      "question": "What happens if you call a Server Action from the server side?",
+      "options": {
+        "A": "It errors",
+        "B": "It works normally (no network call needed)",
+        "C": "It's slower",
+        "D": "It's not allowed"
+      },
+      "correct": "B",
+      "explanation": "Server Actions can be called from Server Components directly without network overhead, just like normal function calls."
+    },
+    {
+      "id": 31,
+      "category": "Async Server Components",
+      "difficulty": "Advanced",
+      "question": "How do you handle errors in an async Server Component?",
+      "options": {
+        "A": "Use try/catch inside the component",
+        "B": "Error boundaries catch render errors",
+        "C": "Both approaches work",
+        "D": "Errors cannot be handled"
+      },
+      "correct": "C",
+      "explanation": "Try/catch handles errors during await in Server Components. Error boundaries catch render errors. Both can be used together."
+    },
+    {
+      "id": 32,
+      "category": "Data Fetching Patterns",
+      "difficulty": "Advanced",
+      "question": "Should you use fetch with { cache: 'no-store' } in Server Components?",
+      "options": {
+        "A": "Always",
+        "B": "Only for frequently changing data",
+        "C": "Never",
+        "D": "Depends on your needs"
+      },
+      "correct": "D",
+      "explanation": "Use cache: 'no-store' for frequently changing data (real-time), and caching for static/rarely-changing data."
+    },
+    {
+      "id": 33,
+      "category": "Server Components",
+      "difficulty": "Advanced",
+      "question": "What is the 'only' argument to Next.js redirect function?",
+      "options": {
+        "A": "Limits redirect to one use",
+        "B": "Distinguishes Server-only redirect from browser redirect",
+        "C": "A required parameter",
+        "D": "Not a real parameter"
+      },
+      "correct": "B",
+      "explanation": "redirect('path', 'push'|'replace') marks a redirect as server-only, preventing infinite loops in Server Components."
+    },
+    {
+      "id": 34,
+      "category": "Streaming Rendering",
+      "difficulty": "Advanced",
+      "question": "What is the benefit of streaming for SEO?",
+      "options": {
+        "A": "No SEO benefit",
+        "B": "Search engines get fully rendered HTML faster",
+        "C": "Streaming helps crawlers index faster",
+        "D": "Both B and C"
+      },
+      "correct": "D",
+      "explanation": "Streaming provides complete HTML quickly for search engines, improving crawl efficiency and ranking."
+    },
+    {
+      "id": 35,
+      "category": "Server Actions",
+      "difficulty": "Advanced",
+      "question": "Can Server Actions be used for form submissions in traditional HTML?",
+      "options": {
+        "A": "No, only with React forms",
+        "B": "Yes, Server Actions can handle HTML form submissions",
+        "C": "Only with special configuration",
+        "D": "Only with JavaScript"
+      },
+      "correct": "B",
+      "explanation": "Server Actions can handle HTML form submissions via form action attribute, working without JavaScript for progressive enhancement."
+    },
+    {
+      "id": 36,
+      "category": "Caching & Revalidation",
+      "difficulty": "Advanced",
+      "question": "How often is ISR revalidation checked?",
+      "options": {
+        "A": "On every request",
+        "B": "Only on the specified interval",
+        "C": "On the first request after the interval passes",
+        "D": "Never, it's cached forever"
+      },
+      "correct": "C",
+      "explanation": "ISR checks revalidation time on the first request after the interval has passed. If expired, the next request triggers regeneration."
+    },
+    {
+      "id": 37,
+      "category": "Server Components",
+      "difficulty": "Advanced",
+      "question": "What is the 'searchParams' in a Server Component?",
+      "options": {
+        "A": "A database search function",
+        "B": "URL query parameters passed as a prop to the component",
+        "C": "Search configuration",
+        "D": "A cache parameter"
+      },
+      "correct": "B",
+      "explanation": "searchParams is a prop containing URL query parameters, allowing Server Components to access routing information."
+    },
+    {
+      "id": 38,
+      "category": "Server Actions",
+      "difficulty": "Advanced",
+      "question": "Are Server Actions serialized as strings in the JavaScript bundle?",
+      "options": {
+        "A": "No, they are never sent to the browser",
+        "B": "Yes, as special references that route to the server",
+        "C": "Only for debugging",
+        "D": "Only in development"
+      },
+      "correct": "B",
+      "explanation": "Server Actions are serialized as references in the bundle. When called, they route back to the server automatically."
+    },
+    {
+      "id": 39,
+      "category": "Data Fetching Patterns",
+      "difficulty": "Advanced",
+      "question": "What is N+1 problem in Server Components?",
+      "options": {
+        "A": "A mathematical problem",
+        "B": "Fetching parent then child items separately, causing multiple requests",
+        "C": "A React error",
+        "D": "Not relevant to Server Components"
+      },
+      "correct": "B",
+      "explanation": "N+1 occurs when you fetch a list (N items) then fetch details for each (1 more request per item). Parallel fetching avoids this."
+    },
+    {
+      "id": 40,
+      "category": "Streaming Rendering",
+      "difficulty": "Advanced",
+      "question": "What percentage of JavaScript reduction is typical with Server Components?",
+      "options": {
+        "A": "10-20%",
+        "B": "30-50%",
+        "C": "50-75%",
+        "D": "Depends entirely on the app"
+      },
+      "correct": "D",
+      "explanation": "JavaScript reduction varies based on what percentage of your app can be Server Components. Typical apps see 40-60% reduction."
+    },
+    {
+      "id": 41,
+      "category": "Server Components",
+      "difficulty": "Advanced",
+      "question": "Can you use hooks like useRouter in a Server Component?",
+      "options": {
+        "A": "Yes, all hooks work",
+        "B": "No, hooks require Client Components",
+        "C": "Only with special imports",
+        "D": "Only useCallback"
+      },
+      "correct": "B",
+      "explanation": "Hooks like useRouter, useContext, useState are Client-only. Server Components cannot use any hooks."
+    },
+    {
+      "id": 42,
+      "category": "Server Actions",
+      "difficulty": "Advanced",
+      "question": "What is the purpose of marked 'use server' at the top of a file vs inside a function?",
+      "options": {
+        "A": "No difference",
+        "B": "File-level marks all exports as Server Actions; function-level marks just that function",
+        "C": "Only file-level works",
+        "D": "Only function-level works"
+      },
+      "correct": "B",
+      "explanation": "'use server' at file-level marks all functions as Server Actions. Inside a function, only that function is a Server Action."
+    },
+    {
+      "id": 43,
+      "category": "Async Server Components",
+      "difficulty": "Advanced",
+      "question": "What happens to error stack traces in async Server Components?",
+      "options": {
+        "A": "They are hidden",
+        "B": "They are sent to the client",
+        "C": "They stay on the server for security",
+        "D": "They are logged to console"
+      },
+      "correct": "C",
+      "explanation": "Stack traces stay on the server for security. Only safe error messages are sent to the client."
+    },
+    {
+      "id": 44,
+      "category": "Caching & Revalidation",
+      "difficulty": "Advanced",
+      "question": "What is the benefit of using revalidateTag over revalidatePath?",
+      "options": {
+        "A": "revalidateTag is faster",
+        "B": "revalidateTag lets you invalidate multiple paths with one tag",
+        "C": "No difference",
+        "D": "revalidatePath is better"
+      },
+      "correct": "B",
+      "explanation": "revalidateTag groups multiple paths under one tag. One revalidateTag call invalidates all paths with that tag."
+    },
+    {
+      "id": 45,
+      "category": "Server Components",
+      "difficulty": "Advanced",
+      "question": "Can a Client Component parent render a Server Component child?",
+      "options": {
+        "A": "No, never possible",
+        "B": "No, but Client Component can accept Server Component as a prop (children)",
+        "C": "Yes, directly",
+        "D": "Only in Next.js"
+      },
+      "correct": "B",
+      "explanation": "Server Components must be rendered on the server. Client Components can't render Server Components, but can accept them as props/children."
+    },
+    {
+      "id": 46,
+      "category": "Server Actions",
+      "difficulty": "Advanced",
+      "question": "What is the maximum request body size for Server Actions?",
+      "options": {
+        "A": "No limit",
+        "B": "1MB (configurable)",
+        "C": "100KB",
+        "D": "Depends on server"
+      },
+      "correct": "B",
+      "explanation": "Default is typically 1MB. This can be configured in Next.js with serverActions.bodySizeLimit."
+    },
+    {
+      "id": 47,
+      "category": "Streaming Rendering",
+      "difficulty": "Advanced",
+      "question": "What is the First Input Delay (FID) improvement with Server Components and streaming?",
+      "options": {
+        "A": "No improvement",
+        "B": "HTML arrives faster, less JavaScript to parse before interaction",
+        "C": "Only improves on slow networks",
+        "D": "Depends on the component"
+      },
+      "correct": "B",
+      "explanation": "Server Components reduce JavaScript, and streaming delivers HTML faster. Both reduce parsing time before the page becomes interactive."
+    },
+    {
+      "id": 48,
+      "category": "Data Fetching Patterns",
+      "difficulty": "Advanced",
+      "question": "How should you handle user-specific data in Server Components?",
+      "options": {
+        "A": "Don't use Server Components for user data",
+        "B": "Fetch from database or session, Server Components render specific data per request",
+        "C": "Always cache user data",
+        "D": "Use Client Components only"
+      },
+      "correct": "B",
+      "explanation": "Server Components can fetch user-specific data from the session or database per request, rendering personalized content."
+    },
+    {
+      "id": 49,
+      "category": "Next.js 15 Features",
+      "difficulty": "Advanced",
+      "question": "What is the benefit of PPR (Partial Pre-rendering) over full SSR?",
+      "options": {
+        "A": "No difference",
+        "B": "Static parts render at build-time, dynamic parts stream on-demand",
+        "C": "Faster than CSR",
+        "D": "Only for large apps"
+      },
+      "correct": "B",
+      "explanation": "PPR pre-renders static parts at build time (fast initial response) while streaming dynamic parts on request (fresh data)."
+    },
+    {
+      "id": 50,
+      "category": "Server Components",
+      "difficulty": "Advanced",
+      "question": "What is the 'params' prop in a Next.js Server Component?",
+      "options": {
+        "A": "URL query parameters",
+        "B": "Dynamic route parameters",
+        "C": "Component props",
+        "D": "Fetch parameters"
+      },
+      "correct": "B",
+      "explanation": "params contains dynamic route segments (e.g., [id] in /posts/[id], params.id is the post ID)."
+    }
+  ]
+}

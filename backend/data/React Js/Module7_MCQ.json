@@ -1,0 +1,722 @@
+{
+  "module": {
+    "id": 7,
+    "title": "Concurrent React 19 - Multiple Choice Questions",
+    "description": "Master React's concurrent rendering, Fiber architecture, priority lanes, Suspense, and transitions",
+    "totalQuestions": 50,
+    "difficulty": "Advanced",
+    "estimatedTime": "2 hours",
+    "topics": [
+      "Fiber Architecture",
+      "Priority Lanes",
+      "Automatic Batching",
+      "Suspense Boundaries",
+      "useTransition Hook",
+      "useDeferredValue Hook",
+      "Streaming & Progressive Hydration",
+      "React 19 Features"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "category": "Fiber Architecture",
+      "difficulty": "Advanced",
+      "question": "What is the primary purpose of React's Fiber architecture?",
+      "options": {
+        "A": "To manage CSS styling in React applications",
+        "B": "To enable incremental rendering and work interruption/resumption",
+        "C": "To handle HTTP requests in React components",
+        "D": "To replace the Virtual DOM completely"
+      },
+      "correct": "B",
+      "explanation": "Fiber architecture allows React to pause rendering work, prioritize updates, and resume when the browser is idle. This is fundamental to concurrent rendering."
+    },
+    {
+      "id": 2,
+      "category": "Fiber Architecture",
+      "difficulty": "Advanced",
+      "question": "What does the 'alternate' property in a Fiber node represent?",
+      "options": {
+        "A": "An alternative component to render if the primary fails",
+        "B": "The previous version of the Fiber for diffing/comparison",
+        "C": "An alternative rendering strategy",
+        "D": "The next sibling Fiber in the queue"
+      },
+      "correct": "B",
+      "explanation": "The 'alternate' property points to the previous Fiber version, allowing React to compare old and new versions to determine what changed (reconciliation)."
+    },
+    {
+      "id": 3,
+      "category": "Fiber Architecture",
+      "difficulty": "Advanced",
+      "question": "How many lanes does React's priority system have in concurrent rendering?",
+      "options": {
+        "A": "2 lanes (high, low)",
+        "B": "3 lanes (urgent, normal, idle)",
+        "C": "6 lanes (SYNC through OFFSCREEN)",
+        "D": "8 lanes (configurable)"
+      },
+      "correct": "C",
+      "explanation": "React uses 6 priority lanes: SYNC_LANE, CONTINUOUS_HYDRATION_LANE, INPUT_CONTINUOUS_LANE, DEFAULT_LANE, TRANSITION_LANE, and OFFSCREEN_LANE."
+    },
+    {
+      "id": 4,
+      "category": "Priority Lanes",
+      "difficulty": "Advanced",
+      "question": "Which priority lane is used for onClick event handlers in React 19?",
+      "options": {
+        "A": "DEFAULT_LANE",
+        "B": "TRANSITION_LANE",
+        "C": "SYNC_LANE (highest priority)",
+        "D": "INPUT_CONTINUOUS_LANE"
+      },
+      "correct": "C",
+      "explanation": "onClick events are synchronous and urgent, so they use SYNC_LANE which has the highest priority, interrupting lower-priority work."
+    },
+    {
+      "id": 5,
+      "category": "Priority Lanes",
+      "difficulty": "Advanced",
+      "question": "What happens when a high-priority update interrupts a low-priority update in React 19?",
+      "options": {
+        "A": "The low-priority update is cancelled permanently",
+        "B": "The high-priority update pauses the low-priority work, then resumes it after completion",
+        "C": "Both updates are merged together",
+        "D": "React throws an error"
+      },
+      "correct": "B",
+      "explanation": "React pauses low-priority work (like transitions), processes the high-priority update, then resumes the low-priority work from where it left off."
+    },
+    {
+      "id": 6,
+      "category": "Automatic Batching",
+      "difficulty": "Intermediate",
+      "question": "What is automatic batching in React 18+?",
+      "options": {
+        "A": "Grouping multiple state updates into a single render",
+        "B": "Processing multiple files at once during build",
+        "C": "Batching network requests together",
+        "D": "Grouping console.log statements"
+      },
+      "correct": "A",
+      "explanation": "Automatic batching groups multiple state updates (setState calls) into a single render pass, improving performance automatically."
+    },
+    {
+      "id": 7,
+      "category": "Automatic Batching",
+      "difficulty": "Intermediate",
+      "question": "In React 18, does automatic batching apply to promise callbacks?",
+      "options": {
+        "A": "No, promises are always processed separately",
+        "B": "Yes, React batches state updates inside promise.then()",
+        "C": "Only if using useCallback",
+        "D": "Only in development mode"
+      },
+      "correct": "B",
+      "explanation": "React 18 automatically batches state updates inside promise callbacks (.then(), async/await), which is different from React 17."
+    },
+    {
+      "id": 8,
+      "category": "Suspense Boundaries",
+      "difficulty": "Advanced",
+      "question": "What are the two main components of a Suspense boundary?",
+      "options": {
+        "A": "Try and Catch blocks",
+        "B": "Fallback UI and component that throws a promise",
+        "C": "Loading and Error states",
+        "D": "Primary and Backup components"
+      },
+      "correct": "B",
+      "explanation": "A Suspense boundary has: 1) fallback prop (shown while loading) and 2) child component that throws a promise when data isn't ready."
+    },
+    {
+      "id": 9,
+      "category": "Suspense Boundaries",
+      "difficulty": "Advanced",
+      "question": "How does React handle multiple Suspense boundaries with different loading times?",
+      "options": {
+        "A": "It waits for all to complete before showing any content",
+        "B": "Each Suspense shows its fallback independently until its content is ready",
+        "C": "It renders the fastest one first",
+        "D": "It shows all fallbacks simultaneously"
+      },
+      "correct": "B",
+      "explanation": "Each Suspense boundary is independent. As soon as its content is ready, it displays. Other boundaries can still show fallbacks while loading."
+    },
+    {
+      "id": 10,
+      "category": "useTransition Hook",
+      "difficulty": "Advanced",
+      "question": "What does useTransition hook return?",
+      "options": {
+        "A": "[isLoading]",
+        "B": "[isPending, startTransition]",
+        "C": "[isTransitioning, cancelTransition]",
+        "D": "[status, transition]"
+      },
+      "correct": "B",
+      "explanation": "useTransition returns [isPending, startTransition] where isPending indicates if a transition is in progress, and startTransition marks updates as non-urgent."
+    },
+    {
+      "id": 11,
+      "category": "useTransition Hook",
+      "difficulty": "Advanced",
+      "question": "What is the key difference between useTransition and useDeferredValue?",
+      "options": {
+        "A": "useTransition is for state updates, useDeferredValue is for props",
+        "B": "useDeferredValue requires wrapping setState, useTransition doesn't",
+        "C": "useTransition is deprecated in React 19",
+        "D": "They are exactly the same"
+      },
+      "correct": "A",
+      "explanation": "useTransition wraps setState calls to mark them as non-urgent. useDeferredValue defers a value (like a prop) without wrapping setState."
+    },
+    {
+      "id": 12,
+      "category": "useDeferredValue Hook",
+      "difficulty": "Advanced",
+      "question": "When should you use useDeferredValue instead of useTransition?",
+      "options": {
+        "A": "When you need to update state directly",
+        "B": "When you receive a value from a parent (prop) that updates frequently",
+        "C": "When you need better browser compatibility",
+        "D": "When using class components"
+      },
+      "correct": "B",
+      "explanation": "useDeferredValue is useful when you receive a prop from a parent and want to defer its effect without controlling setState directly."
+    },
+    {
+      "id": 13,
+      "category": "Streaming & Progressive Hydration",
+      "difficulty": "Advanced",
+      "question": "What is streaming rendering in React 19?",
+      "options": {
+        "A": "Sending video content from server",
+        "B": "Progressively sending HTML to browser as it renders on server",
+        "C": "Loading CSS files in parallel",
+        "D": "Splitting JavaScript bundles"
+      },
+      "correct": "B",
+      "explanation": "Streaming sends HTML progressively to the browser as React renders on the server, rather than waiting for entire page to render first."
+    },
+    {
+      "id": 14,
+      "category": "Streaming & Progressive Hydration",
+      "difficulty": "Advanced",
+      "question": "What is progressive hydration?",
+      "options": {
+        "A": "Adding water to the DOM",
+        "B": "Making components interactive as JavaScript loads, not all at once",
+        "C": "Loading CSS before JavaScript",
+        "D": "Incrementally loading CSS files"
+      },
+      "correct": "B",
+      "explanation": "Progressive hydration allows parts of the page to become interactive as their JavaScript loads, rather than blocking until all JS is loaded."
+    },
+    {
+      "id": 15,
+      "category": "React 19 Features",
+      "difficulty": "Intermediate",
+      "question": "What does the 'use' hook (React 19) allow you to do?",
+      "options": {
+        "A": "Use external hooks in components",
+        "B": "Unwrap promises and read their values directly",
+        "C": "Use hooks at the top level only",
+        "D": "Use state in async components"
+      },
+      "correct": "B",
+      "explanation": "The 'use' hook unwraps a promise, allowing you to read its value directly in a component without needing a Suspense boundary (though Suspense still handles loading)."
+    },
+    {
+      "id": 16,
+      "category": "React 19 Features",
+      "difficulty": "Intermediate",
+      "question": "What is useFormStatus hook in React 19?",
+      "options": {
+        "A": "Tracks form validation errors",
+        "B": "Tracks the pending state of a Server Action",
+        "C": "Manages form field values",
+        "D": "Handles form submission events"
+      },
+      "correct": "B",
+      "explanation": "useFormStatus returns the pending state of a Server Action, allowing you to show loading state or disable button while form is submitting."
+    },
+    {
+      "id": 17,
+      "category": "React 19 Features",
+      "difficulty": "Intermediate",
+      "question": "What is useOptimistic hook used for?",
+      "options": {
+        "A": "Optimizing component performance",
+        "B": "Providing optimistic UI updates that revert if server action fails",
+        "C": "Optimizing JavaScript bundle size",
+        "D": "Lazy loading components"
+      },
+      "correct": "B",
+      "explanation": "useOptimistic allows you to update UI immediately before server confirms the action, creating faster perceived performance. Updates revert if action fails."
+    },
+    {
+      "id": 18,
+      "category": "Concurrent Rendering",
+      "difficulty": "Advanced",
+      "question": "What is time slicing in React's concurrent rendering?",
+      "options": {
+        "A": "Dividing time into slices for debugging",
+        "B": "Breaking rendering work into chunks and allowing browser to handle events between chunks",
+        "C": "Timing how long each component takes to render",
+        "D": "Slicing the component tree into smaller pieces"
+      },
+      "correct": "B",
+      "explanation": "Time slicing breaks rendering into 5ms chunks, allowing the browser to handle user input between chunks, preventing jank."
+    },
+    {
+      "id": 19,
+      "category": "Concurrent Rendering",
+      "difficulty": "Advanced",
+      "question": "What happens during the 'commit' phase in React's render cycle?",
+      "options": {
+        "A": "React compares old and new component trees",
+        "B": "React updates the DOM and runs side effects",
+        "C": "React batches state updates",
+        "D": "React schedules future renders"
+      },
+      "correct": "B",
+      "explanation": "The commit phase (after reconciliation) is where React actually updates the DOM, runs useEffect, and applies other side effects."
+    },
+    {
+      "id": 20,
+      "category": "Suspense Boundaries",
+      "difficulty": "Advanced",
+      "question": "Can you nest Suspense boundaries inside each other?",
+      "options": {
+        "A": "No, React doesn't support nested Suspense",
+        "B": "Yes, and each can have different fallbacks",
+        "C": "Only in development mode",
+        "D": "Only if they use the same fallback"
+      },
+      "correct": "B",
+      "explanation": "Suspense boundaries can be nested, each with its own fallback. Inner boundaries show their fallbacks independently."
+    },
+    {
+      "id": 21,
+      "category": "Priority Lanes",
+      "difficulty": "Advanced",
+      "question": "How can you explicitly mark work as low-priority in React 19?",
+      "options": {
+        "A": "Use setTimeout()",
+        "B": "Wrap in useTransition's startTransition",
+        "C": "Use useDeferredValue",
+        "D": "Both B and C are correct"
+      },
+      "correct": "D",
+      "explanation": "Both startTransition (from useTransition) and useDeferredValue mark work as low-priority, allowing high-priority updates to interrupt."
+    },
+    {
+      "id": 22,
+      "category": "Fiber Architecture",
+      "difficulty": "Advanced",
+      "question": "What does the 'effectTag' property in a Fiber indicate?",
+      "options": {
+        "A": "The component's effect hooks",
+        "B": "The type of update needed: PLACEMENT, UPDATE, or DELETION",
+        "C": "The priority of the component",
+        "D": "The render method to use"
+      },
+      "correct": "B",
+      "explanation": "effectTag indicates what operation needs to be done during the commit phase: placing new elements, updating existing ones, or deleting removed elements."
+    },
+    {
+      "id": 23,
+      "category": "Automatic Batching",
+      "difficulty": "Intermediate",
+      "question": "In React 18+, does automatic batching apply to setTimeout callbacks?",
+      "options": {
+        "A": "Yes, always",
+        "B": "No, React doesn't batch in setTimeout",
+        "C": "Only if using useCallback",
+        "D": "Only if the timeout is less than 100ms"
+      },
+      "correct": "B",
+      "explanation": "Automatic batching applies to event handlers, promises, and some APIs, but NOT to setTimeout/setInterval (which are asynchronous)."
+    },
+    {
+      "id": 24,
+      "category": "useTransition Hook",
+      "difficulty": "Advanced",
+      "question": "What is the purpose of startTransition when you already have state updates?",
+      "options": {
+        "A": "To initialize state",
+        "B": "To mark state updates as non-urgent and non-blocking",
+        "C": "To cancel state updates",
+        "D": "To queue state updates"
+      },
+      "correct": "B",
+      "explanation": "startTransition wraps setState calls to mark them as non-blocking transitions, allowing high-priority updates to interrupt them."
+    },
+    {
+      "id": 25,
+      "category": "React 19 Features",
+      "difficulty": "Intermediate",
+      "question": "How does Server Action integration work with useFormStatus in React 19?",
+      "options": {
+        "A": "They are completely separate features",
+        "B": "useFormStatus tracks the pending state of a Server Action submitted via form",
+        "C": "useFormStatus only works with HTTP requests",
+        "D": "Server Actions must use useFormStatus"
+      },
+      "correct": "B",
+      "explanation": "useFormStatus reads the pending state from the parent form's Server Action, letting you disable button and show loading UI."
+    },
+    {
+      "id": 26,
+      "category": "Streaming & Progressive Hydration",
+      "difficulty": "Advanced",
+      "question": "What is the benefit of progressive hydration over traditional SSR?",
+      "options": {
+        "A": "Smaller HTML output",
+        "B": "Users can interact with parts of the page before all JavaScript loads",
+        "C": "Faster server response",
+        "D": "Reduced server CPU usage"
+      },
+      "correct": "B",
+      "explanation": "Progressive hydration lets users interact with the page sooner. Hydration happens as JS loads, not waiting for all JS to arrive."
+    },
+    {
+      "id": 27,
+      "category": "Concurrent Rendering",
+      "difficulty": "Advanced",
+      "question": "What is a 'bailout' in React's concurrent rendering?",
+      "options": {
+        "A": "An error that stops rendering",
+        "B": "Skipping re-render when props/state haven't changed",
+        "C": "Canceling a transition",
+        "D": "Returning from a render function early"
+      },
+      "correct": "B",
+      "explanation": "A bailout is when React skips rendering a component because its inputs (props/state) haven't changed, saving work."
+    },
+    {
+      "id": 28,
+      "category": "Suspense Boundaries",
+      "difficulty": "Advanced",
+      "question": "What error handling component should be used alongside Suspense boundaries?",
+      "options": {
+        "A": "try/catch blocks",
+        "B": "Error boundary (class component with getDerivedStateFromError)",
+        "C": "onError prop in Suspense",
+        "D": "useError hook"
+      },
+      "correct": "B",
+      "explanation": "Error boundaries (class components) catch rendering errors. Suspense handles data loading. Together they provide complete error/loading handling."
+    },
+    {
+      "id": 29,
+      "category": "useTransition Hook",
+      "difficulty": "Advanced",
+      "question": "Can you have multiple useTransition hooks in the same component?",
+      "options": {
+        "A": "No, only one allowed per component",
+        "B": "Yes, you can have multiple transitions with different priorities",
+        "C": "Only in strict mode",
+        "D": "Only with special config"
+      },
+      "correct": "B",
+      "explanation": "You can use multiple useTransition hooks in one component to manage different sets of low-priority updates independently."
+    },
+    {
+      "id": 30,
+      "category": "Priority Lanes",
+      "difficulty": "Advanced",
+      "question": "What is OFFSCREEN_LANE used for in React?",
+      "options": {
+        "A": "Updates outside the viewport",
+        "B": "Hidden components or off-screen content (lowest priority)",
+        "C": "Components that throw errors",
+        "D": "Asynchronous component loading"
+      },
+      "correct": "B",
+      "explanation": "OFFSCREEN_LANE is the lowest priority lane for components that are hidden or off-screen, updated when the browser is idle."
+    },
+    {
+      "id": 31,
+      "category": "Fiber Architecture",
+      "difficulty": "Advanced",
+      "question": "What does work-in-progress (WIP) refer to in React's Fiber architecture?",
+      "options": {
+        "A": "An incomplete task that crashes",
+        "B": "The new Fiber tree being constructed during render phase",
+        "C": "A feature not yet released",
+        "D": "A debugging tool"
+      },
+      "correct": "B",
+      "explanation": "Work-in-progress (WIP) is the new Fiber tree React is constructing. Once complete, it becomes the current tree during the commit phase."
+    },
+    {
+      "id": 32,
+      "category": "Concurrent Rendering",
+      "difficulty": "Advanced",
+      "question": "How can you interrupt a transition to prioritize a new event in React 19?",
+      "options": {
+        "A": "You can't, transitions always complete",
+        "B": "A high-priority update (like onClick) automatically interrupts it",
+        "C": "Use cancelTransition()",
+        "D": "Call startTransition with higher priority"
+      },
+      "correct": "B",
+      "explanation": "High-priority updates (sync events like onClick) automatically interrupt running transitions, allowing urgent updates to take precedence."
+    },
+    {
+      "id": 33,
+      "category": "React 19 Features",
+      "difficulty": "Intermediate",
+      "question": "What does useOptimistic require from you as a developer?",
+      "options": {
+        "A": "Only providing the optimistic state",
+        "B": "Providing initial state and an update function",
+        "C": "Manual error handling to revert changes",
+        "D": "Using it inside a form element only"
+      },
+      "correct": "B",
+      "explanation": "useOptimistic takes initial state and an update function. React automatically reverts changes if the Server Action fails."
+    },
+    {
+      "id": 34,
+      "category": "Suspense Boundaries",
+      "difficulty": "Advanced",
+      "question": "What does throwing a promise from a component mean in React?",
+      "options": {
+        "A": "An error occurred",
+        "B": "The component is waiting for async data; the nearest Suspense shows fallback",
+        "C": "The component crashed",
+        "D": "The component is using old React API"
+      },
+      "correct": "B",
+      "explanation": "Throwing a promise from a component signals that data isn't ready. React catches it and shows the Suspense boundary's fallback until the promise resolves."
+    },
+    {
+      "id": 35,
+      "category": "Streaming & Progressive Hydration",
+      "difficulty": "Advanced",
+      "question": "In streaming SSR, when does React start hydrating the page?",
+      "options": {
+        "A": "Only after all HTML is sent",
+        "B": "After the first HTML chunk arrives",
+        "C": "When JavaScript bundle finishes loading",
+        "D": "Immediately on server side"
+      },
+      "correct": "B",
+      "explanation": "With streaming, React can start hydrating the page as HTML chunks arrive, rather than waiting for the entire HTML and JS to load."
+    },
+    {
+      "id": 36,
+      "category": "Automatic Batching",
+      "difficulty": "Intermediate",
+      "question": "Does React batch state updates in event handlers by default in React 18+?",
+      "options": {
+        "A": "No, event handlers always update immediately",
+        "B": "Yes, automatically batches multiple updates in one handler",
+        "C": "Only with useCallback",
+        "D": "Only with unstable_batchedUpdates"
+      },
+      "correct": "B",
+      "explanation": "React 18 automatically batches multiple state updates in event handlers, reducing re-renders and improving performance."
+    },
+    {
+      "id": 37,
+      "category": "useTransition Hook",
+      "difficulty": "Advanced",
+      "question": "What is the difference between isPending from useTransition and status from useDeferredValue?",
+      "options": {
+        "A": "They are identical",
+        "B": "useTransition has isPending, useDeferredValue doesn't provide status",
+        "C": "useDeferredValue tracks status, useTransition doesn't",
+        "D": "useTransition is deprecated"
+      },
+      "correct": "B",
+      "explanation": "useTransition provides isPending boolean. useDeferredValue doesn't provide status; instead you compare deferred value with actual value."
+    },
+    {
+      "id": 38,
+      "category": "Concurrent Rendering",
+      "difficulty": "Advanced",
+      "question": "What is the purpose of React.startTransition outside of useTransition?",
+      "options": {
+        "A": "It doesn't exist",
+        "B": "Programmatically mark updates as non-urgent without a hook",
+        "C": "Start a new transition from a callback",
+        "D": "Initialize transitions in class components"
+      },
+      "correct": "B",
+      "explanation": "React.startTransition is the standalone version of the startTransition function from useTransition, used for programmatic transitions."
+    },
+    {
+      "id": 39,
+      "category": "Priority Lanes",
+      "difficulty": "Advanced",
+      "question": "Which lane has higher priority: INPUT_CONTINUOUS_LANE or TRANSITION_LANE?",
+      "options": {
+        "A": "TRANSITION_LANE",
+        "B": "INPUT_CONTINUOUS_LANE",
+        "C": "They have equal priority",
+        "D": "It depends on the browser"
+      },
+      "correct": "B",
+      "explanation": "INPUT_CONTINUOUS_LANE (user input like typing) has higher priority than TRANSITION_LANE (non-urgent updates from useTransition)."
+    },
+    {
+      "id": 40,
+      "category": "React 19 Features",
+      "difficulty": "Intermediate",
+      "question": "In React 19, what does the 'use' hook do with async operations?",
+      "options": {
+        "A": "Manages async state for you",
+        "B": "Unwraps promises, works with Suspense for loading states",
+        "C": "Replaces useEffect for async code",
+        "D": "Caches async results automatically"
+      },
+      "correct": "B",
+      "explanation": "The 'use' hook unwraps promises in components. Works with Suspense to show loading states while promises resolve."
+    },
+    {
+      "id": 41,
+      "category": "Suspense Boundaries",
+      "difficulty": "Advanced",
+      "question": "What happens if a Suspense boundary has multiple children that throw promises?",
+      "options": {
+        "A": "Only the first one shows fallback",
+        "B": "The entire boundary shows fallback until all promises resolve",
+        "C": "Each child has its own loading state",
+        "D": "React throws an error"
+      },
+      "correct": "B",
+      "explanation": "When any child in a Suspense boundary throws a promise, the entire boundary shows the fallback until all suspensions are resolved."
+    },
+    {
+      "id": 42,
+      "category": "Concurrent Rendering",
+      "difficulty": "Advanced",
+      "question": "What is the maximum time React dedicates to work before yielding to the browser?",
+      "options": {
+        "A": "1ms",
+        "B": "5ms",
+        "C": "10ms",
+        "D": "16ms (one frame)"
+      },
+      "correct": "B",
+      "explanation": "React's time slice is approximately 5ms. After 5ms, React yields control back to the browser to handle events and keep the UI responsive."
+    },
+    {
+      "id": 43,
+      "category": "useTransition Hook",
+      "difficulty": "Advanced",
+      "question": "Can useTransition be used outside of components (at module level)?",
+      "options": {
+        "A": "Yes, always",
+        "B": "No, it's a hook and must be in a component",
+        "C": "Only in class components",
+        "D": "Only with special React setup"
+      },
+      "correct": "B",
+      "explanation": "useTransition is a hook and must be called inside a functional component, following React's rules of hooks."
+    },
+    {
+      "id": 44,
+      "category": "Fiber Architecture",
+      "difficulty": "Advanced",
+      "question": "What does the 'current' fiber refer to in React's render cycle?",
+      "options": {
+        "A": "The fiber currently being rendered",
+        "B": "The Fiber tree that's currently mounted on the DOM",
+        "C": "A temporary state during rendering",
+        "D": "The next fiber to process"
+      },
+      "correct": "B",
+      "explanation": "The 'current' fiber is the Fiber tree currently mounted on the DOM. The 'work-in-progress' (WIP) is the new tree being constructed."
+    },
+    {
+      "id": 45,
+      "category": "Streaming & Progressive Hydration",
+      "difficulty": "Advanced",
+      "question": "What is selective hydration in React?",
+      "options": {
+        "A": "Choosing which CSS to hydrate",
+        "B": "Hydrating only the parts of the page the user interacts with",
+        "C": "Hydrating in a specific order based on priority",
+        "D": "Hydrating only on mobile devices"
+      },
+      "correct": "B",
+      "explanation": "Selective hydration prioritizes hydrating the parts of the page users are interacting with, deferring hydration of off-screen content."
+    },
+    {
+      "id": 46,
+      "category": "useDeferredValue Hook",
+      "difficulty": "Advanced",
+      "question": "What happens if you change the input to useDeferredValue rapidly?",
+      "options": {
+        "A": "Each change causes a separate render",
+        "B": "React batches changes and defers updates",
+        "C": "The oldest value is skipped",
+        "D": "React throws an error"
+      },
+      "correct": "B",
+      "explanation": "With rapid changes to a deferred value, React batches the changes and applies them as low-priority updates, preventing excessive re-renders."
+    },
+    {
+      "id": 47,
+      "category": "React 19 Features",
+      "difficulty": "Intermediate",
+      "question": "What is the relationship between Server Actions and useFormStatus in React 19?",
+      "options": {
+        "A": "They are unrelated features",
+        "B": "useFormStatus monitors the submission state of a Server Action in a form",
+        "C": "Server Actions require useFormStatus",
+        "D": "useFormStatus is deprecated in favor of Server Actions"
+      },
+      "correct": "B",
+      "explanation": "useFormStatus tracks the pending state of a Server Action that's submitted through a form, allowing you to show loading UI."
+    },
+    {
+      "id": 48,
+      "category": "Concurrent Rendering",
+      "difficulty": "Advanced",
+      "question": "How does React determine which Fiber to work on next in concurrent rendering?",
+      "options": {
+        "A": "Always top-to-bottom",
+        "B": "Based on priority lanes and the Fiber's schedule",
+        "C": "Random order",
+        "D": "The order components appear in JSX"
+      },
+      "correct": "B",
+      "explanation": "React uses a priority queue system with lanes. It processes Fibers based on their priority lane and when they were scheduled."
+    },
+    {
+      "id": 49,
+      "category": "Suspense Boundaries",
+      "difficulty": "Advanced",
+      "question": "Can an error boundary and Suspense boundary be the same component?",
+      "options": {
+        "A": "No, they must be separate",
+        "B": "Error boundary (class) and Suspense (wrapper) can work together but not be the same",
+        "C": "Yes, with special config",
+        "D": "Only in React 18+"
+      },
+      "correct": "B",
+      "explanation": "An error boundary and Suspense boundary serve different purposes. They can be nested but are not the same component."
+    },
+    {
+      "id": 50,
+      "category": "Priority Lanes",
+      "difficulty": "Advanced",
+      "question": "What happens if you wrap a high-priority update in startTransition?",
+      "options": {
+        "A": "It becomes urgent anyway",
+        "B": "It becomes low-priority",
+        "C": "React warns you",
+        "D": "It has no effect, can't override event priority"
+      },
+      "correct": "B",
+      "explanation": "Even if an update originates from a high-priority context (like an event), wrapping it in startTransition marks it as low-priority."
+    }
+  ]
+}
